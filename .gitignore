@@ -1,0 +1,253 @@
+# ==============================================================================
+# .gitignore para proyecto colaborativo Visual Studio (C#) + NetBeans (Java)
+# ==============================================================================
+
+# ==============================================================================
+# VISUAL STUDIO / C# / .NET
+# ==============================================================================
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options directory
+.vs/
+
+# Visual Studio Code
+.vscode/
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# JustCode
+.JustCode
+
+# TeamCity
+_TeamCity*
+
+# DotCover
+*.dotCover
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin
+$RECYCLE.BIN/
+
+# ==============================================================================
+# NETBEANS / JAVA
+# ==============================================================================
+
+# NetBeans specific
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+build/
+dist/
+nbactions.xml
+nb-configuration.xml
+
+# NetBeans profiler
+profiler/
+
+# ==============================================================================
+# JAVA / MAVEN / GRADLE
+# ==============================================================================
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# ==============================================================================
+# GLASSFISH / SERVIDORES DE APLICACIONES
+# ==============================================================================
+
+# GlassFish
+glassfish/domains/domain1/config/domain.xml
+glassfish/domains/domain1/autodeploy/
+glassfish/domains/domain1/logs/
+glassfish/domains/domain1/generated/
+glassfish/domains/domain1/osgi-cache/
+
+# ==============================================================================
+# INTELLIJ IDEA (Por si alguien lo usa)
+# ==============================================================================
+
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ==============================================================================
+# ECLIPSE (Por si alguien lo usa)
+# ==============================================================================
+
+.metadata
+.classpath
+.project
+.settings/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
+# ==============================================================================
+# BASES DE DATOS
+# ==============================================================================
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# MySQL dumps
+*.sql
+
+# ==============================================================================
+# SISTEMA OPERATIVO
+# ==============================================================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.stackdump
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==============================================================================
+# ESTRUCTURA ESPECÍFICA DEL PROYECTO WEARDROP
+# ==============================================================================
+
+# Carpetas target de Maven en todos los módulos Java
+**/target/
+
+# Configuración de base de datos (credenciales sensibles)
+**/db.properties
+**/database.properties
+**/dbconfig.properties
+
+# NetBeans - configuraciones de proyecto
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+**/nbproject/project.properties
+
+# ==============================================================================
+# ARCHIVOS DE CONFIGURACIÓN LOCAL
+# ==============================================================================
+
+# Archivos de configuración con credenciales
+**/appsettings.Development.json
+**/appsettings.Local.json
+**/*connection*.config
+
+# Archivos de configuración de IDE
+**/.vscode/
+**/.idea/
+
+# ==============================================================================
+# OTROS
+# ==============================================================================
+
+# Archivos temporales
+*.tmp
+*.temp
+*.cache
+*.bak
+*.old
+
+# Node modules (si hay frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de respaldo
+*~
+*.orig
+*.rej
