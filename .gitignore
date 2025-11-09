@@ -174,8 +174,12 @@ local.properties
 *.sqlite
 *.sqlite3
 
-# MySQL dumps
-*.sql
+# Carpetas de respaldos/dumps (no los scripts del proyecto)
+dumps/
+backups/
+temp/
+**/backup/
+**/export/
 
 # ==============================================================================
 # SISTEMA OPERATIVO
