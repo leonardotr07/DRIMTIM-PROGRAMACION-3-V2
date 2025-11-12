@@ -12,6 +12,11 @@ namespace WearDropWA
         protected void Page_Load(object sender, EventArgs e)
         {
             // (Tu lógica de Page_Load si tienes)
+            if (!IsPostBack)
+            {
+                // Asegura que el panel de Boleta sea el inicial
+                MostrarPanel("boleta");
+            }
         }
 
         // --- MÉTODOS PARA CAMBIAR PESTAÑAS ---
@@ -37,6 +42,7 @@ namespace WearDropWA
             MostrarPanel("notadebito");
         }
 
+        // Este método centraliza la lógica, ¡muy bien!
         private void MostrarPanel(string panelActivo)
         {
             pnlBoleta.Visible = false;
@@ -58,7 +64,7 @@ namespace WearDropWA
             }
         }
 
-        // --- ¡NUEVO! MÉTODOS PARA REGISTRAR (BOTONES EMITIR) ---
+        // --- MÉTODOS PARA REGISTRAR (BOTONES EMITIR) ---
 
         protected void btnEmitirBoleta_Click(object sender, EventArgs e)
         {
@@ -90,6 +96,7 @@ namespace WearDropWA
             MostrarModalExito();
         }
 
+
         protected void btnEmitirND_Click(object sender, EventArgs e)
         {
             // 1. (Lógica para GUARDAR Nota de Débito)
@@ -99,14 +106,16 @@ namespace WearDropWA
             MostrarModalExito();
         }
 
-        // --- ¡NUEVO! FUNCIÓN PARA LLAMAR AL JAVASCRIPT ---
+        // --- FUNCIÓN PARA LLAMAR AL JAVASCRIPT ---
 
         private void MostrarModalExito()
         {
-            // Esta línea le dice al ScriptManager (en el .Master)
+            // Esta línea le dice al ScriptManager (en el .Master o en esta página)
             // que ejecute la función JavaScript "showSuccessModal()"
             // cuando la página termine de cargarse.
             ScriptManager.RegisterStartupScript(this, GetType(), "showSuccessModal", "showSuccessModal();", true);
         }
+
+        // (Aquí estaban los métodos duplicados, que ya he borrado)
     }
 }

@@ -37,12 +37,12 @@ namespace WearDropWA
             Response.Redirect("ListarCuentas.aspx");
         }
 
-        protected void btnEditar_Click(object sender, EventArgs e)
+        protected void btnModificar_Click(object sender, EventArgs e)
         {
             Response.Redirect("RegistrarCuentas.aspx");
         }
 
-        protected void btnVer_Click(object sender, EventArgs e)
+        protected void btnVisualizar_Click(object sender, EventArgs e)
         {
             Response.Redirect("RegistrarCuentas.aspx");
         }

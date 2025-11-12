@@ -99,6 +99,11 @@ namespace WearDropWA
             string tipoSeleccionado = ddlTipoComprobante.SelectedValue;
             MostrarPanel(tipoSeleccionado);
         }
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            // Simplemente redirige de vuelta a la lista
+            Response.Redirect("~/GestionarComprobantes.aspx");
+        }
 
         // --- ESTA FUNCIÓN OCULTA/MUESTRA LOS PANELES ---
         private void MostrarPanel(string tipo)

@@ -29,22 +29,22 @@ namespace WearDropWA
             gvEmpleados.DataBind();
         }
 
-        protected void lkRegistrarEmpleado_Click(object sender, EventArgs e)
+        protected void lkRegistrar_Click(object sender, EventArgs e)
         {
             Response.Redirect("RegistrarEmpleado.aspx");
         }
 
-        protected void lkFiltrarEmpleado_Click(object sender, EventArgs e)
+        protected void lkFiltrar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListarEmpleados.aspx");
         }
 
-        protected void btnEditar_Click(object sender, EventArgs e)
+        protected void btnModificar_Click(object sender, EventArgs e)
         {
             Response.Redirect("RegistrarEmpleado.aspx");
         }
 
-        protected void btnVer_Click(object sender, EventArgs e)
+        protected void btnVisualizar_Click(object sender, EventArgs e)
         {
             Response.Redirect("VerEmpleado.aspx");
         }

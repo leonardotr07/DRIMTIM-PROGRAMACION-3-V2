@@ -15,13 +15,13 @@ namespace WearDropWA
     {
 
         /// <summary>
-        /// Control hlVolver.
+        /// Control lblTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlVolver;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTitulo;
 
         /// <summary>
         /// Control upRegistrar.
@@ -78,6 +78,42 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.Panel pnlBoleta;
 
         /// <summary>
+        /// Control lblCorrelativo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCorrelativo;
+
+        /// <summary>
+        /// Control txtCorrelativo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorrelativo;
+
+        /// <summary>
+        /// Control lblFechaBoleta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaBoleta;
+
+        /// <summary>
+        /// Control txtFechaBoleta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaBoleta;
+
+        /// <summary>
         /// Control lblDNI.
         /// </summary>
         /// <remarks>
@@ -132,6 +168,42 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
+        /// Control lblMetodoPagoBoleta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMetodoPagoBoleta;
+
+        /// <summary>
+        /// Control txtMetodoPagoBoleta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMetodoPagoBoleta;
+
+        /// <summary>
+        /// Control lblTotalBoletaInput.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalBoletaInput;
+
+        /// <summary>
+        /// Control txtTotalBoleta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTotalBoleta;
+
+        /// <summary>
         /// Control lblIGV.
         /// </summary>
         /// <remarks>
@@ -159,13 +231,13 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.Label lblTotalBoleta;
 
         /// <summary>
-        /// Control btnCancelarBoleta.
+        /// Control hlCancelarBoleta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCancelarBoleta;
+        protected global::System.Web.UI.WebControls.HyperLink hlCancelarBoleta;
 
         /// <summary>
         /// Control btnEmitirBoleta.
@@ -184,6 +256,42 @@ namespace WearDropWA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlFactura;
+
+        /// <summary>
+        /// Control lblCorrelativoFactura.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCorrelativoFactura;
+
+        /// <summary>
+        /// Control txtCorrelativoFactura.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorrelativoFactura;
+
+        /// <summary>
+        /// Control lblFechaFactura.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaFactura;
+
+        /// <summary>
+        /// Control txtFechaFactura.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaFactura;
 
         /// <summary>
         /// Control lblRUCFactura.
@@ -222,24 +330,6 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.TextBox txtRazonSocial;
 
         /// <summary>
-        /// Control lblMetodoPago.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMetodoPago;
-
-        /// <summary>
-        /// Control txtMetodoPago.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMetodoPago;
-
-        /// <summary>
         /// Control lblDireccion.
         /// </summary>
         /// <remarks>
@@ -276,6 +366,42 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.TextBox txtNombresFactura;
 
         /// <summary>
+        /// Control lblMetodoPago.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMetodoPago;
+
+        /// <summary>
+        /// Control txtMetodoPago.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMetodoPago;
+
+        /// <summary>
+        /// Control lblTotalFacturaInput.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalFacturaInput;
+
+        /// <summary>
+        /// Control txtTotalFactura.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTotalFactura;
+
+        /// <summary>
         /// Control lblIGVFactura.
         /// </summary>
         /// <remarks>
@@ -303,13 +429,13 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.Label lblTotalFactura;
 
         /// <summary>
-        /// Control btnCancelarFactura.
+        /// Control hlCancelarFactura.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCancelarFactura;
+        protected global::System.Web.UI.WebControls.HyperLink hlCancelarFactura;
 
         /// <summary>
         /// Control btnEmitirFactura.
@@ -328,6 +454,42 @@ namespace WearDropWA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlNotaCredito;
+
+        /// <summary>
+        /// Control lblCorrelativoNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCorrelativoNC;
+
+        /// <summary>
+        /// Control txtCorrelativoNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorrelativoNC;
+
+        /// <summary>
+        /// Control lblFechaNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaNC;
+
+        /// <summary>
+        /// Control txtFechaNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaNC;
 
         /// <summary>
         /// Control lblDNINC.
@@ -364,6 +526,24 @@ namespace WearDropWA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRUCNC;
+
+        /// <summary>
+        /// Control lblRazonSocialNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRazonSocialNC;
+
+        /// <summary>
+        /// Control txtRazonSocialNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRazonSocialNC;
 
         /// <summary>
         /// Control lblMotivoNC.
@@ -438,6 +618,42 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.TextBox txtValorAumentarNC;
 
         /// <summary>
+        /// Control lblNuevoMontoNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNuevoMontoNC;
+
+        /// <summary>
+        /// Control txtNuevoMontoNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNuevoMontoNC;
+
+        /// <summary>
+        /// Control lblMetodoPagoNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMetodoPagoNC;
+
+        /// <summary>
+        /// Control txtMetodoPagoNC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMetodoPagoNC;
+
+        /// <summary>
         /// Control lblIGVNC.
         /// </summary>
         /// <remarks>
@@ -456,22 +672,22 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.TextBox txtIGVNC;
 
         /// <summary>
-        /// Control lblNuevoMontoNC.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNuevoMontoNC;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control btnCancelarNC.
+        /// Control hlCancelarNC.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCancelarNC;
+        protected global::System.Web.UI.WebControls.HyperLink hlCancelarNC;
 
         /// <summary>
         /// Control btnEmitirNC.
@@ -490,6 +706,42 @@ namespace WearDropWA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlNotaDebito;
+
+        /// <summary>
+        /// Control lblCorrelativoND.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCorrelativoND;
+
+        /// <summary>
+        /// Control txtCorrelativoND.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorrelativoND;
+
+        /// <summary>
+        /// Control lblFechaND.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaND;
+
+        /// <summary>
+        /// Control txtFechaND.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaND;
 
         /// <summary>
         /// Control lblRUCND.
@@ -600,6 +852,60 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.TextBox txtValorAumentarND;
 
         /// <summary>
+        /// Control lblNuevoMontoND.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNuevoMontoND;
+
+        /// <summary>
+        /// Control txtNuevoMontoND.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNuevoMontoND;
+
+        /// <summary>
+        /// Control lblMetodoPagoND.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMetodoPagoND;
+
+        /// <summary>
+        /// Control txtMetodoPagoND.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMetodoPagoND;
+
+        /// <summary>
+        /// Control lblIdPrenda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIdPrenda;
+
+        /// <summary>
+        /// Control txtIdPrenda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIdPrenda;
+
+        /// <summary>
         /// Control lblIGVND.
         /// </summary>
         /// <remarks>
@@ -618,22 +924,22 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.TextBox txtIGVND;
 
         /// <summary>
-        /// Control lblNuevoMontoND.
+        /// Control Label2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNuevoMontoND;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control btnCancelarND.
+        /// Control hlCancelarND.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCancelarND;
+        protected global::System.Web.UI.WebControls.HyperLink hlCancelarND;
 
         /// <summary>
         /// Control btnEmitirND.

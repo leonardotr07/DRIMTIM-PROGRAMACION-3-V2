@@ -1,105 +1,159 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WearDrop1.Master" AutoEventWireup="true" CodeBehind="GestionarPersonas.aspx.cs" Inherits="WearDropWA.GestionarPersonas" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Gestionar Personas
+<asp:Content ID="t" ContentPlaceHolderID="TitleContent" runat="server">
+    Gestionar Cuentas
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
+<asp:Content ID="h" ContentPlaceHolderID="HeadContent" runat="server">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
     <style>
-        /* ======= Encabezado con barras (como ListarAlmacenes) ======= */
-        .header-title {
+        :root {
+            /* dimensiones y espaciamiento */
+            --container-width: 860px;
+            --grid-gap: 22px;
+            --card-height: 84px;
+            --card-padding-y: 12px;
+            --card-padding-x: 16px;
+            --frame-radius: 14px;
+            --card-radius: 5px;
+
+            /* colores de marcos */
+            --frame-green: #9DBD9B;
+            --frame-blue:  #9FB6C8;
+            --frame-pink:  #C99298;
+            --frame-lilac: #B4A6D6;
+            --frame-teal:  #9AC5BE;
+            --frame-yellow:#EDE28A;
+            --frame-light-pink: #C5A0B0;
+        }
+
+        .hdr {
             display: flex;
             align-items: stretch;
-            height: 60px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .title-section {
-            background-color: #FFFFFF;
-            padding: 0 25px;
-            display: flex; align-items: center;
-            flex: 0 0 250px;
-        }
-        .title-section h2 {
-            margin: 0; font-size: 20px; font-weight: 500; color: #333; white-space: nowrap;
-        }
-        .color-bar { height: 100%; }
-        .bar-1 { background-color: #C5D9C0; flex: 1.5; }
-        .bar-2 { background-color: #95B88F; flex: 1.5; }
-
-        /* ======= Subtítulo en caja ======= */
-        .selector-banner{
-            background:#fff; border-radius:10px; padding:12px 16px;
-            box-shadow:0 2px 6px rgba(0,0,0,.08);
-            font-weight:600; color:#333;
+            height: 56px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+            margin-top: 10px;
         }
 
-        /* ======= Opciones (tiles) ======= */
-        .tile-option{
-            display:flex; align-items:center; gap:12px;
-            width:100%; padding:16px 18px;
-            border:3px solid transparent; border-radius:14px;
-            background:#fff; color:#111; text-decoration:none; font-weight:700;
-            box-shadow:0 2px 6px rgba(0,0,0,.08);
-            transition:transform .08s ease, box-shadow .12s ease, background .12s ease;
-        }
-        .tile-option i{ font-size:1.25rem; }
-        .tile-option:hover{
-            transform: translateY(-2px);
-            text-decoration:none;
-            box-shadow:0 6px 16px rgba(0,0,0,.14);
+        .ttl {
+            background: #fff;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            flex: 0 0 320px;
         }
 
-        /* Marcos y hover suaves (paleta del proyecto) */
-        .tile-empleados{ border-color:#7FB489; }
-        .tile-empleados:hover{ background:#E8F4E5; }
+        .ttl h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
 
-        .tile-clientes{ border-color:#7FA0B9; }
-        .tile-clientes:hover{ background:#E6EEF5; }
+        .c1 { background: #C5D9C0; flex: 1.5; }
+        .c2 { background: #95B88F; flex: 1.5; }
 
-        .tile-cuentas{ border-color:#C89395; }
-        .tile-cuentas:hover{ background:#F6E9EA; }
+        .pill {
+            max-width: var(--container-width);
+            margin: 8px auto 12px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-weight: 600;
+        }
 
-        /* Contenedor de ancho cómodo como en otras vistas */
-        .wd-wrap{ max-width: 980px; }
+        .grid {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--grid-gap);
+            align-items: stretch;
+        }
+
+        @media (max-width: 700px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        .frame {
+            border-radius: var(--frame-radius);
+            padding: 10px;
+            display: flex;
+        }
+
+        .g { background: var(--frame-green); }
+        .b { background: var(--frame-blue); }
+        .p { background: var(--frame-pink); }
+        .l { background: var(--frame-lilac); }
+        .t { background: var(--frame-teal); }
+        .y { background: var(--frame-yellow); }
+        .lp { background: var(--frame-light-pink); }
+
+        .card {
+            display: block;
+            flex: 1;
+            text-decoration: none;
+        }
+
+        .chip {
+            background: #fff;
+            border-radius: var(--card-radius);
+            padding: var(--card-padding-y) var(--card-padding-x);
+            border: 1px solid #e8e8e8;
+            box-shadow: 0 0 0 6px rgba(255, 255, 255, .8) inset;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: var(--card-height);
+        }
+
+        .card:hover .chip {
+            box-shadow: 0 0 0 2px #e6efe6 inset;
+        }
+
+        .chip .ti {
+            font-size: 24px;
+            color: #0b2239;
+        }
+
+        .chip span {
+            font-size: 22px;
+            color: #122033;
+            font-weight: 650;
+        }
     </style>
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
+<asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container row">
+        <div class="pill">Seleccionar una Persona a Gestionar:</div>
 
-        <!-- Subtítulo en caja -->
-        <div class="row mt-3 wd-wrap">
-            <div class="col-12">
-                <div class="selector-banner">
-                    Seleccionar Tipo de Persona a Gestionar:
-                </div>
-            </div>
-        </div>
-
-        <!-- Opciones -->
-        <div class="row g-3 mt-1 wd-wrap">
-            <div class="col-12 col-md-6">
-                <a class="tile-option tile-empleados" href="ListarEmpleados.aspx">
-                    <i class="fa-solid fa-id-badge"></i>
-                    <span>EMPLEADOS</span>
-                </a>
+        <div class="grid">
+            <div class="frame g">
+                <asp:LinkButton runat="server" ID="btnEmpleados" CssClass="card" OnClick="btnEmpleados_Click">
+                    <div class="chip"><i class="ti ti-user"></i><span>Empleados</span></div>
+                </asp:LinkButton>
             </div>
 
-            <div class="col-12 col-md-6">
-                <a class="tile-option tile-clientes" href="#">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span>CLIENTES</span>
-                </a>
+            <div class="frame p">
+                <asp:LinkButton runat="server" ID="btnClientes" CssClass="card" OnClick="btnClientes_Click">
+                    <div class="chip"><i class="ti ti-shopping-cart"></i><span>Clientes</span></div>
+                </asp:LinkButton>
             </div>
 
-            <div class="col-12 col-md-6">
-                <a class="tile-option tile-cuentas" href="ListarCuentas.aspx">
-                    <i class="fa-solid fa-gear"></i>
-                    <span>CUENTAS</span>
-                </a>
+            <div class="frame b">
+                <asp:LinkButton runat="server" ID="btnCuentas" CssClass="card" OnClick="btnCuentas_Click">
+                    <div class="chip"><i class="ti ti-key"></i><span>Cuentas</span></div>
+                </asp:LinkButton>
             </div>
         </div>
     </div>
 </asp:Content>
 
-<asp:Content ID="Content4" ContentPlaceHolderID="ScriptsContent" runat="server">
+<asp:Content ID="s" ContentPlaceHolderID="ScriptsContent" runat="server">
 </asp:Content>
