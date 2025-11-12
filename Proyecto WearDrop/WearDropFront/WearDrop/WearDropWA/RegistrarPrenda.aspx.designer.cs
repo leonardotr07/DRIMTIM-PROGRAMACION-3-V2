@@ -48,7 +48,7 @@ namespace WearDropWA
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divId;
+        protected global::System.Web.UI.WebControls.Panel divId;
 
         /// <summary>
         /// txtId control.
@@ -76,24 +76,6 @@ namespace WearDropWA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombre;
-
-        /// <summary>
-        /// spanReqTalla control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanReqTalla;
-
-        /// <summary>
-        /// ddlTalla control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTalla;
 
         /// <summary>
         /// spanReqMaterial control.
@@ -330,6 +312,24 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoVestido;
 
         /// <summary>
+        /// spanReqMangaV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanReqMangaV;
+
+        /// <summary>
+        /// ddlTipoMangaV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoMangaV;
+
+        /// <summary>
         /// spanReqLargoVestido control.
         /// </summary>
         /// <remarks>
@@ -454,6 +454,24 @@ namespace WearDropWA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLargoPierna;
+
+        /// <summary>
+        /// spanReqCintura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanReqCintura;
+
+        /// <summary>
+        /// txtCintura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCintura;
 
         /// <summary>
         /// pnlCASACA control.

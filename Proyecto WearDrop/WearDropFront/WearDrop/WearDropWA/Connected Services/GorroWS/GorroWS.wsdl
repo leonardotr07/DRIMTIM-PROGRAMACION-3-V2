@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://prendas.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="GorroWS" targetNamespace="http://prendas.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/GorroWS?xsd=1" namespace="http://prendas.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="eliminarGorro">
+    <part name="parameters" element="tns:eliminarGorro" />
+  </message>
+  <message name="eliminarGorroResponse">
+    <part name="parameters" element="tns:eliminarGorroResponse" />
+  </message>
+  <message name="filtrarGorros">
+    <part name="parameters" element="tns:filtrarGorros" />
+  </message>
+  <message name="filtrarGorrosResponse">
+    <part name="parameters" element="tns:filtrarGorrosResponse" />
+  </message>
+  <message name="insertarGorro">
+    <part name="parameters" element="tns:insertarGorro" />
+  </message>
+  <message name="insertarGorroResponse">
+    <part name="parameters" element="tns:insertarGorroResponse" />
+  </message>
+  <message name="obtenerGorroPorId">
+    <part name="parameters" element="tns:obtenerGorroPorId" />
+  </message>
+  <message name="obtenerGorroPorIdResponse">
+    <part name="parameters" element="tns:obtenerGorroPorIdResponse" />
+  </message>
+  <message name="modificarGorro">
+    <part name="parameters" element="tns:modificarGorro" />
+  </message>
+  <message name="modificarGorroResponse">
+    <part name="parameters" element="tns:modificarGorroResponse" />
+  </message>
+  <message name="listarGorros">
+    <part name="parameters" element="tns:listarGorros" />
+  </message>
+  <message name="listarGorrosResponse">
+    <part name="parameters" element="tns:listarGorrosResponse" />
+  </message>
+  <portType name="GorroWS">
+    <operation name="eliminarGorro">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/eliminarGorroRequest" message="tns:eliminarGorro" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/eliminarGorroResponse" message="tns:eliminarGorroResponse" />
+    </operation>
+    <operation name="filtrarGorros">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/filtrarGorrosRequest" message="tns:filtrarGorros" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/filtrarGorrosResponse" message="tns:filtrarGorrosResponse" />
+    </operation>
+    <operation name="insertarGorro">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/insertarGorroRequest" message="tns:insertarGorro" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/insertarGorroResponse" message="tns:insertarGorroResponse" />
+    </operation>
+    <operation name="obtenerGorroPorId">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/obtenerGorroPorIdRequest" message="tns:obtenerGorroPorId" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/obtenerGorroPorIdResponse" message="tns:obtenerGorroPorIdResponse" />
+    </operation>
+    <operation name="modificarGorro">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/modificarGorroRequest" message="tns:modificarGorro" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/modificarGorroResponse" message="tns:modificarGorroResponse" />
+    </operation>
+    <operation name="listarGorros">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/listarGorrosRequest" message="tns:listarGorros" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/GorroWS/listarGorrosResponse" message="tns:listarGorrosResponse" />
+    </operation>
+  </portType>
+  <binding name="GorroWSPortBinding" type="tns:GorroWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="eliminarGorro">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="filtrarGorros">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarGorro">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerGorroPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarGorro">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarGorros">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="GorroWS">
+    <port name="GorroWSPort" binding="tns:GorroWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/GorroWS" />
+    </port>
+  </service>
+</definitions>

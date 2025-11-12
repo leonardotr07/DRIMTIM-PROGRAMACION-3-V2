@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://prendas.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="VestidoWS" targetNamespace="http://prendas.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/VestidoWS?xsd=1" namespace="http://prendas.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="insertarVestido">
+    <part name="parameters" element="tns:insertarVestido" />
+  </message>
+  <message name="insertarVestidoResponse">
+    <part name="parameters" element="tns:insertarVestidoResponse" />
+  </message>
+  <message name="obtenerVestidoPorId">
+    <part name="parameters" element="tns:obtenerVestidoPorId" />
+  </message>
+  <message name="obtenerVestidoPorIdResponse">
+    <part name="parameters" element="tns:obtenerVestidoPorIdResponse" />
+  </message>
+  <message name="eliminarVestido">
+    <part name="parameters" element="tns:eliminarVestido" />
+  </message>
+  <message name="eliminarVestidoResponse">
+    <part name="parameters" element="tns:eliminarVestidoResponse" />
+  </message>
+  <message name="listarVestidos">
+    <part name="parameters" element="tns:listarVestidos" />
+  </message>
+  <message name="listarVestidosResponse">
+    <part name="parameters" element="tns:listarVestidosResponse" />
+  </message>
+  <message name="modificarVestido">
+    <part name="parameters" element="tns:modificarVestido" />
+  </message>
+  <message name="modificarVestidoResponse">
+    <part name="parameters" element="tns:modificarVestidoResponse" />
+  </message>
+  <message name="filtrarVestidos">
+    <part name="parameters" element="tns:filtrarVestidos" />
+  </message>
+  <message name="filtrarVestidosResponse">
+    <part name="parameters" element="tns:filtrarVestidosResponse" />
+  </message>
+  <portType name="VestidoWS">
+    <operation name="insertarVestido">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/insertarVestidoRequest" message="tns:insertarVestido" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/insertarVestidoResponse" message="tns:insertarVestidoResponse" />
+    </operation>
+    <operation name="obtenerVestidoPorId">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/obtenerVestidoPorIdRequest" message="tns:obtenerVestidoPorId" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/obtenerVestidoPorIdResponse" message="tns:obtenerVestidoPorIdResponse" />
+    </operation>
+    <operation name="eliminarVestido">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/eliminarVestidoRequest" message="tns:eliminarVestido" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/eliminarVestidoResponse" message="tns:eliminarVestidoResponse" />
+    </operation>
+    <operation name="listarVestidos">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/listarVestidosRequest" message="tns:listarVestidos" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/listarVestidosResponse" message="tns:listarVestidosResponse" />
+    </operation>
+    <operation name="modificarVestido">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/modificarVestidoRequest" message="tns:modificarVestido" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/modificarVestidoResponse" message="tns:modificarVestidoResponse" />
+    </operation>
+    <operation name="filtrarVestidos">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/filtrarVestidosRequest" message="tns:filtrarVestidos" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/filtrarVestidosResponse" message="tns:filtrarVestidosResponse" />
+    </operation>
+  </portType>
+  <binding name="VestidoWSPortBinding" type="tns:VestidoWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="insertarVestido">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerVestidoPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarVestido">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarVestidos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarVestido">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="filtrarVestidos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="VestidoWS">
+    <port name="VestidoWSPort" binding="tns:VestidoWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/VestidoWS" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://prendas.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="BlusaWS" targetNamespace="http://prendas.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/BlusaWS?xsd=1" namespace="http://prendas.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="filtrarBlusas">
+    <part name="parameters" element="tns:filtrarBlusas" />
+  </message>
+  <message name="filtrarBlusasResponse">
+    <part name="parameters" element="tns:filtrarBlusasResponse" />
+  </message>
+  <message name="insertarBlusa">
+    <part name="parameters" element="tns:insertarBlusa" />
+  </message>
+  <message name="insertarBlusaResponse">
+    <part name="parameters" element="tns:insertarBlusaResponse" />
+  </message>
+  <message name="modificarBlusa">
+    <part name="parameters" element="tns:modificarBlusa" />
+  </message>
+  <message name="modificarBlusaResponse">
+    <part name="parameters" element="tns:modificarBlusaResponse" />
+  </message>
+  <message name="eliminarBlusa">
+    <part name="parameters" element="tns:eliminarBlusa" />
+  </message>
+  <message name="eliminarBlusaResponse">
+    <part name="parameters" element="tns:eliminarBlusaResponse" />
+  </message>
+  <message name="obtenerBlusaPorId">
+    <part name="parameters" element="tns:obtenerBlusaPorId" />
+  </message>
+  <message name="obtenerBlusaPorIdResponse">
+    <part name="parameters" element="tns:obtenerBlusaPorIdResponse" />
+  </message>
+  <message name="listarBlusas">
+    <part name="parameters" element="tns:listarBlusas" />
+  </message>
+  <message name="listarBlusasResponse">
+    <part name="parameters" element="tns:listarBlusasResponse" />
+  </message>
+  <portType name="BlusaWS">
+    <operation name="filtrarBlusas">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/filtrarBlusasRequest" message="tns:filtrarBlusas" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/filtrarBlusasResponse" message="tns:filtrarBlusasResponse" />
+    </operation>
+    <operation name="insertarBlusa">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/insertarBlusaRequest" message="tns:insertarBlusa" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/insertarBlusaResponse" message="tns:insertarBlusaResponse" />
+    </operation>
+    <operation name="modificarBlusa">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/modificarBlusaRequest" message="tns:modificarBlusa" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/modificarBlusaResponse" message="tns:modificarBlusaResponse" />
+    </operation>
+    <operation name="eliminarBlusa">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/eliminarBlusaRequest" message="tns:eliminarBlusa" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/eliminarBlusaResponse" message="tns:eliminarBlusaResponse" />
+    </operation>
+    <operation name="obtenerBlusaPorId">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/obtenerBlusaPorIdRequest" message="tns:obtenerBlusaPorId" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/obtenerBlusaPorIdResponse" message="tns:obtenerBlusaPorIdResponse" />
+    </operation>
+    <operation name="listarBlusas">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/listarBlusasRequest" message="tns:listarBlusas" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/listarBlusasResponse" message="tns:listarBlusasResponse" />
+    </operation>
+  </portType>
+  <binding name="BlusaWSPortBinding" type="tns:BlusaWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="filtrarBlusas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarBlusa">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarBlusa">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarBlusa">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerBlusaPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarBlusas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="BlusaWS">
+    <port name="BlusaWSPort" binding="tns:BlusaWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/BlusaWS" />
+    </port>
+  </service>
+</definitions>

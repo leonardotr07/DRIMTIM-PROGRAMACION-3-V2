@@ -103,8 +103,10 @@ public class PantalonImpl implements PantalonDAO {
                 datPantalon.setLargoPierna(rs.getDouble("largo_pierna"));
                 datPantalon.setCintura(rs.getDouble("cintura"));
                 datPantalon.setElasticidad(rs.getBoolean("elasticidad"));
-                datPantalon.setActivo(rs.getBoolean("activo"));
-
+                
+                datPantalon.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datPantalon.setPrecioMayor(rs.getDouble("precioMayor"));
+                datPantalon.setPrecioDocena(rs.getDouble("precioDocena"));
                 System.out.println("SE OBTUVO LA PRENDA PANTALÓN CORRECTAMENTE.");
             }
         } catch (SQLException ex) {
@@ -138,7 +140,9 @@ public class PantalonImpl implements PantalonDAO {
                 p.setCintura(rs.getDouble("cintura"));
                 p.setElasticidad(rs.getBoolean("elasticidad"));
                 p.setActivo(rs.getBoolean("activo"));
-
+                p.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                p.setPrecioMayor(rs.getDouble("precioMayor"));
+                p.setPrecioDocena(rs.getDouble("precioDocena"));
                 lista.add(p);
             }
             System.out.println("SE LISTÓ TODAS LAS PRENDAS PANTALÓN CORRECTAMENTE.");

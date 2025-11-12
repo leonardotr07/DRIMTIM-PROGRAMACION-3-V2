@@ -30,7 +30,7 @@ namespace WearDropWA
             => Response.Redirect("~/ListarPrendas.aspx?tipo=Casacas");
 
         protected void btnBlusas_Click(object sender, EventArgs e)
-            => Response.Redirect("~/ListarPrendas.aspx?tipo=Blusas.aspx");
+            => Response.Redirect("~/ListarPrendas.aspx?tipo=Blusas");
 
         
     }
