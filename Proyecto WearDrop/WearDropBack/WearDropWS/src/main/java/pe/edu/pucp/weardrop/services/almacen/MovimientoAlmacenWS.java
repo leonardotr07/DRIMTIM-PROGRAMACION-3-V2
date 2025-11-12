@@ -8,6 +8,7 @@ import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import java.util.List;
+import pe.edu.pucp.weardrop.almacen.Almacen;
 import pe.edu.pucp.weardrop.almacen.MovimientoAlmacen;
 import pe.edu.pucp.weardrop.almacen.bo.MovimientoAlmacenBOImpl;
 import pe.edu.pucp.weardrop.almacen.boi.MovimientoAlmacenBOI;
@@ -21,9 +22,9 @@ public class MovimientoAlmacenWS {
 
     private MovimientoAlmacenBOI boMovimiento=new MovimientoAlmacenBOImpl();
     
-    //Util para las grillas
+    //Se demora
     @WebMethod(operationName = "listarMovimientosActivos")
-    public List<MovimientoAlmacen> listarAlmacenesActivos(){
+    public List<MovimientoAlmacen> listarMovimientosActivos(){
         List<MovimientoAlmacen> listaMovimientoAlmacen=null;
         try{
             listaMovimientoAlmacen=boMovimiento.listarActivos();
@@ -80,6 +81,18 @@ public class MovimientoAlmacenWS {
         }
         return datMovimiento;
     }
+    //Util para las grillas
+    @WebMethod(operationName = "listarMovimientosPorAlmacen")
+    public List<MovimientoAlmacen> listarMovimientosPorAlmacen(int idAlmacen){
+        List<MovimientoAlmacen> listaMovimientosXAlmacen=null;
+        try{
+            //ListarMovimientosPorAlmacen
+            listaMovimientosXAlmacen=boMovimiento.listarMovimientosActivosPorAlmacen(idAlmacen);
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return listaMovimientosXAlmacen;
+    }
     
-    /*Un método que me mande los movimiento activos de un Almacen, aparte de los filtros*/
+    /*Faltan los filtros */
 }

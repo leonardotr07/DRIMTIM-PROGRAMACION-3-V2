@@ -89,7 +89,6 @@ public class LoteImpl implements LoteDAO{
     public Lote obtenerPorId(int idLote) {
         Lote datLote=null;
         Almacen datAlmacen=null;
-        AlmacenDAO daoAlmacen=new AlmacenImpl();
         Map<Integer, Object>parametrosEntrada=new HashMap<>();
         parametrosEntrada.put(1, idLote);
         rs=DBManager.getInstance().ejecutarProcedimientoLectura("obtener_lote_X_id", parametrosEntrada);
@@ -97,13 +96,12 @@ public class LoteImpl implements LoteDAO{
         try{
             if(rs.next()){
                 datLote=new Lote();
+                datAlmacen=new Almacen();
                 datLote.setIdLote(rs.getInt(1));
                 datLote.setActivo(rs.getBoolean(3));
                 datLote.setDescripcion(rs.getString(4));
                 
-                //Extraemos los datos de las depenedencias...
-                //Extraemos los datos de Almacen
-                datAlmacen=daoAlmacen.obtenerPorId(rs.getInt(2));
+                datAlmacen.setId(rs.getInt(2));
                 
                 datLote.setDatAlmacen(datAlmacen);
                 
@@ -136,9 +134,7 @@ public class LoteImpl implements LoteDAO{
                 datLote.setActivo(rs.getBoolean(3));
                 datLote.setDescripcion(rs.getString(4));
                 
-                //Extraemos los datos de las depenedencias...
-                //Extraemos los datos de Almacen
-                datAlmacen=daoAlmacen.obtenerPorId(rs.getInt(2));
+                datAlmacen.setId(rs.getInt(2));
                 
                 datLote.setDatAlmacen(datAlmacen);
             }
@@ -156,33 +152,66 @@ public class LoteImpl implements LoteDAO{
         ArrayList<Lote> listaLotes=null;
         Lote datLote=null;
         Almacen datAlmacen=null;
-        AlmacenDAO daoAlmacen=null;
         rs=DBManager.getInstance().ejecutarProcedimientoLectura("mostrar_lotes_activos", null);
         
         try{
             while(rs.next()){
                 if(listaLotes==null){ 
                     listaLotes=new ArrayList<>();
-                    daoAlmacen=new AlmacenImpl();
+                    datAlmacen=new Almacen();
                 }
                 datLote=new Lote();
                 datLote.setIdLote(rs.getInt(1));
                 datLote.setActivo(rs.getBoolean(3));
                 datLote.setDescripcion(rs.getString(4));
                 
-                //Extraemos los datos de las depenedencias...
-                //Extraemos los datos de Almacen
-                datAlmacen=daoAlmacen.obtenerPorId(rs.getInt(2));
-                
+                datAlmacen.setId(rs.getInt(2));
                 datLote.setDatAlmacen(datAlmacen);
+                
+                listaLotes.add(datLote);
             }
             System.out.println("SE LISTO TODOS LOS LOTES ACTIVOS CORRECTAMENTE.");
         }catch(SQLException ex){
-            System.out.println("ERROR al obtener por ID: "+ex.getMessage());
+            System.out.println("ERROR al obtener todos los lotes activos: "+ex.getMessage());
         }finally{
             DBManager.getInstance().cerrarConexion();
         }
         return listaLotes;
     }
-    
+
+    @Override
+    public ArrayList<Lote> listarLotesActivosPorAlmacen(int idAlmacen) {
+        ArrayList<Lote> listaLotes=null;
+        Lote datLote=null;
+        Almacen datAlmacen=null;
+        
+        Map<Integer, Object>parametrosEntrada=new HashMap<>();
+        parametrosEntrada.put(1, idAlmacen);
+        
+        rs=DBManager.getInstance().ejecutarProcedimientoLectura("mostrar_lote_activo_por_almacen", parametrosEntrada);
+        
+        try{
+            while(rs.next()){
+                if(listaLotes==null){ 
+                    listaLotes=new ArrayList<>();
+                    datAlmacen=new Almacen();
+                }
+                datLote=new Lote();
+                
+                datLote.setIdLote(rs.getInt(1));
+                datLote.setActivo(rs.getBoolean(3));
+                datLote.setDescripcion(rs.getString(4));
+                
+                datAlmacen.setId(rs.getInt(2));
+                datLote.setDatAlmacen(datAlmacen);
+                listaLotes.add(datLote);
+            }
+            System.out.println("SE LISTO TODOS LOS LOTES ACTIVOS POR ALMACEN CORRECTAMENTE.");
+        }catch(SQLException ex){
+            System.out.println("ERROR al listar lotes activos por el almacen: "+ex.getMessage());
+        }finally{
+            DBManager.getInstance().cerrarConexion();
+        }
+        return listaLotes;
+    }
 }

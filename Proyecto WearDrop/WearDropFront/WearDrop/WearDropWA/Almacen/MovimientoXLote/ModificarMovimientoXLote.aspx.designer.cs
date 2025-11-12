@@ -24,6 +24,15 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.TextBox txtIdMovimiento;
 
         /// <summary>
+        /// Control rfvIdMovimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvIdMovimiento;
+
+        /// <summary>
         /// Control txtLugarOrigen.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace WearDropWA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIdLote;
+
+        /// <summary>
+        /// Control rfvIdLote.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvIdLote;
 
         /// <summary>
         /// Control txtDescripcion.

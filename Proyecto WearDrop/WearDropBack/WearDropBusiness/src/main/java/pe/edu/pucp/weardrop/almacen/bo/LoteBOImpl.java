@@ -5,10 +5,16 @@
 package pe.edu.pucp.weardrop.almacen.bo;
 
 import java.util.ArrayList;
+import pe.edu.pucp.weardrop.almacen.Almacen;
 import pe.edu.pucp.weardrop.almacen.Lote;
+import pe.edu.pucp.weardrop.almacen.MovimientoAlmacen;
 import pe.edu.pucp.weardrop.almacen.boi.LoteBOI;
+import pe.edu.pucp.weardrop.almacen.dao.AlmacenDAO;
 import pe.edu.pucp.weardrop.almacen.dao.LoteDAO;
+import pe.edu.pucp.weardrop.almacen.dao.MovimientoAlmacenDAO;
+import pe.edu.pucp.weardrop.almacen.mysql.AlmacenImpl;
 import pe.edu.pucp.weardrop.almacen.mysql.LoteImpl;
+import pe.edu.pucp.weardrop.almacen.mysql.MovimientoAlmacenImpl;
 
 /**
  *
@@ -22,7 +28,12 @@ public class LoteBOImpl implements LoteBOI{
     }
     @Override
     public ArrayList<Lote> listarActivos() {
-        return daoLote.listarActivos();
+        AlmacenDAO daoAlmacen=new AlmacenImpl();
+        
+        ArrayList<Lote> listarLotesPorAlmacen = null;
+        listarLotesPorAlmacen=daoLote.listarActivos();
+        
+        return listarLotesPorAlmacen;
     }
     
     @Override
@@ -45,12 +56,37 @@ public class LoteBOImpl implements LoteBOI{
 
     @Override
     public Lote obtenerXId(int idObjeto) throws Exception {
-        return daoLote.obtenerPorId(idObjeto);
+        AlmacenDAO daoAlmacen=new AlmacenImpl();
+        Lote datLote=daoLote.obtenerPorId(idObjeto);
+        Almacen datAlmacen=daoAlmacen.obtenerPorId(datLote.getDatAlmacen().getId());
+        datLote.setDatAlmacen(datAlmacen);
+        return datLote;
     }
 
     @Override
     public ArrayList<Lote> listarTodos() throws Exception {
-        return daoLote.listarTodos();
+        AlmacenDAO daoAlmacen=new AlmacenImpl();
+        ArrayList<Lote> listaLote=daoLote.listarTodos();
+        for(Lote datLote:listaLote){
+            Almacen datAlmacen=daoAlmacen.obtenerPorId(datLote.getDatAlmacen().getId());
+            datLote.setDatAlmacen(datAlmacen);
+        }
+        return listaLote;
+    }
+    
+    @Override
+    public ArrayList<Lote> listarLotesActivosPorAlmacen(int idAlmacen) throws Exception {
+        AlmacenDAO daoAlmacen=new AlmacenImpl();
+        
+        Almacen datAlmacen=daoAlmacen.obtenerPorId(idAlmacen);
+        ArrayList<Lote> listarLotesPorAlmacen = null;
+        
+        listarLotesPorAlmacen=daoLote.listarLotesActivosPorAlmacen(idAlmacen);
+        
+        for(Lote datLote: listarLotesPorAlmacen)
+            datLote.setDatAlmacen(new Almacen(datAlmacen));
+        
+        return listarLotesPorAlmacen;
     }
 
     @Override

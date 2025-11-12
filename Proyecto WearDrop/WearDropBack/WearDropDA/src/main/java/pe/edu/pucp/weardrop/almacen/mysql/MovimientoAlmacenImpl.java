@@ -96,11 +96,11 @@ public class MovimientoAlmacenImpl implements MovimientoAlmacenDAO {
         try{
             if(rs.next()){
                 datMovAlmacen=new MovimientoAlmacen();
-                daoAlmacen=new AlmacenImpl();
+                datAlmacen=new Almacen();
                 //Obtenemos los datos del SELECT y los colocamos en datAlmacen
                 datMovAlmacen.setIdMovimiento(rs.getInt("idMovAlmacen"));
                 
-                datAlmacen=daoAlmacen.obtenerPorId(rs.getInt("Almacen_idAlmacen"));
+                datAlmacen.setId(rs.getInt("Almacen_idAlmacen"));
                 
                 datMovAlmacen.setDatAlmacen(datAlmacen);
                 datMovAlmacen.setFecha(rs.getDate("fecha"));
@@ -123,7 +123,6 @@ public class MovimientoAlmacenImpl implements MovimientoAlmacenDAO {
     @Override
     public ArrayList<MovimientoAlmacen> listarTodos() {
         Almacen datAlmacen=null;
-        AlmacenDAO daoAlmacen=null;
         ArrayList<MovimientoAlmacen> listaMovimientos=null;
         
         //No hay parametros en el select para llamarlo...
@@ -132,11 +131,11 @@ public class MovimientoAlmacenImpl implements MovimientoAlmacenDAO {
             while(rs.next()){
                 if(listaMovimientos==null){ //Si es la primera iteracion...
                     listaMovimientos=new ArrayList<>();
-                    daoAlmacen=new AlmacenImpl();
                 }
                 MovimientoAlmacen datMov = new MovimientoAlmacen();
+                datAlmacen=new Almacen();
                 
-                datAlmacen=daoAlmacen.obtenerPorId(rs.getInt("Almacen_IdAlmacen"));
+                datAlmacen.setId(rs.getInt("Almacen_idAlmacen"));
                 datMov.setDatAlmacen(datAlmacen);
                 
                 datMov.setIdMovimiento(rs.getInt("idMovAlmacen"));
@@ -171,9 +170,10 @@ public class MovimientoAlmacenImpl implements MovimientoAlmacenDAO {
                     listaMovimientos=new ArrayList<>();
                     daoAlmacen=new AlmacenImpl();
                 }
-                MovimientoAlmacen datMov = new MovimientoAlmacen();
-                
-                datAlmacen=daoAlmacen.obtenerPorId(rs.getInt("Almacen_IdAlmacen"));
+                MovimientoAlmacen datMov=new MovimientoAlmacen();
+                //datAlmacen=daoAlmacen.obtenerPorId(rs.getInt("Almacen_IdAlmacen"));
+                datAlmacen=new Almacen();
+                datAlmacen.setId(rs.getInt("Almacen_IdAlmacen"));
                 datMov.setDatAlmacen(datAlmacen);
                 
                 datMov.setIdMovimiento(rs.getInt("idMovAlmacen"));
@@ -188,6 +188,49 @@ public class MovimientoAlmacenImpl implements MovimientoAlmacenDAO {
             System.out.println("SE LISTO TODOS LOS MOVIMIENTOS ACTIVOS CORRECTAMENTE.");
         }catch(SQLException ex){
             System.out.println("ERROR al listar todos los movimientos activos: "+ex.getMessage());
+        }finally{
+            DBManager.getInstance().cerrarConexion();
+        }
+        return listaMovimientos; //Ocurrio error
+    }
+    
+    @Override
+    public ArrayList<MovimientoAlmacen> listarMovimientosActivosPorAlmacen(int idAlmacen) {
+        Almacen datAlmacen=null;
+        AlmacenDAO daoAlmacen=null;
+        ArrayList<MovimientoAlmacen> listaMovimientos=null;
+        
+        
+        Map<Integer, Object> parametrosEntrada=new HashMap<>();
+        
+        parametrosEntrada.put(1, idAlmacen);
+        
+        rs=DBManager.getInstance().ejecutarProcedimientoLectura("mostrar_mov_activo_por_almacen", parametrosEntrada);
+        try{
+            while(rs.next()){
+                if(listaMovimientos==null){ //Si es la primera iteracion...
+                    listaMovimientos=new ArrayList<>();
+                    daoAlmacen=new AlmacenImpl();
+                }
+                MovimientoAlmacen datMov = new MovimientoAlmacen();
+                
+                //datAlmacen=daoAlmacen.obtenerPorId(rs.getInt("Almacen_IdAlmacen"));
+                datAlmacen=new Almacen();
+                datAlmacen.setId(rs.getInt(2));
+                datMov.setDatAlmacen(datAlmacen);
+                
+                datMov.setIdMovimiento(rs.getInt(1));
+                datMov.setFecha(rs.getDate(3));
+                datMov.setLugarDestino(rs.getString(4));
+                datMov.setLugarOrigen(rs.getString(5));
+                datMov.setTipo(TipoMovimiento.valueOf(rs.getString(6)));
+                datMov.setActivo(rs.getBoolean(7));
+                
+                listaMovimientos.add(datMov);
+            }
+            System.out.println("SE LISTO TODOS LOS MOVIMIENTOS ACTIVOS POR ALMACEN CORRECTAMENTE.");
+        }catch(SQLException ex){
+            System.out.println("ERROR al listar todos los movimientos activos por almacen: "+ex.getMessage());
         }finally{
             DBManager.getInstance().cerrarConexion();
         }

@@ -14,19 +14,153 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
     <style>
-      :root{ --sidebar-width:260px; }
-      body{ background:#f6f6f6; }
-      .top-strip{ height:28px;background:#efefef;font-size:.9rem;color:#9aa0a6;display:flex;align-items:center;padding:0 12px;}
-      .layout{ display:flex; min-height:calc(100vh - 28px); }
-      .sidebar{ width:var(--sidebar-width); background:#fff; border-right:1px solid #eee; }
-      .brand{ display:flex; gap:.6rem; align-items:center; padding:16px 18px; font-weight:600; font-size:1.15rem;}
-      .menu .item{ display:flex; align-items:center; gap:12px; padding:14px 18px; color:#2d3136; text-decoration:none;}
-      .menu .item:hover{ background:#f5f8ff; }
-      .menu .item i{ font-size:1.25rem; width:22px; text-align:center;}
-      .content{ flex:1; background:#fafafa; }
-      .topbar{ height:56px; background:#fff; border-bottom:1px solid #eee; display:flex; align-items:center; justify-content:flex-end; padding:0 18px; position:sticky; top:0; z-index:10;}
-      .avatar{ width:28px; height:28px; border-radius:50%; background:#d0d0d0; display:inline-block; margin-right:6px;}
-      .welcome-card{ max-width:920px; margin:24px auto; background:#fff; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.04); padding:18px 22px;}
+      :root { 
+          --sidebar-width: 260px; 
+      }
+      
+      /* 🔹 Eliminar scroll del body */
+      html, body { 
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden; /* Previene scroll en el body */
+          background: #f6f6f6; 
+      }
+      
+      .top-strip { 
+          height: 28px;
+          background: #efefef;
+          font-size: .9rem;
+          color: #9aa0a6;
+          display: flex;
+          align-items: center;
+          padding: 0 12px;
+      }
+      
+      /* 🔹 Layout flex para posicionar sidebar y content */
+      .layout { 
+          display: flex; 
+          height: calc(100vh - 28px); /* Altura completa menos top-strip */
+          overflow: hidden; /* Previene scroll del layout */
+      }
+      
+      /* 🔹 Sidebar fijo con scroll interno */
+      .sidebar { 
+          width: var(--sidebar-width); 
+          background: #fff; 
+          border-right: 1px solid #eee;
+          position: fixed; /* Fija el sidebar */
+          left: 0;
+          top: 28px; /* Debajo del top-strip */
+          height: calc(100vh - 28px); /* Altura completa menos top-strip */
+          overflow-y: auto; /* Scroll interno si el menú es muy largo */
+          z-index: 100;
+      }
+      
+      .brand { 
+          display: flex; 
+          gap: .6rem; 
+          align-items: center; 
+          padding: 16px 18px; 
+          font-weight: 600; 
+          font-size: 1.15rem;
+      }
+      
+      .menu .item { 
+          display: flex; 
+          align-items: center; 
+          gap: 12px; 
+          padding: 14px 18px; 
+          color: #2d3136; 
+          text-decoration: none;
+      }
+      
+      .menu .item:hover { 
+          background: #f5f8ff; 
+      }
+      
+      .menu .item i { 
+          font-size: 1.25rem; 
+          width: 22px; 
+          text-align: center;
+      }
+      
+      /* 🔹 Contenido principal con scroll independiente */
+      .content { 
+          flex: 1; 
+          background: #fafafa;
+          margin-left: var(--sidebar-width); /* Espacio para el sidebar fijo */
+          height: calc(100vh - 28px); /* Altura completa menos top-strip */
+          overflow-y: auto; /* Scroll independiente para el contenido */
+          overflow-x: hidden;
+      }
+      
+      .topbar { 
+          height: 56px; 
+          background: #fff; 
+          border-bottom: 1px solid #eee; 
+          display: flex; 
+          align-items: center; 
+          justify-content: flex-end; 
+          padding: 0 18px; 
+          position: sticky; /* Sticky para que la topbar se quede arriba al hacer scroll */
+          top: 0; 
+          z-index: 10;
+      }
+      
+      .avatar { 
+          width: 28px; 
+          height: 28px; 
+          border-radius: 50%; 
+          background: #d0d0d0; 
+          display: inline-block; 
+          margin-right: 6px;
+      }
+      
+      .welcome-card { 
+          max-width: 920px; 
+          margin: 24px auto; 
+          background: #fff; 
+          border-radius: 10px; 
+          box-shadow: 0 8px 24px rgba(0,0,0,.04); 
+          padding: 18px 22px;
+      }
+      
+      /* 🔹 Personalización del scrollbar para el contenido */
+      .content::-webkit-scrollbar {
+          width: 8px;
+      }
+      
+      .content::-webkit-scrollbar-track {
+          background: #f1f1f1;
+      }
+      
+      .content::-webkit-scrollbar-thumb {
+          background: #c0c0c0;
+          border-radius: 4px;
+      }
+      
+      .content::-webkit-scrollbar-thumb:hover {
+          background: #a0a0a0;
+      }
+      
+      /* 🔹 Personalización del scrollbar para el sidebar (si es necesario) */
+      .sidebar::-webkit-scrollbar {
+          width: 6px;
+      }
+      
+      .sidebar::-webkit-scrollbar-track {
+          background: #f9f9f9;
+      }
+      
+      .sidebar::-webkit-scrollbar-thumb {
+          background: #d0d0d0;
+          border-radius: 3px;
+      }
+      
+      .sidebar::-webkit-scrollbar-thumb:hover {
+          background: #b0b0b0;
+      }
     </style>
 
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
@@ -34,8 +168,9 @@
 <body>
     <form id="formMaster" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
+        
         <div class="layout">
-            <!-- Sidebar -->
+            <!-- Sidebar Fijo -->
             <aside class="sidebar">
                 <div class="brand">
                      <asp:Image ID="imgLogo" runat="server" ImageUrl="~/Images/logo.png" 
@@ -44,19 +179,19 @@
                      <span>WearDrop</span>
                 </div>
                 <nav class="menu">
-                    <a class="item" href="/GestionarPrendas.aspx"><i class="fa-solid fa-shirt"m></i><span>Gestionar Prendas</span></a>
+                    <a class="item" href="/GestionarPrendas.aspx"><i class="fa-solid fa-shirt"></i><span>Gestionar Prendas</span></a>
                     <a class="item" runat="server" href="~/Almacen/ListarAlmacenes.aspx"><i class="fa-solid fa-warehouse"></i><span>Gestionar Almacenes</span></a>
                     <a class="item" href="/GestionarPromociones.aspx"><i class="fa-solid fa-basket-shopping"></i><span>Gestionar Promociones</span></a>
                     <a class="item" href="/GestionarDescuentos.aspx"><i class="fa-solid fa-percent"></i><span>Gestionar Descuentos</span></a>
                     <a class="item" href="/GestionarComprobantes.aspx"><i class="fa-solid fa-file-invoice"></i><span>Gestionar Comprobantes</span></a>
-                    <a class="item" href="/GestionarPersonas.aspx"><i class="fa-solid fa-user-group"></i><span>Gestionar Personas</span></a>
-      <a class="item" href="GestionarVentas.aspx"><i class="fa-solid fa-cart-shopping"></i><span>Gestionar Ventas</span></a>
-                    <a class="item" href="GestionarProveedores.aspx"><i class="fa-solid fa-shop"></i><span>Gestionar Proveedores</span></a>
-                    
+                    <a class="item" href="/GestionarPersonas.aspx"><i class="fa-solid fa-user-group"></i><span>Gestionar Personas</span></a
+                    <a class="item" href="/GestionarVentas.aspx"><i class="fa-solid fa-cart-shopping"></i><span>Gestionar Ventas</span></a>
+                    <a class="item" href="/GestionarProveedores.aspx"><i class="fa-solid fa-shop"></i><span>Gestionar Proveedores</span></a
                     <a class="item" href="/GestionarOrdenesDeCompra.aspx"><i class="fa-regular fa-file-lines"></i><span>Gestionar Ordenes de Compra</span></a>
                 </nav>
             </aside>
 
+            <!-- Contenido Principal con Scroll Independiente -->
             <main class="content w-100">
                 <div class="topbar">
                     <span class="avatar"></span>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WearDropWA.ServiciosBackEnd;
 
 namespace WearDropWA
 {
@@ -10,9 +11,15 @@ namespace WearDropWA
     {
         private int idAlmacen;
         private int idLote;
+        private LoteWSClient boLote;
+        private AlmacenWSClient boAlmacen; // 🔹 Añadido
+        private lote datLote;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            boLote = new LoteWSClient();
+            boAlmacen = new AlmacenWSClient(); // 🔹 Inicializar servicio de almacén
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["id"] != null && Request.QueryString["idAlmacen"] != null)
@@ -23,7 +30,8 @@ namespace WearDropWA
                     ViewState["IdLote"] = idLote;
                     ViewState["IdAlmacen"] = idAlmacen;
 
-                    CargarDatosLote();
+                    CargarDatosAlmacen(); // 🔹 Cargar nombre del almacén
+                    CargarDatosLote();     // 🔹 Cargar datos del lote
                     CargarPrendas();
                 }
                 else
@@ -38,11 +46,58 @@ namespace WearDropWA
             }
         }
 
+        // 🔹 Método para cargar el nombre del almacén desde el servicio
+        private void CargarDatosAlmacen()
+        {
+            try
+            {
+                almacen datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
+
+                if (datAlmacen != null)
+                {
+                    lblNombreAlmacen.Text = datAlmacen.nombre ?? "Almacén no encontrado";
+                }
+                else
+                {
+                    lblNombreAlmacen.Text = "Almacén no encontrado";
+                }
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    $"alert('Error al cargar datos del almacén: {ex.Message}');", true);
+                lblNombreAlmacen.Text = "Error al cargar";
+            }
+        }
+
+        // 🔹 Método modificado para cargar los datos del lote desde el servicio
         private void CargarDatosLote()
         {
-            // Datos de prueba
-            lblNombreAlmacen.Text = "Almacén Central";
-            txtDescripcionLote.Text = "Lote Camisetas Verano 2024";
+            try
+            {
+                // Obtener el lote del servicio
+                datLote = boLote.obtenerLotePorID(idLote);
+
+                if (datLote != null)
+                {
+                    // 🔹 Cargar la descripción en el TextBox
+                    txtDescripcionLote.Text = datLote.descripcion ?? "";
+
+                    // 🔹 Guardar el lote completo en ViewState para usarlo después
+                    ViewState["DatLote"] = datLote;
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                        "alert('Lote no encontrado');", true);
+                    Response.Redirect($"~/Almacen/MostrarAlmacen.aspx?id={idAlmacen}");
+                }
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    $"alert('Error al cargar datos del lote: {ex.Message}');", true);
+            }
         }
 
         private void CargarPrendas()
@@ -119,7 +174,7 @@ namespace WearDropWA
             LinkButton btn = (LinkButton)sender;
             int idPrenda = int.Parse(btn.CommandArgument);
 
-
+            // Lógica para eliminar prenda del lote
             CargarPrendas();
         }
 
@@ -127,21 +182,43 @@ namespace WearDropWA
         {
             try
             {
+                // 🔹 Obtener la descripción del TextBox
                 string descripcion = txtDescripcionLote.Text.Trim();
 
-                // LoteBO loteBO = new LoteBO();
-                // bool resultado = loteBO.Modificar(idLote, descripcion);
-
-                bool resultado = true;
-
-                if (resultado)
+                // 🔹 Validar que no esté vacía
+                if (string.IsNullOrEmpty(descripcion))
                 {
-                    Response.Redirect($"~/Almacen/MostrarAlmacen.aspx?id={idAlmacen}&msg=updated");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                        "alert('La descripción del lote es obligatoria');", true);
+                    return;
+                }
+
+                // 🔹 Recuperar el lote guardado en ViewState
+                datLote = (lote)ViewState["DatLote"];
+
+                // 🔹 Si no existe en ViewState, crear uno nuevo (aunque no debería pasar)
+                if (datLote == null)
+                {
+                    datLote = new lote();
+                    datLote.datAlmacen = new almacen();
+                    datLote.datAlmacen.id = idAlmacen;
+                }
+
+                // 🔹 Actualizar los campos que se pueden modificar
+                datLote.idLote = idLote;
+                datLote.descripcion = descripcion;
+
+                // 🔹 Llamar al servicio para modificar
+                int resultado = boLote.modificarLote(datLote);
+
+                if (resultado > 0)
+                {
+                    Response.Redirect($"~/Almacen/MostrarAlmacen.aspx?id={idAlmacen}&msg=loteModificado");
                 }
                 else
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                        "alert('Error al modificar el lote');", true);
+                        "alert('Error al modificar el lote. Intente nuevamente.');", true);
                 }
             }
             catch (Exception ex)

@@ -5,6 +5,8 @@
 package pe.edu.pucp.weardrop.almacen.bo;
 
 import java.util.ArrayList;
+import pe.edu.pucp.weardrop.almacen.Almacen;
+import pe.edu.pucp.weardrop.almacen.Lote;
 import pe.edu.pucp.weardrop.almacen.MovimientoAlmacen_X_Lote;
 import pe.edu.pucp.weardrop.almacen.boi.MovimientoAlmacen_X_Lote_BOI;
 import pe.edu.pucp.weardrop.almacen.dao.AlmacenDAO;
@@ -101,4 +103,16 @@ public class MovimientoAlmacen_X_Lote_BOImpl implements MovimientoAlmacen_X_Lote
         }
         return listaRelacionesActivos;
     }
+
+    @Override
+    public ArrayList<MovimientoAlmacen_X_Lote> listarMovXLoteActivosPorAlmacen(int idAlmacen) {
+        AlmacenDAO daoAlmacen=new AlmacenImpl();
+        
+        Almacen datAlmacen=daoAlmacen.obtenerPorId(idAlmacen);
+        ArrayList<MovimientoAlmacen_X_Lote> listarMovXLotesPorAlmacen = null;
+        
+        listarMovXLotesPorAlmacen=daoMov_X_Lote.listarRelacionesActivasPorAlmacen(idAlmacen);
+        return listarMovXLotesPorAlmacen;
+    }
+    
 }

@@ -43,6 +43,8 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -73,6 +75,21 @@
     <Content Include="Almacen\Movimiento\RegistrarMovimiento.aspx" />
     <Content Include="AnnadirLineaDeLaCompra.aspx" />
     <Content Include="AnnadirProductoVenta.aspx" />
+    <None Include="Connected Services\ServiciosBackEnd\AlmacenWS.wsdl" />
+    <None Include="Connected Services\ServiciosBackEnd\AlmacenWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosBackEnd\MovimientoAlmacenWS.wsdl" />
+    <None Include="Connected Services\ServiciosBackEnd\MovimientoAlmacenWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosBackEnd\referenciasWearDrop.disco" />
+    <None Include="Connected Services\ServiciosBackEnd\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiciosBackEnd\configuration.svcinfo" />
+    <None Include="Connected Services\ServiciosBackEnd\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -186,6 +203,80 @@
     <Content Include="Fonts\webfonts\fa-thin-100.woff2" />
     <Content Include="Fonts\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Fonts\webfonts\fa-v4compatibility.woff2" />
+    <None Include="Connected Services\ServiciosBackEnd\LoteWS.wsdl" />
+    <None Include="Connected Services\ServiciosBackEnd\LoteWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosBackEnd\MovimientoAlmacenXLoteWS.wsdl" />
+    <None Include="Connected Services\ServiciosBackEnd\MovimientoAlmacenXLoteWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.almacen.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.eliminarAlmacenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.eliminarLoteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.eliminarMovimientoAlmacenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.eliminarMovXLoteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.insertarAlmacenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.insertarLoteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.insertarMovAlmacenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.insertarMovXLoteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.listarAlmacenesActivosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.listarLotesActivosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.listarMovimientosActivosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.lote.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.modificarAlmacenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.modificarLoteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.modificarMovXLoteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.movimientoAlmacen.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.movimientoAlmacenXLote.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.obtenerLotePorIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.obtenerMovimientoPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.obtenerMovXLotePorIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServiciosBackEnd\WearDropWA.ServiciosBackEnd.obtenerPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -267,6 +358,11 @@
     </Compile>
     <Compile Include="AnnadirProductoVenta.aspx.designer.cs">
       <DependentUpon>AnnadirProductoVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiciosBackEnd\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="GestionarComprobantes.aspx.cs">
       <DependentUpon>GestionarComprobantes.aspx</DependentUpon>
@@ -702,6 +798,12 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+<<<<<<< HEAD
+=======
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiciosBackEnd\" />
+  </ItemGroup>
+>>>>>>> a1c0111b33e1c337c7f49b9533f4a40e250da8fa
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

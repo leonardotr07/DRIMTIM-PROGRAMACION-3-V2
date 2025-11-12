@@ -6,45 +6,56 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
     <style>
-   .header-title {
-       display: flex;
-       align-items: stretch;
-       height: 60px;
-       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-       margin-bottom:10px;
-   }
+        /* ------- Layout Base ------- */
+        .header-title {
+            display: flex;
+            align-items: stretch;
+            height: 60px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+            margin-top: 14px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
 
-   .title-section {
-       background-color: #FFFFFF;
-       padding: 0 25px;
-       display: flex;
-       align-items: center;
-       flex: 0 0 250px;
-   }
+        .title-section {
+            background: #fff;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            flex: 0 0 280px;
+        }
 
-       .title-section h2 {
-           margin: 0;
-           font-size: 20px;
-           font-weight: 500;
-           color: #333;
-           white-space: nowrap;
-       }
+        .title-section h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+        }
 
-   .color-bar {
-       height: 100%;
-   }
+        .color-bar {
+            height: 100%;
+        }
 
-   .bar-1 {
-       background-color: #C5D9C0;
-       flex: 1.5;
-   }
+        .bar-1 {
+            background-color: #C5D9C0;
+            flex: 1.5;
+        }
 
-   .bar-2 {
-       background-color: #95B88F;
-       flex: 1.5;
-   }
+        .bar-2 {
+            background-color: #95B88F;
+            flex: 1.5;
+        }
 
-        /* Estilos para campos de información */
+        .top-accent {
+            height: 4px;
+            margin-top: 10px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #C5D9C0, #95B88F, #73866D);
+        }
+
+        /* ------- Info Section ------- */
         .info-section {
             background-color: #f8f9fa;
             padding: 15px;
@@ -57,173 +68,226 @@
             color: #666;
             font-size: 14px;
             margin-bottom: 5px;
+            display: block;
         }
 
         .info-value {
             color: #333;
             font-size: 15px;
         }
-        .info-value-desc {
-            color: #333;
-            font-size: 15px;
-            max-height: 200px
-        }
+
+        /* ------- Form Controls ------- */
         .form-control {
             padding: 10px 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
             width: 100%;
-        }
-
-        .form-control-desc {
-            max-height: 300px;
-            width: 600px;
-            resize: vertical;
+            transition: border-color 0.3s ease;
         }
 
         .form-control:focus {
             border-color: #95B88F;
-            box-shadow: 0 0 0 0.2rem rgba(149, 184, 143, 0.25);
+            box-shadow: 0 0 0 3px rgba(149, 184, 143, 0.1);
             outline: none;
         }
 
-        /* Botones de filtro */
-        .filter-buttons {
-            margin-top: 0;
-            margin-bottom: 5px;
+        .form-control::placeholder {
+            color: #999;
         }
 
-        .btn-filter {
-            background-color: #73866D;
-            color: #FFFFFF;
+        .form-control-desc {
+            resize: vertical;
+            min-height: 80px;
+            max-height: 200px;
+        }
+
+        /* ------- Botones ------- */
+        a, a:visited, a:hover, a:active, .btn-wd {
+            text-decoration: none !important;
+            color: inherit;
+        }
+
+        .btn-wd {
+            background: #73866D;
+            color: #fff;
             border: none;
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-size: 14px;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
+            transition: .15s;
+            box-shadow: 0 1px 2px rgba(0,0,0,.08);
             margin-right: 10px;
         }
 
-        .btn-filter:hover {
-            background-color: #5d6b58;
-            color: #FFFFFF;
+        .btn-wd:hover {
+            filter: brightness(.95);
         }
 
-        /* Estilos para la tabla personalizada */
+        .btn-wd:active {
+            transform: translateY(1px);
+        }
+
+        /* ------- GridView ------- */
         .custom-grid {
             border-collapse: collapse;
             width: 100%;
-            margin-top: 20px;
         }
 
         .custom-grid th {
-            background-color: #C5D9C0 !important;
-            color: #333333;
+            color: #333;
             font-weight: 500;
             padding: 15px 20px;
             text-align: left;
             border: none;
+            background: #95B88F !important;
         }
 
         .custom-grid td {
             padding: 12px 20px;
             border-bottom: 1px solid #E8E8E8;
+            vertical-align: middle;
         }
 
         .custom-grid tr:nth-child(even) {
-            background-color: #F5F5F5;
+            background: #F5F5F5;
         }
 
         .custom-grid tr:hover {
-            background-color: #E8F4E5;
+            background: #E8F4E5;
         }
 
-        .custom-grid a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 5px;
-        }
-
-        /* Paginación*/
-        .pagination-container {
+        /* ------- Botones de Acción en GridView ------- */
+        .action-btns {
             display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-
-        .custom-pagination {
-            display: flex;
-            list-style: none;
-            padding: 0;
-            margin: 0;
             gap: 8px;
+            align-items: center;
+            justify-content: flex-start;
         }
 
-        .custom-pagination .page-item {
-            display: inline-block;
+        .action-btns i {
+            font-size: 1.1em;
         }
 
-        .custom-pagination .page-link {
-            display: flex;
+        .btn-sm {
+            padding: 4px 8px !important;
+            margin: 0 !important;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 40px;
-            height: 40px;
-            padding: 8px 12px;
-            background-color: #FFFFFF;
-            border: 1px solid #C5D9C0;
+            min-width: 32px;
+            min-height: 32px;
+        }
+
+        /* ------- 🔹 PAGINACIÓN MEJORADA 🔹 ------- */
+        .custom-grid tr.pager-row td {
+            padding: 20px 0;
+            text-align: left;
+            background-color: transparent !important;
+            border: none !important;
+        }
+
+        .custom-grid .pager-row table {
+            margin: 0;
+            border-spacing: 5px;
+            background-color: transparent !important;
+        }
+
+        .custom-grid .pager-row td a,
+        .custom-grid .pager-row td span {
+            display: inline-block;
+            padding: 12px 16px;
+            margin: 0 3px;
+            border: 2px solid #95B88F;
             border-radius: 6px;
+            background-color: #fff;
             color: #73866D;
-            text-decoration: none;
             font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
             transition: all 0.3s ease;
-            cursor: pointer;
+            width: 50px;
+            height: 46px;
+            text-align: center;
+            box-sizing: border-box;
+            line-height: 22px;
         }
 
-        .custom-pagination .page-link:hover {
-            background-color: #E8F4E5;
-            border-color: #95B88F;
-            color: #5d6b58;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .custom-pagination .page-item.active .page-link {
-            background-color: #73866D;
+        .custom-grid .pager-row td a:hover {
+            background-color: #fff !important;
+            color: #73866D;
             border-color: #73866D;
-            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(115, 134, 109, 0.3);
+        }
+
+        .custom-grid .pager-row td span {
+            background-color: #73866D !important;
+            color: #fff !important;
+            border-color: #73866D;
             font-weight: 600;
-            box-shadow: 0 3px 6px rgba(115, 134, 109, 0.3);
+            box-shadow: 0 2px 6px rgba(115, 134, 109, 0.4);
         }
 
-        .custom-pagination .page-item.disabled .page-link {
-            background-color: #f8f9fa;
-            border-color: #dee2e6;
-            color: #6c757d;
-            cursor: not-allowed;
-            opacity: 0.5;
+        .custom-grid .pager-row td a:first-child,
+        .custom-grid .pager-row td a:last-child {
+            background-color: #fff !important;
+            color: #73866D;
+            border-color: #95B88F;
+            font-weight: 600;
+            width: 80px;
+            height: 46px;
+            padding: 12px 10px;
         }
 
-        .custom-pagination .page-item.disabled .page-link:hover {
-            transform: none;
-            box-shadow: none;
+        .custom-grid .pager-row td a:first-child:hover,
+        .custom-grid .pager-row td a:last-child:hover {
+            background-color: #fff !important;
+            color: #73866D;
+            border-color: #73866D;
+            box-shadow: 0 4px 8px rgba(115, 134, 109, 0.3);
         }
 
-        /* Botones principales */
+        .custom-grid .pager-row td a:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(115, 134, 109, 0.2);
+        }
+
+        .custom-grid .pager-row td a:first-child::before,
+        .custom-grid .pager-row td a:last-child::after {
+            content: "";
+        }
+
+        .custom-grid tr.pager-row {
+            background-color: transparent !important;
+        }
+
+        .custom-grid tr.pager-row:hover {
+            background-color: transparent !important;
+        }
+
+        /* ------- Botones Principales ------- */
         .btn-custom {
             background-color: #73866D;
             color: #FFFFFF;
-            border-color: #73866D;
+            border: none;
             padding: 10px 30px;
-            border-radius: 4px;
+            border-radius: 8px;
             font-weight: 500;
+            transition: .15s;
+            box-shadow: 0 1px 2px rgba(0,0,0,.08);
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn-custom:hover {
-            background-color: #5d6b58;
-            border-color: #5d6b58;
+            filter: brightness(.95);
             color: #FFFFFF;
+        }
+
+        .btn-custom:active {
+            transform: translateY(1px);
         }
 
         .btn-secondary-custom {
@@ -231,32 +295,38 @@
             color: #333;
             border: 2px solid #ddd;
             padding: 10px 30px;
-            border-radius: 4px;
+            border-radius: 8px;
             font-weight: 500;
             transition: all 0.3s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,.08);
+            text-decoration: none;
+            display: inline-block;
         }
 
-            .btn-secondary-custom:hover {
-                background-color: #f8f9fa;
-                border-color: #95B88F;
-                color: #73866D;
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
+        .btn-secondary-custom:hover {
+            background-color: #f8f9fa;
+            border-color: #95B88F;
+            color: #73866D;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-            .btn-secondary-custom:active {
-                transform: translateY(0);
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }
+        .btn-secondary-custom:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
         .button-group {
             margin-top: 30px;
+            margin-bottom: 30px;
         }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
+        <div class="top-accent"></div>
+
         <!-- Header con título -->
         <div class="row">
             <div class="col-md-6 p-0">
@@ -271,25 +341,25 @@
         </div>
 
         <!-- Información del contexto -->
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-3">
                 <div class="info-section">
                     <div class="info-label">Nombre del Almacén</div>
                     <div class="info-value">
-                        <asp:Label ID="lblNombreAlmacen" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblNombreAlmacen" runat="server" Text="-"></asp:Label>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-9">
                 <div class="info-section">
-                    <div class="info-label">Descripción Lote</div>
+                    <div class="info-label">Descripción del Lote</div>
                     <div class="info-value">
                         <asp:TextBox ID="txtDescripcionLote" runat="server"
                             CssClass="form-control form-control-desc"
                             TextMode="MultiLine"
                             Rows="3"
                             placeholder="Ingrese la descripción del lote"
-                            MaxLength="200">
+                            MaxLength="500">
                         </asp:TextBox>
                     </div>
                 </div>
@@ -297,15 +367,15 @@
         </div>
 
         <!-- Botones de filtro -->
-        <div class="row filter-buttons">
+        <div class="row mb-3">
             <div class="col-md-12">
-                <asp:Button ID="btnAñadirPrenda" runat="server" 
-                    CssClass="btn btn-filter" 
-                    Text="Añadir Prenda" 
+                <asp:Button ID="btnAñadirPrenda" runat="server"
+                    CssClass="btn-wd"
+                    Text="Añadir Prenda"
                     OnClick="btnAñadirPrenda_Click" />
-                <asp:Button ID="btnFiltrarPrenda" runat="server" 
-                    CssClass="btn btn-filter" 
-                    Text="Filtrar Prenda" 
+                <asp:Button ID="btnFiltrarPrenda" runat="server"
+                    CssClass="btn-wd"
+                    Text="Filtrar Prenda"
                     OnClick="btnFiltrarPrenda_Click" />
             </div>
         </div>
@@ -313,80 +383,47 @@
         <!-- GridView de Prendas -->
         <div class="row">
             <div class="col-md-12">
-                <asp:GridView ID="gvPrendas" runat="server" 
-                    AutoGenerateColumns="false" 
+                <asp:GridView ID="gvPrendas" runat="server"
+                    AutoGenerateColumns="false"
                     ShowHeaderWhenEmpty="True"
                     EmptyDataText="No hay prendas en este lote"
                     CssClass="table table-hover custom-grid"
-                    AllowPaging="true" 
-                    PageSize="5" 
+                    AllowPaging="true"
+                    PageSize="5"
                     OnPageIndexChanging="gvPrendas_PageIndexChanging"
-                    GridLines="None"
-                    PagerSettings-Mode="NumericFirstLast"
-                    PagerSettings-Position="Bottom">
+                    GridLines="None">
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="IdPrenda" />
-                        <asp:BoundField HeaderText="Nombre de la Prenda" DataField="NombrePrenda" />
+                        <asp:BoundField HeaderText="Nombre" DataField="NombrePrenda" />
                         <asp:BoundField HeaderText="Color" DataField="Color" />
                         <asp:BoundField HeaderText="Material" DataField="Material" />
                         <asp:BoundField HeaderText="Stock" DataField="Stock" />
                         <asp:BoundField HeaderText="Talla" DataField="Talla" />
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnModificar" runat="server" 
-                                    OnClick="btnModificar_Click" 
-                                    CommandArgument='<%# Eval("IdPrenda") %>'
-                                    ToolTip="Modificar">
-                                    <i class='fa-solid fa-pencil'></i>
-                                </asp:LinkButton>
-                                <asp:LinkButton ID="btnEliminar" runat="server" 
-                                    OnClick="btnEliminar_Click" 
-                                    CommandArgument='<%# Eval("IdPrenda") %>'
-                                    OnClientClick="return confirm('¿Está seguro de eliminar esta prenda del lote?');"
-                                    ToolTip="Eliminar">
-                                    <i class='fa-solid fa-trash ms-3'></i>
-                                </asp:LinkButton>
+                                <div class="action-btns">
+                                    <asp:LinkButton ID="btnModificar" runat="server"
+                                        CssClass="btn btn-sm btn-outline-primary"
+                                        CommandArgument='<%# Eval("IdPrenda") %>'
+                                        OnClick="btnModificar_Click"
+                                        ToolTip="Modificar">
+                                        <i class="fa fa-pencil"></i>
+                                    </asp:LinkButton>
+
+                                    <asp:LinkButton ID="btnEliminar" runat="server"
+                                        CssClass="btn btn-sm btn-outline-danger"
+                                        CommandArgument='<%# Eval("IdPrenda") %>'
+                                        OnClick="btnEliminar_Click"
+                                        OnClientClick="return confirm('¿Está seguro de eliminar esta prenda del lote?');"
+                                        ToolTip="Eliminar">
+                                        <i class="fa fa-trash"></i>
+                                    </asp:LinkButton>
+                                </div>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
-                    <PagerStyle CssClass="pagination-container" HorizontalAlign="Center" />
-                    <PagerTemplate>
-                        <PagerTemplate>
-                            <div class="pagination-container">
-                                <ul class="custom-pagination">
-                                    <!-- Primera página -->
-                                    <li class="page-item">
-                                        <asp:LinkButton ID="lnkFirst" runat="server"
-                                            CssClass="page-link"
-                                            CommandName="Page"
-                                            CommandArgument="First"
-                                            Text="1">
-                                        </asp:LinkButton>
-                                    </li>
-
-                                    <!-- Página 2 -->
-                                    <li class="page-item">
-                                        <asp:LinkButton ID="lnkPage2" runat="server"
-                                            CssClass="page-link"
-                                            CommandName="Page"
-                                            CommandArgument="2"
-                                            Text="2">
-                                        </asp:LinkButton>
-                                    </li>
-
-                                    <!-- Página 3 -->
-                                    <li class="page-item">
-                                        <asp:LinkButton ID="lnkPage3" runat="server"
-                                            CssClass="page-link"
-                                            CommandName="Page"
-                                            CommandArgument="3"
-                                            Text="3">
-                                        </asp:LinkButton>
-                                    </li>
-                                </ul>
-                            </div>
-                        </pagertemplate>
-                    </PagerTemplate>
+                    <PagerSettings Mode="NumericFirstLast" FirstPageText="Primera" LastPageText="Última" />
+                    <PagerStyle CssClass="pager-row" HorizontalAlign="Center" />
                 </asp:GridView>
             </div>
         </div>
@@ -394,16 +431,16 @@
         <!-- Botones principales -->
         <div class="row button-group">
             <div class="col-md-6">
-                <asp:LinkButton ID="lkCancelar" runat="server" 
-                    CssClass="btn btn-secondary-custom" 
+                <asp:LinkButton ID="lkCancelar" runat="server"
+                    CssClass="btn-secondary-custom"
                     OnClick="lkCancelar_Click"
                     CausesValidation="false"
                     Text="Cancelar">
                 </asp:LinkButton>
             </div>
             <div class="col-md-6 text-end">
-                <asp:LinkButton ID="lkGuardar" runat="server" 
-                    CssClass="btn btn-custom" 
+                <asp:LinkButton ID="lkGuardar" runat="server"
+                    CssClass="btn-custom"
                     OnClick="lkGuardar_Click"
                     Text="Guardar">
                 </asp:LinkButton>
@@ -413,4 +450,17 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptsContent" runat="server">
+    <script type="text/javascript">
+        // Validación del formulario
+        function validarFormulario() {
+            var descripcion = document.getElementById('<%= txtDescripcionLote.ClientID %>').value.trim();
+
+            if (descripcion === '') {
+                alert('Por favor, ingrese una descripción para el lote');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </asp:Content>

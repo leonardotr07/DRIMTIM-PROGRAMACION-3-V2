@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://almacen.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="LoteWS" targetNamespace="http://almacen.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/LoteWS?xsd=1" namespace="http://almacen.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="listarLotesActivosPorAlmacen">
+    <part name="parameters" element="tns:listarLotesActivosPorAlmacen" />
+  </message>
+  <message name="listarLotesActivosPorAlmacenResponse">
+    <part name="parameters" element="tns:listarLotesActivosPorAlmacenResponse" />
+  </message>
+  <message name="obtenerLotePorID">
+    <part name="parameters" element="tns:obtenerLotePorID" />
+  </message>
+  <message name="obtenerLotePorIDResponse">
+    <part name="parameters" element="tns:obtenerLotePorIDResponse" />
+  </message>
+  <message name="listarLotesActivos">
+    <part name="parameters" element="tns:listarLotesActivos" />
+  </message>
+  <message name="listarLotesActivosResponse">
+    <part name="parameters" element="tns:listarLotesActivosResponse" />
+  </message>
+  <message name="eliminarLote">
+    <part name="parameters" element="tns:eliminarLote" />
+  </message>
+  <message name="eliminarLoteResponse">
+    <part name="parameters" element="tns:eliminarLoteResponse" />
+  </message>
+  <message name="insertarLote">
+    <part name="parameters" element="tns:insertarLote" />
+  </message>
+  <message name="insertarLoteResponse">
+    <part name="parameters" element="tns:insertarLoteResponse" />
+  </message>
+  <message name="modificarLote">
+    <part name="parameters" element="tns:modificarLote" />
+  </message>
+  <message name="modificarLoteResponse">
+    <part name="parameters" element="tns:modificarLoteResponse" />
+  </message>
+  <portType name="LoteWS">
+    <operation name="listarLotesActivosPorAlmacen">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosPorAlmacenRequest" message="tns:listarLotesActivosPorAlmacen" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosPorAlmacenResponse" message="tns:listarLotesActivosPorAlmacenResponse" />
+    </operation>
+    <operation name="obtenerLotePorID">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/obtenerLotePorIDRequest" message="tns:obtenerLotePorID" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/obtenerLotePorIDResponse" message="tns:obtenerLotePorIDResponse" />
+    </operation>
+    <operation name="listarLotesActivos">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosRequest" message="tns:listarLotesActivos" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosResponse" message="tns:listarLotesActivosResponse" />
+    </operation>
+    <operation name="eliminarLote">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/eliminarLoteRequest" message="tns:eliminarLote" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/eliminarLoteResponse" message="tns:eliminarLoteResponse" />
+    </operation>
+    <operation name="insertarLote">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/insertarLoteRequest" message="tns:insertarLote" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/insertarLoteResponse" message="tns:insertarLoteResponse" />
+    </operation>
+    <operation name="modificarLote">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/modificarLoteRequest" message="tns:modificarLote" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/modificarLoteResponse" message="tns:modificarLoteResponse" />
+    </operation>
+  </portType>
+  <binding name="LoteWSPortBinding" type="tns:LoteWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="listarLotesActivosPorAlmacen">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerLotePorID">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarLotesActivos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarLote">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarLote">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarLote">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="LoteWS">
+    <port name="LoteWSPort" binding="tns:LoteWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/LoteWS" />
+    </port>
+  </service>
+</definitions>

@@ -15,31 +15,13 @@ namespace WearDropWA
     {
 
         /// <summary>
-        /// Control txtLugarDestino.
+        /// Control ddlLugarOrigen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLugarDestino;
-
-        /// <summary>
-        /// Control rfvLugarDestino.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLugarDestino;
-
-        /// <summary>
-        /// Control txtLugarOrigen.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLugarOrigen;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLugarOrigen;
 
         /// <summary>
         /// Control rfvLugarOrigen.
@@ -49,6 +31,24 @@ namespace WearDropWA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLugarOrigen;
+
+        /// <summary>
+        /// Control ddlLugarDestino.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLugarDestino;
+
+        /// <summary>
+        /// Control rfvLugarDestino.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLugarDestino;
 
         /// <summary>
         /// Control txtFechaTraslado.

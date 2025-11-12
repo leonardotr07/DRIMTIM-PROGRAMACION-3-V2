@@ -6,25 +6,30 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
     <style>
+        /* ------- Layout Base ------- */
         .header-title {
             display: flex;
             align-items: stretch;
             height: 60px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+            margin-top: 14px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .title-section {
-            background-color: #FFFFFF;
+            background: #fff;
             padding: 0 25px;
             display: flex;
             align-items: center;
-            flex: 0 0 350px;
+            flex: 0 0 380px;
         }
 
         .title-section h2 {
             margin: 0;
             font-size: 20px;
-            font-weight: 500;
+            font-weight: 600;
             color: #333;
             white-space: nowrap;
         }
@@ -34,235 +39,389 @@
         }
 
         .bar-1 {
-            background-color: #C5D9C0;
             flex: 1.5;
         }
 
         .bar-2 {
-            background-color: #95B88F;
             flex: 1.5;
         }
 
-        .form-container {
-            background-color: #FFFFFF;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-top: 30px;
+        .top-accent {
+            height: 4px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            border-radius: 4px;
         }
 
-        .form-row-custom {
+        /* ------- Tema de Almacenes ------- */
+        .theme-almacenes {
+            --tone-1: #C5D9C0;
+            --tone-2: #95B88F;
+            --tone-3: #73866D;
+        }
+
+        .theme-scope .bar-1 {
+            background: var(--tone-1);
+        }
+
+        .theme-scope .bar-2 {
+            background: var(--tone-2);
+        }
+
+        .theme-scope .top-accent {
+            background: linear-gradient(90deg, var(--tone-1), var(--tone-2), var(--tone-3));
+        }
+
+        /* ------- Contenedor Principal ------- */
+        .section-container {
+            width: 100%;
+            margin-left: 0;
             display: flex;
+            flex-direction: column;
             gap: 30px;
-            margin-bottom: 25px;
         }
 
-        .form-group-custom {
+        /* ------- Sección Principal (Movimiento / Lote) ------- */
+        .main-section {
+            background-color: #fff;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+        }
+
+        /* ------- Título de Sección ------- */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--tone-3);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--tone-2);
+        }
+
+        /* ------- Subsecciones internas ------- */
+        .subsection {
+            background-color: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+            padding: 18px 20px;
+            margin-bottom: 15px;
+        }
+
+        .subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 🔹 Filas con dos columnas */
+        .two-columns {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            width: 100%;
+        }
+
+        /* 🔹 Una sola columna */
+        .one-column {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .field-block {
+            display: flex;
+            flex-direction: column;
             flex: 1;
         }
 
-        .form-label-required {
+        .field-block h3 {
+            font-size: 0.95rem;
             font-weight: 500;
             color: #333;
-            font-size: 14px;
             margin-bottom: 8px;
-            display: block;
         }
 
-        .form-label-required::after {
-            content: " (*)";
+        .required {
             color: #dc3545;
         }
 
-        .form-control-custom {
+        /* 🔹 TextBox */
+        .form-control {
             width: 100%;
-            padding: 10px 15px;
+            max-width: 100%;
+            text-align: left;
+            padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
             color: #333;
             background-color: #fff;
             transition: border-color 0.3s ease;
-        }
-
-        .form-control-custom:focus {
-            outline: none;
-            border-color: #95B88F;
-            box-shadow: 0 0 0 3px rgba(149, 184, 143, 0.1);
-        }
-
-        .form-control-custom::placeholder {
-            color: #999;
+            box-sizing: border-box;
         }
 
         .form-control-readonly {
             background-color: #F0F0F0;
             cursor: not-allowed;
+            color: #666;
         }
 
-        .form-group-full {
-            width: 100%;
-            margin-bottom: 25px;
+        .form-control:focus {
+            outline: none;
+            border-color: var(--tone-2);
+            box-shadow: 0 0 0 3px rgba(149, 184, 143, 0.1);
         }
 
-        .form-textarea-custom {
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        /* 🔹 TextArea */
+        .form-textarea {
             width: 100%;
-            padding: 12px 15px;
+            max-width: 100%;
+            text-align: left;
+            padding: 10px 12px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
             color: #333;
+            background-color: #fff;
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
             font-family: inherit;
+            box-sizing: border-box;
         }
 
-        .form-textarea-custom:focus {
+        .form-textarea:focus {
             outline: none;
-            border-color: #95B88F;
+            border-color: var(--tone-2);
             box-shadow: 0 0 0 3px rgba(149, 184, 143, 0.1);
         }
 
-        .form-textarea-custom::placeholder {
-            color: #999;
-        }
-
-        .button-container {
+        /* ------- Botones inferiores ------- */
+        .buttons-bottom-container {
+            width: 100%;
+            max-width: 100%;
+            border: 1px #dee2e6;
+            border-radius: 6px;
+            margin-top: 25px;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #E8E8E8;
+            align-items: center;
+        }
+
+        .theme-scope .btn-wd {
+            background: var(--tone-3);
+            color: #fff;
+            border: none;
+            padding: 9px 28px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-block;
+            transition: .15s;
+            box-shadow: 0 1px 2px rgba(0,0,0,.08);
+            text-decoration: none;
+        }
+
+        .theme-scope .btn-wd:hover {
+            filter: brightness(.95);
+            color: #fff;
+        }
+
+        .theme-scope .btn-wd:active {
+            transform: translateY(1px);
         }
 
         .btn-secondary-custom {
             background-color: #FFFFFF;
             color: #333;
             border: 2px solid #ddd;
-            padding: 10px 30px;
-            border-radius: 4px;
+            padding: 9px 28px;
+            border-radius: 8px;
             font-weight: 500;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
-            .btn-secondary-custom:hover {
-                background-color: #f8f9fa;
-                border-color: #95B88F;
-                color: #73866D;
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
-
-            .btn-secondary-custom:active {
-                transform: translateY(0);
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }
-
-        .btn-custom {
-            background-color: #73866D;
-            color: #FFFFFF;
-            border-color: #73866D;
-            padding: 10px 30px;
-            border-radius: 4px;
-            font-weight: 500;
+        .btn-secondary-custom:hover {
+            background-color: #f8f9fa;
+            border-color: var(--tone-2);
+            color: var(--tone-3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-            .btn-custom:hover {
-                background-color: #5f6f5a;
-                border-color: #5f6f5a;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            }
-
-        input[type="date"].form-control-custom {
-            cursor: pointer;
+        .btn-secondary-custom:active {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-            input[type="date"].form-control-custom::-webkit-calendar-picker-indicator {
-                cursor: pointer;
-            }
+        /* ------- Validadores ------- */
+        .text-danger {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 3px;
+            display: block;
+        }
+
+        a, a:visited, a:hover, a:active {
+            text-decoration: none !important;
+        }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
-        <div class="container row">
-            <div class="row align-items-center">
-                <div class="col-md-8 p-0">
-                    <div class="header-title">
-                        <div class="title-section">
-                            <h2>Modificar Relación Movimiento X Lote</h2>
+    <div class="theme-almacenes">
+        <div class="theme-scope">
+            <div class="container">
+                <div class="top-accent"></div>
+
+                <!-- Header con Título -->
+                <div class="container row">
+                    <div class="col-md-8 p-0">
+                        <div class="header-title">
+                            <div class="title-section">
+                                <h2>Modificar Relación Movimiento X Lote</h2>
+                            </div>
+                            <div class="color-bar bar-1"></div>
+                            <div class="color-bar bar-2"></div>
                         </div>
-                        <div class="color-bar bar-1"></div>
-                        <div class="color-bar bar-2"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container row">
-            <div class="form-container">
-                <!-- Primera fila: ID del Movimiento -->
-                <div class="form-row-custom">
-                    <div class="form-group-custom">
-                        <label class="form-label-required">ID del Movimiento</label>
-                        <asp:TextBox ID="txtIdMovimiento" runat="server" CssClass="form-control-custom" placeholder="Ingrese ID"></asp:TextBox>
-                    </div>
-                    <div class="form-group-custom">
-                        <!-- Espacio vacío para mantener el diseño -->
                     </div>
                 </div>
 
-                <!-- Segunda fila: Lugar Origen y Lugar Destino -->
-                <div class="form-row-custom">
-                    <div class="form-group-custom">
-                        <label class="form-label-required">Lugar Origen</label>
-                        <asp:TextBox ID="txtLugarOrigen" runat="server" CssClass="form-control-custom form-control-readonly" 
-                            placeholder="Ingrese lugar de origen" ReadOnly="true"></asp:TextBox>
+                <!-- Contenedor Principal -->
+                <div class="section-container">
+
+                    <!-- 🔹 SECCIÓN 1: MOVIMIENTO -->
+                    <div class="main-section">
+                        <h2 class="section-title">Movimiento</h2>
+
+                        <!-- ID del Movimiento -->
+                        <div class="subsection">
+                            <div class="one-column">
+                                <div class="field-block">
+                                    <h3>ID del Movimiento <span class="required">(*)</span></h3>
+                                    <asp:TextBox ID="txtIdMovimiento" runat="server" 
+                                        CssClass="form-control"
+                                        placeholder="Ingrese el ID del movimiento"
+                                        AutoPostBack="true"
+                                        OnTextChanged="txtIdMovimiento_TextChanged">
+                                    </asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvIdMovimiento" runat="server"
+                                        ControlToValidate="txtIdMovimiento"
+                                        ErrorMessage="El ID del movimiento es obligatorio"
+                                        CssClass="text-danger"
+                                        Display="Dynamic">
+                                    </asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lugar Origen y Lugar Destino -->
+                        <div class="subsection">
+                            <div class="two-columns">
+                                <div class="field-block">
+                                    <h3>Lugar Origen <span class="required">(*)</span></h3>
+                                    <asp:TextBox ID="txtLugarOrigen" runat="server"
+                                        CssClass="form-control form-control-readonly"
+                                        placeholder="Lugar de origen"
+                                        ReadOnly="true">
+                                    </asp:TextBox>
+                                </div>
+                                <div class="field-block">
+                                    <h3>Lugar Destino <span class="required">(*)</span></h3>
+                                    <asp:TextBox ID="txtLugarDestino" runat="server"
+                                        CssClass="form-control form-control-readonly"
+                                        placeholder="Lugar de destino"
+                                        ReadOnly="true">
+                                    </asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fecha y Tipo -->
+                        <div class="subsection">
+                            <div class="two-columns">
+                                <div class="field-block">
+                                    <h3>Fecha <span class="required">(*)</span></h3>
+                                    <asp:TextBox ID="txtFecha" runat="server"
+                                        TextMode="Date"
+                                        CssClass="form-control form-control-readonly"
+                                        ReadOnly="true">
+                                    </asp:TextBox>
+                                </div>
+                                <div class="field-block">
+                                    <h3>Tipo <span class="required">(*)</span></h3>
+                                    <asp:TextBox ID="txtTipo" runat="server"
+                                        CssClass="form-control form-control-readonly"
+                                        placeholder="Tipo de movimiento"
+                                        ReadOnly="true">
+                                    </asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group-custom">
-                        <label class="form-label-required">Lugar Destino</label>
-                        <asp:TextBox ID="txtLugarDestino" runat="server" CssClass="form-control-custom form-control-readonly" 
-                            placeholder="Ingrese lugar de destino" ReadOnly="true"></asp:TextBox>
+
+                    <!-- 🔹 SECCIÓN 2: LOTE -->
+                    <div class="main-section">
+                        <h2 class="section-title">Lote</h2>
+
+                        <!-- ID del Lote -->
+                        <div class="subsection">
+                            <div class="one-column">
+                                <div class="field-block">
+                                    <h3>ID del Lote <span class="required">(*)</span></h3>
+                                    <asp:TextBox ID="txtIdLote" runat="server"
+                                        CssClass="form-control"
+                                        placeholder="Ingrese el ID del lote"
+                                        AutoPostBack="true"
+                                        OnTextChanged="txtIdLote_TextChanged">
+                                    </asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvIdLote" runat="server"
+                                        ControlToValidate="txtIdLote"
+                                        ErrorMessage="El ID del lote es obligatorio"
+                                        CssClass="text-danger"
+                                        Display="Dynamic">
+                                    </asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="subsection">
+                            <div class="one-column">
+                                <div class="field-block">
+                                    <h3>Descripción <span class="required">(*)</span></h3>
+                                    <asp:TextBox ID="txtDescripcion" runat="server"
+                                        TextMode="MultiLine"
+                                        CssClass="form-textarea form-control-readonly"
+                                        placeholder="Descripción del lote"
+                                        ReadOnly="true">
+                                    </asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
 
-                <!-- Tercera fila: Fecha y Tipo -->
-                <div class="form-row-custom">
-                    <div class="form-group-custom">
-                        <label class="form-label-required">Fecha</label>
-                        <asp:TextBox ID="txtFecha" runat="server" TextMode="Date" CssClass="form-control-custom form-control-readonly" 
-                            ReadOnly="true"></asp:TextBox>
-                    </div>
-                    <div class="form-group-custom">
-                        <label class="form-label-required">Tipo</label>
-                        <asp:TextBox ID="txtTipo" runat="server" CssClass="form-control-custom form-control-readonly" 
-                            placeholder="Tipo de movimiento" ReadOnly="true"></asp:TextBox>
-                    </div>
+                <!-- Botones Inferiores -->
+                <div class="container buttons-bottom-container">
+                    <asp:Button ID="btnCancelar" runat="server"
+                        Text="Cancelar"
+                        CssClass="btn-secondary-custom"
+                        OnClick="btnCancelar_Click"
+                        CausesValidation="false" />
+
+                    <asp:Button ID="btnModificar" runat="server"
+                        Text="Modificar Relación"
+                        CssClass="btn-wd"
+                        OnClick="btnModificar_Click" />
                 </div>
 
-                <!-- Cuarta fila: ID del Lote -->
-                <div class="form-row-custom">
-                    <div class="form-group-custom">
-                        <label class="form-label-required">ID del Lote</label>
-                        <asp:TextBox ID="txtIdLote" runat="server" CssClass="form-control-custom" placeholder="Ingrese ID"></asp:TextBox>
-                    </div>
-                    <div class="form-group-custom">
-                        <!-- Espacio vacío para mantener el diseño -->
-                    </div>
-                </div>
-
-                <!-- Quinta fila: Descripción -->
-                <div class="form-group-full">
-                    <label class="form-label-required">Descripción</label>
-                    <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" CssClass="form-textarea-custom form-control-readonly" 
-                        placeholder="Ingrese la descripción" ReadOnly="true"></asp:TextBox>
-                </div>
-
-                <!-- Botones -->
-                <div class="button-container">
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary-custom" OnClick="btnCancelar_Click" />
-                    <asp:Button ID="btnModificar" runat="server" Text="Modificar Relación" CssClass="btn btn-custom" OnClick="btnModificar_Click" />
-                </div>
             </div>
         </div>
     </div>
@@ -270,22 +429,30 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptsContent" runat="server">
     <script type="text/javascript">
-        // Validación del formulario antes de enviar
-        function validarFormulario() {
-            var idMovimiento = document.getElementById('<%= txtIdMovimiento.ClientID %>').value.trim();
-            var idLote = document.getElementById('<%= txtIdLote.ClientID %>').value.trim();
+        // 🔹 Prevenir que Enter dispare el botón de Modificar cuando se está en los TextBox
+        document.addEventListener('DOMContentLoaded', function () {
+            var txtIdMovimiento = document.getElementById('<%= txtIdMovimiento.ClientID %>');
+            var txtIdLote = document.getElementById('<%= txtIdLote.ClientID %>');
 
-            if (idMovimiento === '') {
-                alert('Por favor, ingrese el ID del Movimiento');
-                return false;
+            if (txtIdMovimiento) {
+                txtIdMovimiento.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.blur(); // Salir del campo para disparar el TextChanged
+                        return false;
+                    }
+                });
             }
 
-            if (idLote === '') {
-                alert('Por favor, ingrese el ID del Lote');
-                return false;
+            if (txtIdLote) {
+                txtIdLote.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.blur(); // Salir del campo para disparar el TextChanged
+                        return false;
+                    }
+                });
             }
-
-            return true;
-        }
+        });
     </script>
 </asp:Content>

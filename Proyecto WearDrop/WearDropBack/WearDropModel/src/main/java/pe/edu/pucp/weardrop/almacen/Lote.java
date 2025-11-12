@@ -33,6 +33,7 @@ public class Lote {
     //Constructor Copia para Almacen y MovimientoAlmacen
     public Lote(Lote datLote){
         this.idLote=datLote.idLote;
+        this.descripcion=datLote.descripcion;
         this.prendas=new ArrayList<>(datLote.prendas);
         this.datAlmacen=new Almacen(datLote.datAlmacen);
     }

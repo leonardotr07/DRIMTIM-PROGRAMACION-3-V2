@@ -5,6 +5,7 @@
 package pe.edu.pucp.weardrop.almacen.bo;
 
 import java.util.ArrayList;
+import java.util.List;
 import pe.edu.pucp.weardrop.almacen.Almacen;
 import pe.edu.pucp.weardrop.almacen.MovimientoAlmacen;
 import pe.edu.pucp.weardrop.almacen.boi.MovimientoAlmacenBOI;
@@ -28,7 +29,13 @@ public class MovimientoAlmacenBOImpl implements MovimientoAlmacenBOI{
     
     @Override
     public ArrayList<MovimientoAlmacen> listarActivos() {
-        return daoMov.listarActivos();
+        Almacen auxAlmacen=null;
+        ArrayList<MovimientoAlmacen> listaMov=daoMov.listarActivos();
+//        for(MovimientoAlmacen datMov: listaMov){
+//            auxAlmacen=daoAlmacen.obtenerPorId(datMov.getDatAlmacen().getId()); //Para respetar el encapsulamiento
+//            datMov.setDatAlmacen(auxAlmacen);
+//        }
+        return listaMov;
     }
 
     @Override
@@ -50,19 +57,32 @@ public class MovimientoAlmacenBOImpl implements MovimientoAlmacenBOI{
 
     @Override
     public MovimientoAlmacen obtenerXId(int idMovimiento) throws Exception {
-        /*En mi caso yo hice la asignacion del Almacen en el proyecto de DA (MovimientoAlmacenImpl)
-        Debido a que sobrepense más de lo que debía...
-        Por lo que solo en este paquete estará de esta manera
-        Si es requerido cambiar esto lo haré.*/
-        //En los demás casos si haganlo como el profe lo realiza...
-        //Es decir que se realize aqui la asignacion de Almacen con el Movimiento...
         MovimientoAlmacen mov=daoMov.obtenerPorId(idMovimiento);
+        Almacen datAlmacen=daoAlmacen.obtenerPorId(mov.getDatAlmacen().getId());
+        mov.setDatAlmacen(datAlmacen);
         return mov;
     }
 
     @Override
     public ArrayList<MovimientoAlmacen> listarTodos() throws Exception {
-        return daoMov.listarTodos();
+        Almacen datAlmacen;
+        ArrayList<MovimientoAlmacen> listaMov=daoMov.listarTodos();
+        for(MovimientoAlmacen datMov: listaMov){
+            datAlmacen=daoAlmacen.obtenerPorId(datMov.getDatAlmacen().getId());
+            datMov.setDatAlmacen(datAlmacen);
+        }
+        return listaMov;
+    }
+    
+    @Override
+    public List<MovimientoAlmacen> listarMovimientosActivosPorAlmacen(int idAlmacen) {
+        Almacen datAlmacen=daoAlmacen.obtenerPorId(idAlmacen);
+        ArrayList<MovimientoAlmacen> listaMov=daoMov.listarMovimientosActivosPorAlmacen(idAlmacen);
+        for(MovimientoAlmacen datMov: listaMov){
+            Almacen auxAlmacen=new Almacen(datAlmacen); //Para respetar el encapsulamiento
+            datMov.setDatAlmacen(auxAlmacen);
+        }
+        return listaMov;
     }
 
     @Override
@@ -90,5 +110,4 @@ public class MovimientoAlmacenBOImpl implements MovimientoAlmacenBOI{
         if(objeto.getLugarOrigen()==null)
             throw new Exception("En Movimiento Almacen: El campo LugarOrigen es nulo.");
     }
-    
 }

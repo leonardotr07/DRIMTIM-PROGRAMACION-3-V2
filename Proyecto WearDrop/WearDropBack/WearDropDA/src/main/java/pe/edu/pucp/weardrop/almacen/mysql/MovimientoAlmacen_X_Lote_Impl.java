@@ -14,6 +14,7 @@ import pe.edu.pucp.weardrop.almacen.Almacen;
 import pe.edu.pucp.weardrop.almacen.Lote;
 import pe.edu.pucp.weardrop.almacen.MovimientoAlmacen;
 import pe.edu.pucp.weardrop.almacen.MovimientoAlmacen_X_Lote;
+import pe.edu.pucp.weardrop.almacen.TipoMovimiento;
 import pe.edu.pucp.weardrop.almacen.dao.MovimientoAlmacen_X_Lote_DAO;
 import pe.edu.pucp.weardrop.config.DBManager;
 
@@ -147,7 +148,7 @@ public class MovimientoAlmacen_X_Lote_Impl implements MovimientoAlmacen_X_Lote_D
                 datMov_X_Lote.setActivo(rs.getBoolean(5));
                 
                 datMov.setDatAlmacen(datAlmacen);
-                datLote.setDatAlmacen(datAlmacen);
+                datLote.setDatAlmacen(new Almacen(datAlmacen));
                 
                 datMov_X_Lote.setDatLote(datLote);
                 datMov_X_Lote.setDatMov(datMov);
@@ -190,7 +191,7 @@ public class MovimientoAlmacen_X_Lote_Impl implements MovimientoAlmacen_X_Lote_D
                 datMov_X_Lote.setActivo(rs.getBoolean(5));
                 
                 datMov.setDatAlmacen(datAlmacen);
-                datLote.setDatAlmacen(datAlmacen);
+                datLote.setDatAlmacen(new Almacen(datAlmacen));
                 
                 datMov_X_Lote.setDatLote(datLote);
                 datMov_X_Lote.setDatMov(datMov);
@@ -205,4 +206,73 @@ public class MovimientoAlmacen_X_Lote_Impl implements MovimientoAlmacen_X_Lote_D
         }
         return listaMov_X_Lote;
     }
+
+    @Override
+public ArrayList<MovimientoAlmacen_X_Lote> listarRelacionesActivasPorAlmacen(int idAlmacen) {
+    ArrayList<MovimientoAlmacen_X_Lote> listaMov_X_Lote = null;
+    MovimientoAlmacen_X_Lote datMov_X_Lote = null;
+    Lote datLote = null;
+    Almacen datAlmacen = null;
+    MovimientoAlmacen datMov = null;
+    
+    Map<Integer, Object> parametrosEntrada = new HashMap<>();
+    parametrosEntrada.put(1, idAlmacen);
+    // Ejecutar el nuevo procedimiento que devuelve los detalles
+    rs = DBManager.getInstance().ejecutarProcedimientoLectura("mostrar_mov_X_lote_activos_por_almacen", parametrosEntrada);
+    
+    try {
+        while (rs.next()) {
+            if (listaMov_X_Lote == null) listaMov_X_Lote = new ArrayList<>();
+            datMov_X_Lote = new MovimientoAlmacen_X_Lote();
+            datLote = new Lote();
+            datAlmacen = new Almacen();
+            datMov = new MovimientoAlmacen();
+            
+            // Mapeo del ResultSet a Objetos:
+            // Columnas del SELECT:
+            // 1. MQL.idMovAlmacen_X_Lote
+            // 2. L.idLote
+            // 3. MA.idMovAlmacen
+            // 4. MA.Almacen_idAlmacen
+            // 5. MA.tipo
+            // 6. MA.lugarDestino
+            // 7. MA.lugarOrigen
+            // 8. L.descripcion
+            // 9. MQL.activo
+            
+            // 1. Datos de la Relación (MovimientoAlmacen_X_Lote)
+            datMov_X_Lote.setIdMov_X_Lote(rs.getInt(1));
+            datMov_X_Lote.setActivo(rs.getBoolean(9)); 
+            
+            // 2. Datos del Lote
+            datLote.setIdLote(rs.getInt(2));
+            datLote.setDescripcion(rs.getString(8)); 
+            
+            // 3. Datos del Movimiento
+            datMov.setIdMovimiento(rs.getInt(3));
+            datMov.setTipo(TipoMovimiento.valueOf(rs.getString(5)));
+            datMov.setLugarDestino(rs.getString(6));
+            datMov.setLugarOrigen(rs.getString(7));
+            
+            // 4. Datos del Almacén (Usado en Lote y Movimiento)
+            datAlmacen.setId(rs.getInt(4)); // ID Almacén
+            
+            // 5. Establecer relaciones
+            datMov.setDatAlmacen(datAlmacen);
+            // El lote y el movimiento tienen el mismo objeto Almacen para respetar la consistencia
+            datLote.setDatAlmacen(new Almacen(datAlmacen)); 
+            
+            datMov_X_Lote.setDatLote(datLote);
+            datMov_X_Lote.setDatMov(datMov);
+            
+            listaMov_X_Lote.add(datMov_X_Lote);
+        }
+        System.out.println("SE LISTARON LAS RELACIONES ACTIVAS MOV ALMACEN - LOTE CON DETALLE CORRECTAMENTE.");
+    } catch (SQLException ex) {
+        System.out.println("ERROR al listar las relaciones activas Movimiento Almacen-Lote: " + ex.getMessage());
+    } finally {
+        DBManager.getInstance().cerrarConexion();
+    }
+    return listaMov_X_Lote;
+}
 }

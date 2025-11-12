@@ -1,26 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WearDropWA.ServiciosBackEnd;
 
 namespace WearDropWA
 {
     public partial class MostrarAlmacen : System.Web.UI.Page
     {
-        private int idAlmacen;
+        private MovimientoAlmacenWSClient boMovimientoAlmacen;
+        private LoteWSClient boLote;
+        private MovimientoAlmacenXLoteWSClient boMovimientoAlmacenXLote;
+        private almacen datAlmacen;
+
+        private BindingList<lote> listaLotes;
+        private BindingList<movimientoAlmacen> listaMovimientoAlmacen;
+        private BindingList<movimientoAlmacenXLote> listaMovimientoAlmacenXLote;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            boMovimientoAlmacen = new MovimientoAlmacenWSClient();
+            boLote = new LoteWSClient();
+            boMovimientoAlmacenXLote = new MovimientoAlmacenXLoteWSClient();
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["id"] != null)
                 {
-                    idAlmacen = Convert.ToInt32(Request.QueryString["id"]);
-                    ViewState["IdAlmacen"] = idAlmacen;
-                    ViewState["TabActiva"] = "Lotes";
+                    // Obtener el almacén de la sesión
+                    datAlmacen = (almacen)Session["almacenSeleccionado"];
+
+                    if (datAlmacen == null)
+                    {
+                        Response.Redirect("ListarAlmacenes.aspx");
+                        return;
+                    }
+
+                    // Guardar todo el objeto almacén en ViewState
+                    ViewState["AlmacenCompleto"] = datAlmacen;
+
+                    // Recuperar la última pestaña visitada de la sesión o usar "Lotes" por defecto
+                    string tabActiva = Session["UltimaPagina"]?.ToString() ?? "Lotes";
+                    ViewState["TabActiva"] = tabActiva;
+
                     CargarDatosAlmacen();
-                    CargarLotes();
+
+                    // Cargar la pestaña correspondiente basada en la sesión
+                    CargarPestanaActiva(tabActiva);
                 }
                 else
                 {
@@ -29,31 +57,49 @@ namespace WearDropWA
             }
             else
             {
-                idAlmacen = (int)ViewState["IdAlmacen"];
+                // Recuperar el almacén completo del ViewState en postback
+                datAlmacen = (almacen)ViewState["AlmacenCompleto"];
+
+                if (datAlmacen == null)
+                {
+                    // Si por alguna razón se perdió el ViewState, intentar recuperar de Session
+                    datAlmacen = (almacen)Session["almacenSeleccionado"];
+
+                    if (datAlmacen == null)
+                    {
+                        Response.Redirect("ListarAlmacenes.aspx");
+                        return;
+                    }
+                }
             }
         }
 
         private void CargarDatosAlmacen()
         {
-            // Aquí implementar la lógica para cargar datos desde la base de datos
-            // Ejemplo con datos de prueba:
-            if (idAlmacen == 1)
+            txtId.Text = datAlmacen.id.ToString();
+            txtNombre.Text = datAlmacen.nombre;
+            txtUbicacion.Text = datAlmacen.ubicacion;
+        }
+
+        private void CargarPestanaActiva(string tabActiva)
+        {
+            switch (tabActiva)
             {
-                txtId.Text = "1";
-                txtNombre.Text = "Almacén Central";
-                txtUbicacion.Text = "Lima Centro";
-            }
-            else if (idAlmacen == 2)
-            {
-                txtId.Text = "2";
-                txtNombre.Text = "Almacén Norte";
-                txtUbicacion.Text = "San Martín de Porres";
-            }
-            else if (idAlmacen == 3)
-            {
-                txtId.Text = "3";
-                txtNombre.Text = "Almacén Sur";
-                txtUbicacion.Text = "Villa El Salvador";
+                case "Movimientos":
+                    MostrarPanel(panelMovimientos);
+                    ActualizarEstiloTab(tabMovimientos);
+                    CargarMovimientos();
+                    break;
+                case "MovimientosXLote":
+                    MostrarPanel(panelMovimientosXLotes);
+                    ActualizarEstiloTab(tabMovimientosXLotes);
+                    CargarMovimientosXLotes();
+                    break;
+                default: // "Lotes"
+                    MostrarPanel(panelLotes);
+                    ActualizarEstiloTab(tabLotes);
+                    CargarLotes();
+                    break;
             }
         }
 
@@ -63,6 +109,8 @@ namespace WearDropWA
         {
             MostrarPanel(panelLotes);
             ActualizarEstiloTab(tabLotes);
+            
+            Session["UltimaPagina"] = "Lotes";
             ViewState["TabActiva"] = "Lotes";
             CargarLotes();
         }
@@ -71,6 +119,7 @@ namespace WearDropWA
         {
             MostrarPanel(panelMovimientos);
             ActualizarEstiloTab(tabMovimientos);
+            Session["UltimaPagina"] = "Movimientos";
             ViewState["TabActiva"] = "Movimientos";
             CargarMovimientos();
         }
@@ -79,6 +128,7 @@ namespace WearDropWA
         {
             MostrarPanel(panelMovimientosXLotes);
             ActualizarEstiloTab(tabMovimientosXLotes);
+            Session["UltimaPagina"] = "MovimientosXLote";
             ViewState["TabActiva"] = "MovimientosXLote";
             CargarMovimientosXLotes();
         }
@@ -105,54 +155,54 @@ namespace WearDropWA
 
         private void CargarLotes()
         {
-            // Aquí implementar la lógica para cargar lotes desde la base de datos
-            // Ejemplo con datos de prueba:
-            var lotesTest = new List<dynamic>
+            try
             {
-                new { IdLote = 1, Descripcion = "Lote Camisetas Verano 2024" },
-                new { IdLote = 2, Descripcion = "Lote Pantalones Mezclilla" },
-                new { IdLote = 3, Descripcion = "Lote Zapatillas Deportivas" },
-                new { IdLote = 4, Descripcion = "Lote Accesorios Invierno" },
-                new { IdLote = 5, Descripcion = "Lote Chaquetas Premium" }
-            };
-
-            gvLotes.DataSource = lotesTest;
-            gvLotes.DataBind();
+                listaLotes = new BindingList<lote>(boLote.listarLotesActivosPorAlmacen(datAlmacen.id));
+                gvLotes.DataSource = listaLotes;
+                gvLotes.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                    $"alert('Error al cargar lotes: {ex.Message}');", true);
+            }
         }
 
         private void CargarMovimientos()
         {
-            // Aquí implementar la lógica para cargar movimientos desde la base de datos
-            // Ejemplo con datos de prueba:
-            var movimientosTest = new List<dynamic>
+            try
             {
-                new { IdMovimiento = 1, Destino = "Almacén Lima Sur", Origen = "Almacén Central", Tipo = "Salida", Fecha = new DateTime(2024, 10, 15) },
-                new { IdMovimiento = 2, Destino = "Tienda Miraflores", Origen = "Almacén Central", Tipo = "Salida", Fecha = new DateTime(2024, 10, 18) },
-                new { IdMovimiento = 3, Destino = "Almacén Central", Origen = "Proveedor ABC", Tipo = "Entrada", Fecha = new DateTime(2024, 10, 20) },
-                new { IdMovimiento = 4, Destino = "Almacén Norte", Origen = "Almacén Central", Tipo = "Salida", Fecha = new DateTime(2024, 10, 22) },
-                new { IdMovimiento = 5, Destino = "Tienda San Isidro", Origen = "Almacén Central", Tipo = "Salida", Fecha = new DateTime(2024, 10, 25) }
-            };
+                listaMovimientoAlmacen = new BindingList<movimientoAlmacen>(
+                    boMovimientoAlmacen.listarMovimientosPorAlmacen(datAlmacen.id)
+                );
 
-            gvMovimientos.DataSource = movimientosTest;
-            gvMovimientos.DataBind();
+                gvMovimientos.DataSource = listaMovimientoAlmacen;
+                gvMovimientos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                    $"alert('Error al cargar movimientos: {ex.Message}');", true);
+            }
         }
 
         private void CargarMovimientosXLotes()
         {
-            // Aquí implementar la lógica para cargar movimientos por lotes desde la base de datos
-            // Ejemplo con datos de prueba:
-            var movimientosXLotesTest = new List<dynamic>
+            try
             {
-                new { IdMovimiento = 1, TipoMovimiento = "Salida", LugarDestino = "Almacén Lima Sur", LugarOrigen = "Almacén Central", IdLote = 1, DescripcionLote = "Lote Camisetas Verano 2024" },
-                new { IdMovimiento = 1, TipoMovimiento = "Salida", LugarDestino = "Almacén Lima Sur", LugarOrigen = "Almacén Central", IdLote = 3, DescripcionLote = "Lote Zapatillas Deportivas" },
-                new { IdMovimiento = 2, TipoMovimiento = "Salida", LugarDestino = "Tienda Miraflores", LugarOrigen = "Almacén Central", IdLote = 2, DescripcionLote = "Lote Pantalones Mezclilla" },
-                new { IdMovimiento = 3, TipoMovimiento = "Entrada", LugarDestino = "Almacén Central", LugarOrigen = "Proveedor ABC", IdLote = 5, DescripcionLote = "Lote Chaquetas Premium" },
-                new { IdMovimiento = 4, TipoMovimiento = "Salida", LugarDestino = "Almacén Norte", LugarOrigen = "Almacén Central", IdLote = 4, DescripcionLote = "Lote Accesorios Invierno" },
-                new { IdMovimiento = 5, TipoMovimiento = "Salida", LugarDestino = "Tienda San Isidro", LugarOrigen = "Almacén Central", IdLote = 1, DescripcionLote = "Lote Camisetas Verano 2024" }
-            };
+                listaMovimientoAlmacenXLote = new BindingList<movimientoAlmacenXLote>(
+                    boMovimientoAlmacenXLote.listarMovXLoteActivosPorAlmacen(datAlmacen.id)
+                );
 
-            gvMovimientosXLotes.DataSource = movimientosXLotesTest;
-            gvMovimientosXLotes.DataBind();
+                gvMovimientosXLotes.DataSource = listaMovimientoAlmacenXLote;
+                
+                gvMovimientosXLotes.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                    $"alert('Error al cargar movimientos por lote: {ex.Message}');", true);
+            }
         }
 
         #endregion
@@ -185,7 +235,7 @@ namespace WearDropWA
         {
             LinkButton btn = (LinkButton)sender;
             int idLote = int.Parse(btn.CommandArgument);
-            Response.Redirect($"Lote/ModificarLote.aspx?id={idLote}&idAlmacen={idAlmacen}");
+            Response.Redirect($"Lote/ModificarLote.aspx?id={idLote}&idAlmacen={datAlmacen.id}");
         }
 
         #endregion
@@ -196,7 +246,7 @@ namespace WearDropWA
         {
             LinkButton btn = (LinkButton)sender;
             int idMovimiento = int.Parse(btn.CommandArgument);
-            Response.Redirect($"Movimiento/ModificarMovimiento.aspx?id={idMovimiento}&idAlmacen={idAlmacen}");
+            Response.Redirect($"Movimiento/ModificarMovimiento.aspx?id={idMovimiento}&idAlmacen={datAlmacen.id}");
         }
 
         #endregion
@@ -207,7 +257,7 @@ namespace WearDropWA
         {
             LinkButton btn = (LinkButton)sender;
             int idMovimiento = int.Parse(btn.CommandArgument);
-            Response.Redirect($"MovimientoXLote/ModificarMovimientoXLote.aspx?id={idMovimiento}&idAlmacen={idAlmacen}");
+            Response.Redirect($"MovimientoXLote/ModificarMovimientoXLote.aspx?id={idMovimiento}&idAlmacen={datAlmacen.id}");
         }
 
         #endregion
@@ -224,27 +274,48 @@ namespace WearDropWA
                 switch (tipoEliminar)
                 {
                     case "Lote":
-                        // Aquí implementar la lógica de eliminación de 
-
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert",
-                            $"alert('Lote con ID {idEliminar} eliminado correctamente'); cerrarModal();", true);
-                        CargarLotes();
+                        int resultadoLote = boLote.eliminarLote(idEliminar);
+                        if (resultadoLote > 0)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                $"alert('Lote eliminado correctamente'); cerrarModal();", true);
+                            CargarLotes();
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                $"alert('No se pudo eliminar el lote'); cerrarModal();", true);
+                        }
                         break;
 
                     case "Movimiento":
-                        // Aquí implementar la lógica de eliminación de 
-
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert",
-                            $"alert('Movimiento con ID {idEliminar} eliminado correctamente'); cerrarModal();", true);
-                        CargarMovimientos();
+                        int resultadoMovimiento = boMovimientoAlmacen.eliminarMovimientoAlmacen(idEliminar);
+                        if (resultadoMovimiento > 0)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                $"alert('Movimiento eliminado correctamente'); cerrarModal();", true);
+                            CargarMovimientos();
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                $"alert('No se pudo eliminar el movimiento'); cerrarModal();", true);
+                        }
                         break;
 
                     case "MovimientoXLote":
-                        // Aquí implementar la lógica de eliminación de 
-
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert",
-                            $"alert('Movimiento por Lote con ID {idEliminar} eliminado correctamente'); cerrarModal();", true);
-                        CargarMovimientosXLotes();
+                        int resultadoMovXLote = boMovimientoAlmacenXLote.eliminarMovXLote(idEliminar);
+                        if (resultadoMovXLote > 0)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                $"alert('Movimiento por Lote eliminado correctamente'); cerrarModal();", true);
+                            CargarMovimientosXLotes();
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                $"alert('No se pudo eliminar el movimiento por lote'); cerrarModal();", true);
+                        }
                         break;
 
                     default:
@@ -271,13 +342,13 @@ namespace WearDropWA
             switch (tabActiva)
             {
                 case "Lotes":
-                    Response.Redirect($"Lote/RegistrarLote.aspx?idAlmacen={idAlmacen}");
+                    Response.Redirect($"Lote/RegistrarLote.aspx?idAlmacen={datAlmacen.id}");
                     break;
                 case "Movimientos":
-                    Response.Redirect($"Movimiento/RegistrarMovimiento.aspx?idAlmacen={idAlmacen}");
+                    Response.Redirect($"Movimiento/RegistrarMovimiento.aspx?idAlmacen={datAlmacen.id}");
                     break;
                 case "MovimientosXLote":
-                    Response.Redirect($"MovimientoXLote/RegistrarMovimientoXLote.aspx?idAlmacen={idAlmacen}");
+                    Response.Redirect($"MovimientoXLote/RegistrarMovimientoXLote.aspx?idAlmacen={datAlmacen.id}");
                     break;
             }
         }
@@ -290,22 +361,28 @@ namespace WearDropWA
             switch (tabActiva)
             {
                 case "Lotes":
-                    // Lógica de filtrado para lotes
+                    // Redirigir a página de filtrado de lotes
+                    Response.Redirect($"Lote/FiltrarLotes.aspx?idAlmacen={datAlmacen.id}");
                     break;
                 case "Movimientos":
-                    // Lógica de filtrado para movimientos
+                    // Redirigir a página de filtrado de movimientos
+                    Response.Redirect($"Movimiento/FiltrarMovimientos.aspx?idAlmacen={datAlmacen.id}");
                     break;
                 case "MovimientosXLote":
-                    // Lógica de filtrado para movimientos x lote
+                    // Redirigir a página de filtrado de movimientos x lote
+                    Response.Redirect($"MovimientoXLote/FiltrarMovimientosXLote.aspx?idAlmacen={datAlmacen.id}");
                     break;
             }
         }
 
         protected void lkRetroceder_Click(object sender, EventArgs e)
         {
+            // Limpiar la variable de sesión de la pestaña activa al retroceder
+            Session["UltimaPagina"] = null;
             Response.Redirect("ListarAlmacenes.aspx");
         }
 
         #endregion
+
     }
 }

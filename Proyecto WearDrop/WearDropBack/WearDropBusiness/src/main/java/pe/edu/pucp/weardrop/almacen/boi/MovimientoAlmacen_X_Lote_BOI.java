@@ -15,4 +15,5 @@ import pe.edu.pucp.weardrop.bo.BusinessObject;
  */
 public interface MovimientoAlmacen_X_Lote_BOI extends BusinessObject<MovimientoAlmacen_X_Lote>{
     ArrayList<MovimientoAlmacen_X_Lote> listarActivos();
+    ArrayList<MovimientoAlmacen_X_Lote> listarMovXLoteActivosPorAlmacen(int idAlmacen);
 }

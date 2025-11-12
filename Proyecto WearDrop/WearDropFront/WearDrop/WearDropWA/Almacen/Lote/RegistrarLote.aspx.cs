@@ -1,16 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WearDropWA.ServiciosBackEnd;
 
 namespace WearDropWA
 {
     public partial class RegistrarLote : System.Web.UI.Page
     {
         private int idAlmacen;
+        private MovimientoAlmacenWSClient boMov;
+        private LoteWSClient boLote;
+        private MovimientoAlmacenXLoteWSClient boMovXLote;
+        private AlmacenWSClient boAlmacen;
+
+        // 🔹 Propiedad para acceder a la lista desde ViewState
+        private BindingList<movimientoAlmacen> ListaMovimientos
+        {
+            get
+            {
+                if (ViewState["ListaMovimientos"] == null)
+                    return new BindingList<movimientoAlmacen>();
+                return (BindingList<movimientoAlmacen>)ViewState["ListaMovimientos"];
+            }
+            set
+            {
+                ViewState["ListaMovimientos"] = value;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            boMov = new MovimientoAlmacenWSClient();
+            boLote = new LoteWSClient();
+            boMovXLote = new MovimientoAlmacenXLoteWSClient();
+            boAlmacen = new AlmacenWSClient(); // ✅ INICIALIZAR SERVICIO DE ALMACÉN
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["idAlmacen"] != null)
@@ -18,7 +45,7 @@ namespace WearDropWA
                     idAlmacen = Convert.ToInt32(Request.QueryString["idAlmacen"]);
                     ViewState["IdAlmacen"] = idAlmacen;
 
-                    CargarDatosContexto();
+                    CargarDatosContexto(); // ✅ MODIFICADO: Ahora carga desde el servicio
                     CargarMovimientos();
 
                     if (Request.QueryString["idMovimiento"] != null)
@@ -43,29 +70,55 @@ namespace WearDropWA
 
         private void CargarDatosContexto()
         {
-            // Datos de prueba - aquí llamarías a tu lógica de negocio
-            lblNombreAlmacen.Text = "Almacén Central";
+            try
+            {
+                almacen datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
+
+                if (datAlmacen != null)
+                {
+                    lblNombreAlmacen.Text = datAlmacen.nombre ?? "Almacén no encontrado";
+                }
+                else
+                {
+                    lblNombreAlmacen.Text = "Almacén no encontrado";
+                }
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    $"alert('Error al cargar datos del almacén: {ex.Message}');", true);
+                lblNombreAlmacen.Text = "Error al cargar";
+            }
         }
 
         private void CargarMovimientos()
         {
-
-            var movimientosTest = new List<dynamic>
+            try
             {
-                new { IdMovimiento = 1, Descripcion = "Mov 1 - Salida a Lima Sur" },
-                new { IdMovimiento = 2, Descripcion = "Mov 2 - Salida a Miraflores" },
-                new { IdMovimiento = 3, Descripcion = "Mov 3 - Entrada Proveedor ABC" },
-                new { IdMovimiento = 4, Descripcion = "Mov 4 - Salida a Almacén Norte" },
-                new { IdMovimiento = 5, Descripcion = "Mov 5 - Salida a San Isidro" }
-            };
+                // 🔹 Obtener lista de movimientos del backend y guardarla en ViewState
+                ListaMovimientos = new BindingList<movimientoAlmacen>(boMov.listarMovimientosPorAlmacen(idAlmacen));
 
-            ddlIdMovimiento.DataSource = movimientosTest;
-            ddlIdMovimiento.DataTextField = "Descripcion";
-            ddlIdMovimiento.DataValueField = "IdMovimiento";
-            ddlIdMovimiento.DataBind();
+                // Crear lista con formato personalizado para el DropDownList
+                var movimientosFormateados = ListaMovimientos.Select(m => new
+                {
+                    IdMovimiento = m.idMovimiento,
+                    DescripcionCompleta = $"Mov {m.idMovimiento} - {m.tipo} - {m.lugarOrigen} a {m.lugarDestino}"
+                }).ToList();
 
-            // Agregar opción por defecto
-            ddlIdMovimiento.Items.Insert(0, new ListItem("--Seleccione un movimiento--", "0"));
+                // Vincular al DropDownList
+                ddlIdMovimiento.DataSource = movimientosFormateados;
+                ddlIdMovimiento.DataTextField = "DescripcionCompleta";
+                ddlIdMovimiento.DataValueField = "IdMovimiento";
+                ddlIdMovimiento.DataBind();
+
+                // Agregar opción por defecto
+                ddlIdMovimiento.Items.Insert(0, new ListItem("--Seleccione un movimiento--", "0"));
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    $"alert('Error al cargar movimientos: {ex.Message}');", true);
+            }
         }
 
         protected void ddlIdMovimiento_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,46 +131,40 @@ namespace WearDropWA
             }
             else
             {
-                lblLugarOrigen.Text = "";
-                lblLugarDestino.Text = "";
+                lblLugarOrigen.Text = "-";
+                lblLugarDestino.Text = "-";
             }
         }
 
         private void ActualizarDatosMovimiento(int idMovimiento)
         {
-
-            switch (idMovimiento)
+            try
             {
-                case 1:
-                    lblLugarOrigen.Text = "Almacén Central";
-                    lblLugarDestino.Text = "Almacén Lima Sur";
-                    break;
-                case 2:
-                    lblLugarOrigen.Text = "Almacén Central";
-                    lblLugarDestino.Text = "Tienda Miraflores";
-                    break;
-                case 3:
-                    lblLugarOrigen.Text = "Proveedor ABC";
-                    lblLugarDestino.Text = "Almacén Central";
-                    break;
-                case 4:
-                    lblLugarOrigen.Text = "Almacén Central";
-                    lblLugarDestino.Text = "Almacén Norte";
-                    break;
-                case 5:
-                    lblLugarOrigen.Text = "Almacén Central";
-                    lblLugarDestino.Text = "Tienda San Isidro";
-                    break;
-                default:
-                    lblLugarOrigen.Text = "";
-                    lblLugarDestino.Text = "";
-                    break;
+                // Obtener el movimiento seleccionado del backend
+                movimientoAlmacen movimientoSeleccionado = boMov.obtenerMovimientoPorId(idMovimiento);
+
+                if (movimientoSeleccionado != null)
+                {
+                    lblLugarOrigen.Text = movimientoSeleccionado.lugarOrigen ?? "-";
+                    lblLugarDestino.Text = movimientoSeleccionado.lugarDestino ?? "-";
+                }
+                else
+                {
+                    lblLugarOrigen.Text = "-";
+                    lblLugarDestino.Text = "-";
+                }
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    $"alert('Error al cargar datos del movimiento: {ex.Message}');", true);
+                lblLugarOrigen.Text = "-";
+                lblLugarDestino.Text = "-";
             }
         }
 
         private void CargarPrendas()
         {
-            // Datos de prueba
             var prendasTest = new List<dynamic>
             {
                 new { IdPrenda = 1, NombrePrenda = "Camiseta Básica", Color = "Blanco", Material = "Algodón", Stock = 50, Talla = "M" },
@@ -138,58 +185,95 @@ namespace WearDropWA
             CargarPrendas();
         }
 
-
         protected void btnAniadirPrenda_Click(object sender, EventArgs e)
         {
-            // Implementar lógica de filtro por último precio
+            // Implementar lógica
         }
 
         protected void btnFiltroPrenda_Click(object sender, EventArgs e)
         {
-            // Implementar lógica de filtro por tipo de prenda
+            // Implementar lógica
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
             int idPrenda = int.Parse(btn.CommandArgument);
-
-            // Lógica para agregar prenda al lote
+            // Lógica para agregar prenda
         }
 
         protected void btnQuitar_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
             int idPrenda = int.Parse(btn.CommandArgument);
-
-            // Lógica para quitar prenda del lote
+            // Lógica para quitar prenda
         }
 
         protected void lkRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
+                // Validar que se haya seleccionado un movimiento
                 int idMovimiento = Convert.ToInt32(ddlIdMovimiento.SelectedValue);
 
                 if (idMovimiento == 0)
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                        "alert('Debe seleccionar un movimiento como Minimo para poder registrarlo');", true);
-                    //Si esto significa que tambíén se actualiza... MovimientoXLote
+                        "alert('Debe seleccionar un movimiento');", true);
                     return;
                 }
 
-                // Aquí llamarías a tu lógica de negocio para registrar el lote
-                bool resultado = true;
+                // Validar que se haya ingresado una descripción
+                string descripcion = txtDescripcionLote.Text.Trim();
 
-                if (resultado)
+                if (string.IsNullOrEmpty(descripcion))
                 {
-                    Response.Redirect($"../MostrarAlmacen.aspx?id={idAlmacen}&msg=success");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                        "alert('Debe ingresar una descripción para el lote');", true);
+                    return;
+                }
+
+                // 🔹 Crear el lote
+                lote nuevoLote = new lote();
+                nuevoLote.datAlmacen = new almacen();
+                nuevoLote.datAlmacen.id = idAlmacen;
+                nuevoLote.descripcion = descripcion;
+
+                // 🔹 Buscar el movimiento seleccionado en la lista guardada en ViewState
+                movimientoAlmacen movimientoSeleccionado = ListaMovimientos
+                    .FirstOrDefault(m => m.idMovimiento == idMovimiento);
+
+                // 🔹 Validar que se encontró el movimiento
+                if (movimientoSeleccionado == null)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                        "alert('Error: No se pudo obtener el movimiento seleccionado');", true);
+                    return;
+                }
+
+                // 🔹 Crear la relación MovimientoXLote
+                movimientoAlmacenXLote nuevaRelacionMovXLote = new movimientoAlmacenXLote();
+                nuevaRelacionMovXLote.datMov = movimientoSeleccionado;
+                nuevaRelacionMovXLote.datLote = nuevoLote;
+
+                // 🔹 Llamar a los servicios
+                int resultadoLote = boLote.insertarLote(nuevoLote);
+                nuevaRelacionMovXLote.datLote.idLote = resultadoLote; //Asignamos el Id necesario para la inserción.
+                int resultadoRelacion = boMovXLote.insertarMovXLote(nuevaRelacionMovXLote);
+
+                if (resultadoLote > 0 && resultadoRelacion > 0)
+                {
+                    // Éxito: redirigir con mensaje
+                    Response.Redirect($"~/Almacen/MostrarAlmacen.aspx?id={idAlmacen}&msg=Lote y relación Movimiento X Lote registrados.");
                 }
                 else
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                        "alert('Error al registrar el lote');", true);
+                    if (resultadoLote <= 0)
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                            "alert('Error al registrar el lote. Intente nuevamente.');", true);
+                    if (resultadoRelacion <= 0)
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                            "alert('Error al registrar la relación. Intente nuevamente.');", true);
                 }
             }
             catch (Exception ex)
@@ -201,7 +285,7 @@ namespace WearDropWA
 
         protected void lkCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"../MostrarAlmacen.aspx?id={idAlmacen}");
+            Response.Redirect($"~/Almacen/MostrarAlmacen.aspx?id={idAlmacen}");
         }
     }
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://almacen.services.weardrop.pucp.edu.pe/" targetNamespace="http://almacen.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarMovimientoAlmacen" type="tns:eliminarMovimientoAlmacen" />
+  <xs:element name="eliminarMovimientoAlmacenResponse" type="tns:eliminarMovimientoAlmacenResponse" />
+  <xs:element name="insertarMovAlmacen" type="tns:insertarMovAlmacen" />
+  <xs:element name="insertarMovAlmacenResponse" type="tns:insertarMovAlmacenResponse" />
+  <xs:element name="listarMovimientosActivos" type="tns:listarMovimientosActivos" />
+  <xs:element name="listarMovimientosActivosResponse" type="tns:listarMovimientosActivosResponse" />
+  <xs:element name="listarMovimientosPorAlmacen" type="tns:listarMovimientosPorAlmacen" />
+  <xs:element name="listarMovimientosPorAlmacenResponse" type="tns:listarMovimientosPorAlmacenResponse" />
+  <xs:element name="modificarMovimientoAlmacen" type="tns:modificarMovimientoAlmacen" />
+  <xs:element name="modificarMovimientoAlmacenResponse" type="tns:modificarMovimientoAlmacenResponse" />
+  <xs:element name="obtenerMovimientoPorId" type="tns:obtenerMovimientoPorId" />
+  <xs:element name="obtenerMovimientoPorIdResponse" type="tns:obtenerMovimientoPorIdResponse" />
+  <xs:complexType name="obtenerMovimientoPorId">
+    <xs:sequence>
+      <xs:element name="idMovimiento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerMovimientoPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:movimientoAlmacen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="movimientoAlmacen">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datAlmacen" type="tns:almacen" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element name="idMovimiento" type="xs:int" />
+      <xs:element minOccurs="0" name="lugarDestino" type="xs:string" />
+      <xs:element minOccurs="0" name="lugarOrigen" type="xs:string" />
+      <xs:element minOccurs="0" name="tipo" type="tns:tipoMovimiento" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="almacen">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element name="id" type="xs:int" />
+      <xs:element name="idTienda" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element name="stock" type="xs:int" />
+      <xs:element minOccurs="0" name="ubicacion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarMovimientoAlmacen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datMovimiento" type="tns:movimientoAlmacen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarMovimientoAlmacenResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarMovAlmacen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datMovimiento" type="tns:movimientoAlmacen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarMovAlmacenResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarMovimientosPorAlmacen">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarMovimientosPorAlmacenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:movimientoAlmacen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarMovimientoAlmacen">
+    <xs:sequence>
+      <xs:element name="idMovimiento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarMovimientoAlmacenResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarMovimientosActivos">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarMovimientosActivosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:movimientoAlmacen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="tipoMovimiento">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Entrada" />
+      <xs:enumeration value="Salida" />
+      <xs:enumeration value="Mov_Interno" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -81,5 +81,16 @@ public class LoteWS {
         return datLote;
     }
     
-    /*Un método que me mande los lotes activos de un Almacen, aparte de los filtros*/
+    @WebMethod(operationName = "listarLotesActivosPorAlmacen")
+    public List<Lote> listarLotesActivosPorAlmacen(@WebParam(name="idAlmacen") int idAlmacen){
+        List<Lote> listaLotesPorAlmacen=null;
+        try{
+            listaLotesPorAlmacen=boLote.listarLotesActivosPorAlmacen(idAlmacen);
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return listaLotesPorAlmacen;
+    }
+    
+    /*Método para los filtros*/
 }

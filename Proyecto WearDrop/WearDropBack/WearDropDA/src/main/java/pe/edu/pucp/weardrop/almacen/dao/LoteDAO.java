@@ -14,4 +14,5 @@ import pe.edu.pucp.weardrop.dao.IDAO;
  */
 public interface LoteDAO extends IDAO<Lote>{
     ArrayList<Lote> listarActivos();
+    ArrayList<Lote> listarLotesActivosPorAlmacen(int idAlmacen);
 }

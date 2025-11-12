@@ -14,4 +14,5 @@ import pe.edu.pucp.weardrop.bo.BusinessObject;
  */
 public interface LoteBOI extends BusinessObject<Lote>{
     ArrayList<Lote> listarActivos();
+    ArrayList<Lote> listarLotesActivosPorAlmacen(int idAlmacen) throws Exception;
 }

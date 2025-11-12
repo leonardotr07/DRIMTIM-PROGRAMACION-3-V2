@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="73c74720-3907-43d8-8e16-adb3f2132ae4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/WearDropWS/referenciasWearDrop.disco" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MovimientoAlmacenXLoteWS.wsdl" MetadataType="Wsdl" ID="419479cf-c36a-4b11-af14-14fe38cab32d" SourceId="1" SourceUrl="http://localhost:8080/WearDropWS/MovimientoAlmacenXLoteWS?WSDL" />
+    <MetadataFile FileName="MovimientoAlmacenXLoteWS.xsd" MetadataType="Schema" ID="66523ad3-3b7d-4681-ac92-038ecd614849" SourceId="1" SourceUrl="http://localhost:8080/WearDropWS/MovimientoAlmacenXLoteWS?xsd=1" />
+    <MetadataFile FileName="LoteWS.wsdl" MetadataType="Wsdl" ID="f5bd439f-c0ae-48d8-bf5a-04fa44349d11" SourceId="1" SourceUrl="http://localhost:8080/WearDropWS/LoteWS?WSDL" />
+    <MetadataFile FileName="LoteWS.xsd" MetadataType="Schema" ID="09f40ffb-c041-4b8e-859b-71360b48b90c" SourceId="1" SourceUrl="http://localhost:8080/WearDropWS/LoteWS?xsd=1" />
+    <MetadataFile FileName="referenciasWearDrop.disco" MetadataType="Disco" ID="da77e725-ef64-4669-9962-d39657bf2e30" SourceId="1" SourceUrl="http://localhost:8080/WearDropWS/referenciasWearDrop.disco" />
+    <MetadataFile FileName="MovimientoAlmacenWS.wsdl" MetadataType="Wsdl" ID="17de1864-c6d7-437d-aa55-2c40ad1b371f" SourceId="1" SourceUrl="http://localhost:8080/WearDropWS/MovimientoAlmacenWS?WSDL" />
+    <MetadataFile FileName="MovimientoAlmacenWS.xsd" MetadataType="Schema" ID="de72c3f9-f436-46be-9efe-425bfaa41541" SourceId="1" SourceUrl="http://localhost:8080/WearDropWS/MovimientoAlmacenWS?xsd=1" />
+    <MetadataFile FileName="AlmacenWS.xsd" MetadataType="Schema" ID="5cd1b9c0-c807-4afd-be91-33c33df9f86c" SourceId="1" SourceUrl="http://localhost:8080/WearDropWS/AlmacenWS?xsd=1" />
+    <MetadataFile FileName="AlmacenWS.wsdl" MetadataType="Wsdl" ID="9fbf2f35-9256-477d-8ab9-62d28f2d571a" SourceId="1" SourceUrl="http://localhost:8080/WearDropWS/AlmacenWS?WSDL" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -14,4 +14,5 @@ import pe.edu.pucp.weardrop.dao.IDAO;
  */
 public interface MovimientoAlmacenDAO extends IDAO<MovimientoAlmacen>{
     ArrayList<MovimientoAlmacen>listarActivos();
+    ArrayList<MovimientoAlmacen> listarMovimientosActivosPorAlmacen(int idAlmacen);
 }

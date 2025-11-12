@@ -1,4 +1,6 @@
 <discovery xmlns="http://schemas.xmlsoap.org/disco/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/AlmacenWS?WSDL"/>  
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/MovimientoAlmacenWS?WSDL"/>  
+  <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/MovimientoAlmacenXLoteWS?WSDL"/>  
+  <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/LoteWS?WSDL"/>  
 </discovery>

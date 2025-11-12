@@ -13,5 +13,20 @@ namespace WearDropWA
         {
 
         }
+
+        protected void btnEmpleados_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListarEmpleados.aspx");
+        }
+
+        protected void btnClientes_Click(object sender, EventArgs e)
+        {
+            //Response.Redirect("ListarClientes.aspx");
+        }
+
+        protected void btnCuentas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListarCuentas.aspx");
+        }
     }
 }

@@ -15,13 +15,13 @@ namespace WearDropWA
     {
 
         /// <summary>
-        /// Control txtLugarDestino.
+        /// Control ddlLugarDestino.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLugarDestino;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLugarDestino;
 
         /// <summary>
         /// Control rfvLugarDestino.
@@ -33,13 +33,13 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLugarDestino;
 
         /// <summary>
-        /// Control txtLugarOrigen.
+        /// Control ddlLugarOrigen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLugarOrigen;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLugarOrigen;
 
         /// <summary>
         /// Control rfvLugarOrigen.
