@@ -168,7 +168,7 @@
 
             <!-- Botón Registrar Vigencia -->
             <div class="form-button-container">
-                <asp:Button ID="btnRegistrarVigencia" runat="server" Text="Registrar" CssClass="btn-registrar-vigencia" OnClick="btnRegistrarVigencia_Click" OnClientClick="return confirm('Vigencia Registrada Correctamente.');"/>
+                <asp:Button ID="btnRegistrarVigenciaLiquidacion" runat="server" Text="Registrar" CssClass="btn-registrar-vigencia" OnClick="btnRegistrarVigencia_Click" OnClientClick="return confirm('Vigencia Registrada Correctamente.');"/>
             </div>
         </div>
 
@@ -194,13 +194,13 @@
             <!-- Botón Añadir Prenda -->
             <div class="form-button-container-prenda
                 ">
-                <asp:Button ID="btnAñadirPrenda" runat="server" Text="Añadir Prenda" CssClass="btn-anadir-prenda" OnClick="btnAñadirPrenda_Click"/>
+                <asp:Button ID="btnAnhadirPrenda" runat="server" Text="Añadir Prenda" CssClass="btn-anadir-prenda" OnClick="btnAnhadirPrenda_Click"/>
             </div>
 
             <!-- Botón Registrar -->
             <div class="form-button-container">
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" OnClick="btnCancelar_Click"/>
-                 <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn-registrar" OnClick="btnRegistrar_Click" OnClientClick="return confirm('Descuento Registrado Correctamente.');"/>
+                <asp:Button ID="btnCancelarLiquidacion" runat="server" Text="Cancelar" CssClass="btn-cancelar" OnClick="btnCancelar_Click"/>
+                 <asp:Button ID="btnRegistrarLiquidacion" runat="server" Text="Registrar" CssClass="btn-registrar" OnClick="btnRegistrar_Click" OnClientClick="return confirm('Descuento Registrado Correctamente.');"/>
 
                <%-- <button class="btn-cancelar">Cancelar</button>
                 <button class="btn-registrar">Registrar</button>--%>

@@ -184,9 +184,9 @@
                     <a class="item" href="/GestionarPromociones.aspx"><i class="fa-solid fa-basket-shopping"></i><span>Gestionar Promociones</span></a>
                     <a class="item" href="/GestionarDescuentos.aspx"><i class="fa-solid fa-percent"></i><span>Gestionar Descuentos</span></a>
                     <a class="item" href="/GestionarComprobantes.aspx"><i class="fa-solid fa-file-invoice"></i><span>Gestionar Comprobantes</span></a>
-                    <a class="item" href="/GestionarPersonas.aspx"><i class="fa-solid fa-user-group"></i><span>Gestionar Personas</span></a
+                    <a class="item" href="/GestionarPersonas.aspx"><i class="fa-solid fa-user-group"></i><span>Gestionar Personas</span></a>
                     <a class="item" href="/GestionarVentas.aspx"><i class="fa-solid fa-cart-shopping"></i><span>Gestionar Ventas</span></a>
-                    <a class="item" href="/GestionarProveedores.aspx"><i class="fa-solid fa-shop"></i><span>Gestionar Proveedores</span></a
+                    <a class="item" href="/GestionarProveedores.aspx"><i class="fa-solid fa-shop"></i><span>Gestionar Proveedores</span></a>
                     <a class="item" href="/GestionarOrdenesDeCompra.aspx"><i class="fa-regular fa-file-lines"></i><span>Gestionar Ordenes de Compra</span></a>
                 </nav>
             </aside>

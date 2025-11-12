@@ -23,7 +23,7 @@ namespace WearDropWA
 
             Response.Redirect("ListarLiquidacion.aspx");
         }
-        protected void btnAñadirPrenda_Click(object sender, EventArgs e)
+        protected void btnAnhadirPrenda_Click(object sender, EventArgs e)
         {
 
             Response.Redirect("SeleccionarPrendaLiquidacion.aspx");

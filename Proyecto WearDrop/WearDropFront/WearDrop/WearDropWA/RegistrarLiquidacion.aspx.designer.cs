@@ -15,39 +15,39 @@ namespace WearDropWA
     {
 
         /// <summary>
-        /// Control btnRegistrarVigencia.
+        /// Control btnRegistrarVigenciaLiquidacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegistrarVigencia;
+        protected global::System.Web.UI.WebControls.Button btnRegistrarVigenciaLiquidacion;
 
         /// <summary>
-        /// Control btnAñadirPrenda.
+        /// Control btnAnhadirPrenda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAñadirPrenda;
+        protected global::System.Web.UI.WebControls.Button btnAnhadirPrenda;
 
         /// <summary>
-        /// Control btnCancelar.
+        /// Control btnCancelarLiquidacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.Button btnCancelarLiquidacion;
 
         /// <summary>
-        /// Control btnRegistrar.
+        /// Control btnRegistrarLiquidacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegistrar;
+        protected global::System.Web.UI.WebControls.Button btnRegistrarLiquidacion;
     }
 }
