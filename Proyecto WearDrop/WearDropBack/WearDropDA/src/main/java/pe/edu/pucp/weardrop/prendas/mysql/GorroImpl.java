@@ -101,8 +101,10 @@ public class GorroImpl implements GorroDAO {
                 datGorro.setTipoGorra(TipoGorra.valueOf(rs.getString("tipo_gorra")));
                 datGorro.setTallaAjustable(rs.getBoolean("talla_ajustable"));
                 datGorro.setImpermeable(rs.getBoolean("impermeable"));
-                datGorro.setActivo(rs.getBoolean("activo"));
-
+     
+                datGorro.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datGorro.setPrecioMayor(rs.getDouble("precioMayor"));
+                datGorro.setPrecioDocena(rs.getDouble("precioDocena"));
                 System.out.println("SE OBTUVO LA PRENDA GORRO CORRECTAMENTE.");
             }
         } catch (SQLException ex) {
@@ -135,7 +137,9 @@ public class GorroImpl implements GorroDAO {
                 datGorro.setTallaAjustable(rs.getBoolean("talla_ajustable"));
                 datGorro.setImpermeable(rs.getBoolean("impermeable"));
                 datGorro.setActivo(rs.getBoolean("activo"));
-
+                datGorro.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datGorro.setPrecioMayor(rs.getDouble("precioMayor"));
+                datGorro.setPrecioDocena(rs.getDouble("precioDocena"));
                 listaGorro.add(datGorro);
             }
             System.out.println("SE LISTÓ TODAS LAS PRENDAS GORRO CORRECTAMENTE.");

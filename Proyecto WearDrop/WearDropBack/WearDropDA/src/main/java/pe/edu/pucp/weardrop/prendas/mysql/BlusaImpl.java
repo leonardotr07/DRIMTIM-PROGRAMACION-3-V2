@@ -98,8 +98,9 @@ public class BlusaImpl implements BlusaDAO{
                 datBlusa.setMaterial(Material.valueOf(rs.getString("material")));
                 datBlusa.setTipoBlusa(TipoBlusa.valueOf(rs.getString("tipo_blusa")));
                 datBlusa.setTipoManga(TipoManga.valueOf(rs.getString("tipo_manga")));
-                datBlusa.setActivo(rs.getBoolean("activo"));
-                
+                datBlusa.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datBlusa.setPrecioMayor(rs.getDouble("precioMayor"));
+                datBlusa.setPrecioDocena(rs.getDouble("precioDocena"));
                 System.out.println("SE OBTUVO LA PRENDA BLUSA CORRECTAMENTE.");
             }
         }catch(SQLException ex){
@@ -130,7 +131,12 @@ public class BlusaImpl implements BlusaDAO{
                 datBlusa.setMaterial(Material.valueOf(rs.getString("material")));
                 datBlusa.setTipoBlusa(TipoBlusa.valueOf(rs.getString("tipo_blusa")));
                 datBlusa.setTipoManga(TipoManga.valueOf(rs.getString("tipo_manga")));
-                datBlusa.setActivo(rs.getBoolean("activo"));                
+                datBlusa.setActivo(rs.getBoolean("activo"));    
+                
+                datBlusa.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datBlusa.setPrecioMayor(rs.getDouble("precioMayor"));
+                datBlusa.setPrecioDocena(rs.getDouble("precioDocena"));
+                
                 listaBlusa.add(datBlusa);
             }
             System.out.println("SE LISTO TODAS LAS PRENDAS BLUSA CORRECTAMENTE.");

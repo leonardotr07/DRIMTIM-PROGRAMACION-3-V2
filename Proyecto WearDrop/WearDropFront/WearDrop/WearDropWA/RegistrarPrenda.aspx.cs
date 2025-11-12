@@ -1,317 +1,625 @@
 ﻿using System;
+using System.Web.UI;
 using System.Web.UI.WebControls;
+
+using RefPolo = WearDropWA.PoloWS;
+using RefBlusa = WearDropWA.BlusaWS;
+using RefVest = WearDropWA.VestidoWS;
+using RefFalda = WearDropWA.FaldaWS;
+using RefPant = WearDropWA.PantalonWS;
+using RefCasaca = WearDropWA.CasacaWS;
+using RefGorro = WearDropWA.GorroWS;
+using WearDropWA.PoloWS;
 
 namespace WearDropWA
 {
+    public enum Estado { Nuevo, Modificar, Ver }
+
     public partial class RegistrarPrenda : System.Web.UI.Page
     {
-        // Propiedades para obtener parámetros de URL
+        private Estado estado;
         private string Tipo => (Request["tipo"] ?? "Polos").Trim();
-        private string Id => (Request["id"] ?? "").Trim();
-        private bool EsModificacion => !string.IsNullOrEmpty(Id);
+        private string IdQS => (Request["id"] ?? "").Trim();
+        private int Id => int.TryParse(IdQS, out var n) ? n : 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                ConfigurarPagina();
-                CargarDatosIniciales();
+            string accion = (Request.QueryString["accion"] ?? "").Trim().ToLower();
 
-                if (EsModificacion)
-                {
-                    CargarDatosPrenda();
-                }
+            // --- REGLA DE ESTADO ---
+            if (accion == "ver") estado = Estado.Ver;
+            else if (accion == "modificar") estado = Estado.Modificar;
+            else estado = Estado.Nuevo;
+
+            if (IsPostBack) return;
+
+            ConfigurarCabecera();
+            MostrarPanelPorTipo();
+
+            CargarCombosGenerales();
+            CargarCombosEspecificosPorTipo();
+
+            if (estado == Estado.Modificar || estado == Estado.Ver)
+            {
+                AsignarValores();
+                txtId.Enabled = false;
             }
+            if (estado == Estado.Ver) BloquearEdicion();
         }
 
-        private void ConfigurarPagina()
-        {
-            // Configurar títulos
-            string accion = EsModificacion ? "Modificar" : "Registrar";
-            litTitulo.Text = $"{accion} {ObtenerNombreSingular()}";
-            litHeader.Text = $"{accion} {ObtenerNombreSingular()}";
+        // ========= UI helpers =========
+        private void SetVisible(Control c, bool visible) { if (c != null) c.Visible = visible; }
 
-            // Configurar tema visual
+        private void SetSelected(DropDownList ddl, string value)
+        {
+            if (ddl == null) return;
+            var v = (value ?? "").Trim();
+            var item = ddl.Items.FindByValue(v);
+            if (item != null) ddl.SelectedValue = v;
+        }
+
+        private void ConfigurarCabecera()
+        {
+            string singular = ObtenerNombreSingular();
+            string titulo = estado == Estado.Nuevo ? "Registrar" :
+                            estado == Estado.Modificar ? "Modificar" : "Ver";
+
+            litTitulo.Text = $"{titulo} {singular}";
+            litHeader.Text = $"{titulo} {singular}";
             themeWrap.Attributes["class"] = "container theme-" + Tipo.ToLower();
 
-            // Configurar botón
-            btnGuardar.Text = EsModificacion ? "Guardar" : "Registrar";
+            btnGuardar.Text = estado == Estado.Nuevo ? "Registrar" :
+                              estado == Estado.Modificar ? "Guardar" : "Aceptar";
 
-            // Mostrar ID solo en modificación
-            divId.Visible = EsModificacion;
-            if (EsModificacion)
-            {
-                txtId.Text = Id;
-            }
+            SetVisible(divId, estado != Estado.Nuevo);
+            if (estado != Estado.Nuevo && txtId != null) txtId.Text = IdQS;
 
-            // Ocultar asteriscos de requerido en modo modificación
-            OcultarAsteriscos(EsModificacion);
-
-            // Mostrar panel específico según tipo de prenda
-            MostrarPanelEspecifico();
+            OcultarAsteriscos(estado != Estado.Nuevo);
         }
 
         private void OcultarAsteriscos(bool ocultar)
         {
-            spanReq.Visible = !ocultar;
-            spanReqTalla.Visible = !ocultar;
-            spanReqMaterial.Visible = !ocultar;
-            spanReqColor.Visible = !ocultar;
-            spanReqStock.Visible = !ocultar;
-            spanReqPU.Visible = !ocultar;
-            spanReqPM.Visible = !ocultar;
-            spanReqPD.Visible = !ocultar;
+            SetVisible(spanReq, !ocultar);
+            SetVisible(spanReqMaterial, !ocultar);
+            SetVisible(spanReqColor, !ocultar);
+            SetVisible(spanReqStock, !ocultar);
+            SetVisible(spanReqPU, !ocultar);
+            SetVisible(spanReqPM, !ocultar);
+            SetVisible(spanReqPD, !ocultar);
+            SetVisible(spanReqManga, !ocultar);
+            SetVisible(spanReqCuello, !ocultar);
+            SetVisible(spanReqTipoBlusa, !ocultar);
+            SetVisible(spanReqMangaB, !ocultar);
+            SetVisible(spanReqTipoVestido, !ocultar);
+            SetVisible(spanReqLargoVestido, !ocultar);
+            SetVisible(spanReqTipoFalda, !ocultar);
+            SetVisible(spanReqLargoFalda, !ocultar);
+            SetVisible(spanReqVolantes, !ocultar);
+            SetVisible(spanReqTipoPantalon, !ocultar);
+            SetVisible(spanReqLargoPierna, !ocultar);
+            SetVisible(spanReqTipoCasaca, !ocultar);
+            SetVisible(spanReqCapucha, !ocultar);
+            SetVisible(spanReqTipoGorra, !ocultar);
+            SetVisible(spanReqTallaAjustable, !ocultar);
+            SetVisible(spanReqImpermeable, !ocultar);
+            SetVisible(spanReqMangaV, !ocultar);  // <--- nuevo
+            SetVisible(spanReqCintura, !ocultar);
 
-            // Asteriscos específicos por panel
-            spanReqManga.Visible = !ocultar;
-            spanReqCuello.Visible = !ocultar;
-            spanReqTipoBlusa.Visible = !ocultar;
-            spanReqMangaB.Visible = !ocultar;
-            spanReqTipoVestido.Visible = !ocultar;
-            spanReqLargoVestido.Visible = !ocultar;
-            spanReqTipoFalda.Visible = !ocultar;
-            spanReqLargoFalda.Visible = !ocultar;
-            spanReqVolantes.Visible = !ocultar;
-            spanReqTipoPantalon.Visible = !ocultar;
-            spanReqLargoPierna.Visible = !ocultar;
-            spanReqTipoCasaca.Visible = !ocultar;
-            spanReqCapucha.Visible = !ocultar;
-            spanReqTipoGorra.Visible = !ocultar;
-            spanReqTallaAjustable.Visible = !ocultar;
-            spanReqImpermeable.Visible = !ocultar;
         }
 
-        private void MostrarPanelEspecifico()
+        private void MostrarPanelPorTipo()
         {
-            // Ocultar todos los paneles primero
-            pnlPOLO.Visible = false;
-            pnlBLUSA.Visible = false;
-            pnlVESTIDO.Visible = false;
-            pnlFALDA.Visible = false;
-            pnlPANTALON.Visible = false;
-            pnlCASACA.Visible = false;
+            pnlPOLO.Visible = pnlBLUSA.Visible = pnlVESTIDO.Visible =
+            pnlFALDA.Visible = pnlPANTALON.Visible = pnlCASACA.Visible =
             pnlGORRO.Visible = false;
 
-            // Mostrar panel correspondiente
             switch (Tipo.ToLower())
             {
                 case "polo":
-                case "polos":
-                    pnlPOLO.Visible = true;
-                    break;
+                case "polos": pnlPOLO.Visible = true; break;
                 case "blusa":
-                case "blusas":
-                    pnlBLUSA.Visible = true;
-                    break;
+                case "blusas": pnlBLUSA.Visible = true; break;
                 case "vestido":
-                case "vestidos":
-                    pnlVESTIDO.Visible = true;
-                    break;
+                case "vestidos": pnlVESTIDO.Visible = true; break;
                 case "falda":
-                case "faldas":
-                    pnlFALDA.Visible = true;
-                    break;
+                case "faldas": pnlFALDA.Visible = true; break;
                 case "pantalon":
-                case "pantalones":
-                    pnlPANTALON.Visible = true;
-                    break;
+                case "pantalones": pnlPANTALON.Visible = true; break;
                 case "casaca":
-                case "casacas":
-                    pnlCASACA.Visible = true;
-                    break;
+                case "casacas": pnlCASACA.Visible = true; break;
                 case "gorro":
-                case "gorros":
-                    pnlGORRO.Visible = true;
-                    break;
+                case "gorros": pnlGORRO.Visible = true; break;
             }
         }
 
-        private void CargarDatosIniciales()
+        private void BloquearEdicion()
         {
-            // Cargar Tallas
-            ddlTalla.Items.Clear();
-            ddlTalla.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTalla.Items.Add(new ListItem("XS", "1"));
-            ddlTalla.Items.Add(new ListItem("S", "2"));
-            ddlTalla.Items.Add(new ListItem("M", "3"));
-            ddlTalla.Items.Add(new ListItem("L", "4"));
-            ddlTalla.Items.Add(new ListItem("XL", "5"));
-            ddlTalla.Items.Add(new ListItem("XXL", "6"));
+            txtNombre.Enabled = false;
+            ddlMaterial.Enabled = false;
+            txtColor.Enabled = false;
+            txtStock.Enabled = false;
+            txtPU.Enabled = false;
+            txtPM.Enabled = false;
+            txtPD.Enabled = false;
 
-            // Cargar Materiales
+            ddlTipoManga.Enabled = false;
+            ddlTipoCuello.Enabled = false;
+            txtEstampado.Enabled = false;
+
+            ddlTipoBlusa.Enabled = false;
+            ddlTipoMangaB.Enabled = false;
+
+            ddlTipoVestido.Enabled = false;
+            txtLargoVestido.Enabled = false;
+            ddlTipoMangaV.Enabled = false;
+
+            ddlTipoFalda.Enabled = false;
+            txtLargoFalda.Enabled = false;
+            ddlConVolantes.Enabled = false;
+
+            ddlTipoPantalon.Enabled = false;
+            txtLargoPierna.Enabled = false;
+            txtCintura.Enabled = false;
+            ddlTipoCasaca.Enabled = false;
+            ddlConCapucha.Enabled = false;
+
+            ddlTipoGorra.Enabled = false;
+            ddlTallaAjustable.Enabled = false;
+            ddlImpermeable.Enabled = false;
+
+            btnGuardar.Visible = false;
+        }
+
+        // ========= COMBOS =========
+        private void CargarCombosGenerales()
+        {
             ddlMaterial.Items.Clear();
             ddlMaterial.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlMaterial.Items.Add(new ListItem("Algodón", "1"));
-            ddlMaterial.Items.Add(new ListItem("Poliéster", "2"));
-            ddlMaterial.Items.Add(new ListItem("Mezcla", "3"));
-            ddlMaterial.Items.Add(new ListItem("Lana", "4"));
-            ddlMaterial.Items.Add(new ListItem("Licra", "5"));
-            ddlMaterial.Items.Add(new ListItem("Seda", "6"));
-            ddlMaterial.Items.Add(new ListItem("Denim", "7"));
+            foreach (RefPolo.material it in Enum.GetValues(typeof(RefPolo.material)))
+            {
+                string name = Enum.GetName(typeof(RefPolo.material), it);
+                ddlMaterial.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+        }
 
-            // Cargar datos específicos según tipo
+        private void CargarCombosEspecificosPorTipo()
+        {
+            // Polo
+            ddlTipoManga.Items.Clear();
+            ddlTipoManga.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefPolo.tipoManga it in Enum.GetValues(typeof(RefPolo.tipoManga)))
+            {
+                string name = Enum.GetName(typeof(RefPolo.tipoManga), it);
+                ddlTipoManga.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            ddlTipoCuello.Items.Clear();
+            ddlTipoCuello.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefPolo.tipoCuello it in Enum.GetValues(typeof(RefPolo.tipoCuello)))
+            {
+                string name = Enum.GetName(typeof(RefPolo.tipoCuello), it);
+                ddlTipoCuello.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            // Blusa
+            ddlTipoBlusa.Items.Clear();
+            ddlTipoBlusa.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefBlusa.tipoBlusa it in Enum.GetValues(typeof(RefBlusa.tipoBlusa)))
+            {
+                string name = Enum.GetName(typeof(RefBlusa.tipoBlusa), it);
+                ddlTipoBlusa.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            ddlTipoMangaB.Items.Clear();
+            ddlTipoMangaB.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefBlusa.tipoManga it in Enum.GetValues(typeof(RefBlusa.tipoManga)))
+            {
+                string name = Enum.GetName(typeof(RefBlusa.tipoManga), it);
+                ddlTipoMangaB.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            // Vestido
+            ddlTipoVestido.Items.Clear();
+            ddlTipoVestido.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefVest.tipoVestido it in Enum.GetValues(typeof(RefVest.tipoVestido)))
+            {
+                string name = Enum.GetName(typeof(RefVest.tipoVestido), it);
+                ddlTipoVestido.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            ddlTipoMangaV.Items.Clear();
+            ddlTipoMangaV.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefVest.tipoManga it in Enum.GetValues(typeof(RefVest.tipoManga)))
+            {
+                string name = Enum.GetName(typeof(RefVest.tipoManga), it);
+                ddlTipoMangaV.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            // Falda
+            ddlTipoFalda.Items.Clear();
+            ddlTipoFalda.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefFalda.tipoFalda it in Enum.GetValues(typeof(RefFalda.tipoFalda)))
+            {
+                string name = Enum.GetName(typeof(RefFalda.tipoFalda), it);
+                ddlTipoFalda.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            ddlConVolantes.Items.Clear();
+            ddlConVolantes.Items.Add(new ListItem("-- Seleccione --", ""));
+            ddlConVolantes.Items.Add(new ListItem("No", "0"));
+            ddlConVolantes.Items.Add(new ListItem("Sí", "1"));
+
+            // Pantalón
+            ddlTipoPantalon.Items.Clear();
+            ddlTipoPantalon.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefPant.tipoPantalon it in Enum.GetValues(typeof(RefPant.tipoPantalon)))
+            {
+                string name = Enum.GetName(typeof(RefPant.tipoPantalon), it);
+                ddlTipoPantalon.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            // Casaca
+            ddlTipoCasaca.Items.Clear();
+            ddlTipoCasaca.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefCasaca.tipoCasaca it in Enum.GetValues(typeof(RefCasaca.tipoCasaca)))
+            {
+                string name = Enum.GetName(typeof(RefCasaca.tipoCasaca), it);
+                ddlTipoCasaca.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            ddlConCapucha.Items.Clear();
+            ddlConCapucha.Items.Add(new ListItem("-- Seleccione --", ""));
+            ddlConCapucha.Items.Add(new ListItem("No", "0"));
+            ddlConCapucha.Items.Add(new ListItem("Sí", "1"));
+
+            // Gorro
+            ddlTipoGorra.Items.Clear();
+            ddlTipoGorra.Items.Add(new ListItem("-- Seleccione --", ""));
+            foreach (RefGorro.tipoGorra it in Enum.GetValues(typeof(RefGorro.tipoGorra)))
+            {
+                string name = Enum.GetName(typeof(RefGorro.tipoGorra), it);
+                ddlTipoGorra.Items.Add(new ListItem(name.Replace('_', ' '), name));
+            }
+
+            ddlTallaAjustable.Items.Clear();
+            ddlTallaAjustable.Items.Add(new ListItem("-- Seleccione --", ""));
+            ddlTallaAjustable.Items.Add(new ListItem("No", "0"));
+            ddlTallaAjustable.Items.Add(new ListItem("Sí", "1"));
+
+            ddlImpermeable.Items.Clear();
+            ddlImpermeable.Items.Add(new ListItem("-- Seleccione --", ""));
+            ddlImpermeable.Items.Add(new ListItem("No", "0"));
+            ddlImpermeable.Items.Add(new ListItem("Sí", "1"));
+        }
+
+        // ========= CARGA PARA MODIFICAR/VER =========
+        private void AsignarValores()
+        {
+            if (Id <= 0) { MostrarError("Id inválido."); return; }
+
             switch (Tipo.ToLower())
             {
                 case "polo":
                 case "polos":
-                    CargarDatosPolos();
-                    break;
+                    {
+                        var ws = new RefPolo.PoloWSClient();
+                        var p = ws.obtenerPoloPorId(Id);
+                        if (p == null) throw new Exception("No se encontró el Polo.");
+                        MapGeneralFromEntity(p.nombre, p.color, p.alertaMinStock, p.precioUnidad, p.precioMayor, p.precioDocena);
+                        SetSelected(ddlMaterial, p.material.ToString());
+                        SetSelected(ddlTipoManga, p.tipoManga.ToString());
+                        SetSelected(ddlTipoCuello, p.tipoCuello.ToString());
+                        txtEstampado.Text = p.estampado;
+                        break;
+                    }
                 case "blusa":
                 case "blusas":
-                    CargarDatosBlusas();
-                    break;
+                    {
+                        var ws = new RefBlusa.BlusaWSClient();
+                        var p = ws.obtenerBlusaPorId(Id);
+                        if (p == null) throw new Exception("No se encontró la Blusa.");
+                        MapGeneralFromEntity(p.nombre, p.color, p.alertaMinStock, p.precioUnidad, p.precioMayor, p.precioDocena);
+                        SetSelected(ddlMaterial, p.material.ToString());
+                        SetSelected(ddlTipoBlusa, p.tipoBlusa.ToString());
+                        SetSelected(ddlTipoMangaB, p.tipoManga.ToString());
+                        break;
+                    }
                 case "vestido":
                 case "vestidos":
-                    CargarDatosVestidos();
-                    break;
+                    {
+                        var ws = new RefVest.VestidoWSClient();
+                        var p = ws.obtenerVestidoPorId(Id);
+                        if (p == null) throw new Exception("No se encontró el Vestido.");
+                        MapGeneralFromEntity(p.nombre, p.color, p.alertaMinStock, p.precioUnidad, p.precioMayor, p.precioDocena);
+                        SetSelected(ddlTipoMangaV, p.tipoManga.ToString());
+                        SetSelected(ddlMaterial, p.material.ToString());
+                        SetSelected(ddlTipoVestido, p.tipoVestido.ToString());
+                        txtLargoVestido.Text = p.largo.ToString("0.##");
+                        break;
+                    }
                 case "falda":
                 case "faldas":
-                    CargarDatosFaldas();
-                    break;
+                    {
+                        var ws = new RefFalda.FaldaWSClient();
+                        var p = ws.obtenerFaldaPorId(Id);
+                        if (p == null) throw new Exception("No se encontró la Falda.");
+                        MapGeneralFromEntity(p.nombre, p.color, p.alertaMinStock, p.precioUnidad, p.precioMayor, p.precioDocena);
+                        SetSelected(ddlMaterial, p.material.ToString());
+                        SetSelected(ddlTipoFalda, p.tipoFalda.ToString());
+                        txtLargoFalda.Text = p.largo.ToString("0.##");
+                        SetSelected(ddlConVolantes, BoolTo10(p.conVolantes));
+                        break;
+                    }
                 case "pantalon":
                 case "pantalones":
-                    CargarDatosPantalones();
-                    break;
+                    {
+                        var ws = new RefPant.PantalonWSClient();
+                        var p = ws.obtenerPantalonPorId(Id);
+                        if (p == null) throw new Exception("No se encontró el Pantalón.");
+                        MapGeneralFromEntity(p.nombre, p.color, p.alertaMinStock, p.precioUnidad, p.precioMayor, p.precioDocena);
+                        SetSelected(ddlMaterial, p.material.ToString());
+                        SetSelected(ddlTipoPantalon, p.tipoPantalon.ToString());
+                        txtLargoPierna.Text = p.largoPierna.ToString("0.##");
+                        txtCintura.Text = p.cintura.ToString("0.##");
+                        break;
+                    }
                 case "casaca":
                 case "casacas":
-                    CargarDatosCasacas();
-                    break;
+                    {
+                        var ws = new RefCasaca.CasacaWSClient();
+                        var p = ws.obtenerCasacaPorId(Id);
+                        if (p == null) throw new Exception("No se encontró la Casaca.");
+                        MapGeneralFromEntity(p.nombre, p.color, p.alertaMinStock, p.precioUnidad, p.precioMayor, p.precioDocena);
+                        SetSelected(ddlMaterial, p.material.ToString());
+                        SetSelected(ddlTipoCasaca, p.tipoCasaca.ToString());
+                        SetSelected(ddlConCapucha, BoolTo10(p.conCapucha));
+                        break;
+                    }
                 case "gorro":
                 case "gorros":
-                    CargarDatosGorros();
-                    break;
+                    {
+                        var ws = new RefGorro.GorroWSClient();
+                        var p = ws.obtenerGorroPorId(Id);
+                        if (p == null) throw new Exception("No se encontró el Gorro.");
+                        MapGeneralFromEntity(p.nombre, p.color, p.alertaMinStock, p.precioUnidad, p.precioMayor, p.precioDocena);
+                        SetSelected(ddlMaterial, p.material.ToString());
+                        SetSelected(ddlTipoGorra, p.tipoGorra.ToString());
+                        SetSelected(ddlTallaAjustable, BoolTo10(p.tallaAjustable));
+                        SetSelected(ddlImpermeable, BoolTo10(p.impermeable));
+                        break;
+                    }
             }
         }
 
-        private void CargarDatosPolos()
+        private void MapGeneralFromEntity(string nombre, string color, int alertaMinStock,
+                                          double pu, double pm, double pd)
         {
-            // Tipo de Manga
-            ddlTipoManga.Items.Clear();
-            ddlTipoManga.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTipoManga.Items.Add(new ListItem("Corta", "1"));
-            ddlTipoManga.Items.Add(new ListItem("Larga", "2"));
-            ddlTipoManga.Items.Add(new ListItem("3/4", "3"));
-            ddlTipoManga.Items.Add(new ListItem("Sin Manga", "4"));
-
-            // Tipo de Cuello
-            ddlTipoCuello.Items.Clear();
-            ddlTipoCuello.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTipoCuello.Items.Add(new ListItem("Redondo", "1"));
-            ddlTipoCuello.Items.Add(new ListItem("V", "2"));
-            ddlTipoCuello.Items.Add(new ListItem("Polo", "3"));
-            ddlTipoCuello.Items.Add(new ListItem("Alto", "4"));
+            txtNombre.Text = nombre;
+            txtColor.Text = color;
+            txtStock.Text = alertaMinStock.ToString();
+            txtPU.Text = pu.ToString("0.##");
+            txtPM.Text = pm.ToString("0.##");
+            txtPD.Text = pd.ToString("0.##");
         }
 
-        private void CargarDatosBlusas()
+        // ========= GUARDAR =========
+        protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Tipo de Blusa
-            ddlTipoBlusa.Items.Clear();
-            ddlTipoBlusa.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTipoBlusa.Items.Add(new ListItem("Casual", "1"));
-            ddlTipoBlusa.Items.Add(new ListItem("Formal", "2"));
-            ddlTipoBlusa.Items.Add(new ListItem("Crop Top", "3"));
-            ddlTipoBlusa.Items.Add(new ListItem("Oversize", "4"));
-
-            // Tipo de Manga
-            ddlTipoMangaB.Items.Clear();
-            ddlTipoMangaB.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTipoMangaB.Items.Add(new ListItem("Sin Manga", "1"));
-            ddlTipoMangaB.Items.Add(new ListItem("Corta", "2"));
-            ddlTipoMangaB.Items.Add(new ListItem("Larga", "3"));
-            ddlTipoMangaB.Items.Add(new ListItem("3/4", "4"));
-        }
-
-        private void CargarDatosVestidos()
-        {
-            // Tipo de Vestido
-            ddlTipoVestido.Items.Clear();
-            ddlTipoVestido.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTipoVestido.Items.Add(new ListItem("Casual", "1"));
-            ddlTipoVestido.Items.Add(new ListItem("Formal", "2"));
-            ddlTipoVestido.Items.Add(new ListItem("Cocktail", "3"));
-            ddlTipoVestido.Items.Add(new ListItem("Deportivo", "4"));
-            ddlTipoVestido.Items.Add(new ListItem("Noche", "5"));
-        }
-
-        private void CargarDatosFaldas()
-        {
-            // Tipo de Falda
-            ddlTipoFalda.Items.Clear();
-            ddlTipoFalda.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTipoFalda.Items.Add(new ListItem("Recta", "1"));
-            ddlTipoFalda.Items.Add(new ListItem("Acampanada", "2"));
-            ddlTipoFalda.Items.Add(new ListItem("Plisada", "3"));
-            ddlTipoFalda.Items.Add(new ListItem("Tubo", "4"));
-            ddlTipoFalda.Items.Add(new ListItem("Asimétrica", "5"));
-        }
-
-        private void CargarDatosPantalones()
-        {
-            // Tipo de Pantalón
-            ddlTipoPantalon.Items.Clear();
-            ddlTipoPantalon.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTipoPantalon.Items.Add(new ListItem("Jean", "1"));
-            ddlTipoPantalon.Items.Add(new ListItem("Casual", "2"));
-            ddlTipoPantalon.Items.Add(new ListItem("Formal", "3"));
-            ddlTipoPantalon.Items.Add(new ListItem("Deportivo", "4"));
-            ddlTipoPantalon.Items.Add(new ListItem("Cargo", "5"));
-        }
-
-        private void CargarDatosCasacas()
-        {
-            // Tipo de Casaca
-            ddlTipoCasaca.Items.Clear();
-            ddlTipoCasaca.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTipoCasaca.Items.Add(new ListItem("Bomber", "1"));
-            ddlTipoCasaca.Items.Add(new ListItem("Cortaviento", "2"));
-            ddlTipoCasaca.Items.Add(new ListItem("Parka", "3"));
-            ddlTipoCasaca.Items.Add(new ListItem("Blazer", "4"));
-            ddlTipoCasaca.Items.Add(new ListItem("Jean", "5"));
-        }
-
-        private void CargarDatosGorros()
-        {
-            // Tipo de Gorro
-            ddlTipoGorra.Items.Clear();
-            ddlTipoGorra.Items.Add(new ListItem("-- Seleccione --", ""));
-            ddlTipoGorra.Items.Add(new ListItem("Beanie", "1"));
-            ddlTipoGorra.Items.Add(new ListItem("Snapback", "2"));
-            ddlTipoGorra.Items.Add(new ListItem("Dad Hat", "3"));
-            ddlTipoGorra.Items.Add(new ListItem("Bucket", "4"));
-            ddlTipoGorra.Items.Add(new ListItem("Trucker", "5"));
-        }
-
-        private void CargarDatosPrenda()
-        {
-            // Aquí cargarías los datos desde tu BO según el tipo de prenda
-            // Ejemplo genérico:
-
-            /*
-            switch (Tipo.ToLower())
+            try
             {
-                case "polos":
-                    var polo = PoloBO.ObtenerPorId(int.Parse(Id));
-                    txtNombre.Text = polo.Nombre;
-                    ddlTalla.SelectedValue = polo.IdTalla.ToString();
-                    ddlMaterial.SelectedValue = polo.IdMaterial.ToString();
-                    txtColor.Text = polo.Color;
-                    txtStock.Text = polo.Stock.ToString();
-                    txtPU.Text = polo.PrecioUnitario.ToString("F2");
-                    txtPM.Text = polo.PrecioMayor.ToString("F2");
-                    txtPD.Text = polo.PrecioDocena.ToString("F2");
-                    ddlTipoManga.SelectedValue = polo.IdTipoManga.ToString();
-                    txtEstampado.Text = polo.Estampado;
-                    ddlTipoCuello.SelectedValue = polo.IdTipoCuello.ToString();
-                    break;
-                    
-                case "blusas":
-                    var blusa = BlusaBO.ObtenerPorId(int.Parse(Id));
-                    // Cargar campos comunes y específicos de blusa
-                    break;
-                    
-                // ... etc para cada tipo de prenda
+                switch (Tipo.ToLower())
+                {
+                    case "polo":
+                    case "polos": GuardarPolo(); break;
+                    case "blusa":
+                    case "blusas": GuardarBlusa(); break;
+                    case "vestido":
+                    case "vestidos": GuardarVestido(); break;
+                    case "falda":
+                    case "faldas": GuardarFalda(); break;
+                    case "pantalon":
+                    case "pantalones": GuardarPantalon(); break;
+                    case "casaca":
+                    case "casacas": GuardarCasaca(); break;
+                    case "gorro":
+                    case "gorros": GuardarGorro(); break;
+                }
             }
-            */
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+                return;
+            }
+
+            Response.Redirect($"ListarPrendas.aspx?tipo={Tipo}");
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect($"ListarPrendas.aspx?tipo={Tipo}");
+        }
+
+        // ========= GUARDAR POR TIPO =========
+        private void GuardarPolo()
+        {
+            var ws = new RefPolo.PoloWSClient();
+            var p = new RefPolo.polo
+            {
+                nombre = txtNombre.Text,
+                color = txtColor.Text,
+                alertaMinStock = ParseInt(txtStock.Text, "Stock"),
+                precioUnidad = ParseDouble(txtPU.Text, "Precio Unidad"),
+                precioMayor = ParseDouble(txtPM.Text, "Precio Mayor"),
+                precioDocena = ParseDouble(txtPD.Text, "Precio Docena"),
+                material = (RefPolo.material)Enum.Parse(typeof(RefPolo.material), ddlMaterial.SelectedValue, true),
+                materialSpecified = true,
+                tipoManga = (RefPolo.tipoManga)Enum.Parse(typeof(RefPolo.tipoManga), ddlTipoManga.SelectedValue, true),
+                tipoMangaSpecified = true,
+                tipoCuello = (RefPolo.tipoCuello)Enum.Parse(typeof(RefPolo.tipoCuello), ddlTipoCuello.SelectedValue, true),
+                tipoCuelloSpecified = true,
+                estampado = txtEstampado.Text
+            };
+
+            if (estado == Estado.Modificar) { p.idPrenda = Id; ws.modificarPolo(p); }
+            else ws.insertarPolo(p);
+        }
+
+        private void GuardarBlusa()
+        {
+            var ws = new RefBlusa.BlusaWSClient();
+            var p = new RefBlusa.blusa
+            {
+                nombre = txtNombre.Text,
+                color = txtColor.Text,
+                alertaMinStock = ParseInt(txtStock.Text, "Stock"),
+                precioUnidad = ParseDouble(txtPU.Text, "Precio Unidad"),
+                precioMayor = ParseDouble(txtPM.Text, "Precio Mayor"),
+                precioDocena = ParseDouble(txtPD.Text, "Precio Docena"),
+                material = (RefBlusa.material)Enum.Parse(typeof(RefBlusa.material), ddlMaterial.SelectedValue, true),
+                materialSpecified = true,
+                tipoBlusa = (RefBlusa.tipoBlusa)Enum.Parse(typeof(RefBlusa.tipoBlusa), ddlTipoBlusa.SelectedValue, true),
+                tipoBlusaSpecified = true,
+                tipoManga = (RefBlusa.tipoManga)Enum.Parse(typeof(RefBlusa.tipoManga), ddlTipoMangaB.SelectedValue, true),
+                tipoMangaSpecified = true
+            };
+
+            if (estado == Estado.Modificar) { p.idPrenda = Id; ws.modificarBlusa(p); }
+            else ws.insertarBlusa(p);
+        }
+
+        private void GuardarVestido()
+        {
+            var ws = new RefVest.VestidoWSClient();
+            var p = new RefVest.vestido
+            {
+                nombre = txtNombre.Text,
+                color = txtColor.Text,
+                alertaMinStock = ParseInt(txtStock.Text, "Stock"),
+                precioUnidad = ParseDouble(txtPU.Text, "Precio Unidad"),
+                precioMayor = ParseDouble(txtPM.Text, "Precio Mayor"),
+                precioDocena = ParseDouble(txtPD.Text, "Precio Docena"),
+                material = (RefVest.material)Enum.Parse(typeof(RefVest.material), ddlMaterial.SelectedValue, true),
+                materialSpecified = true,
+                tipoVestido = (RefVest.tipoVestido)Enum.Parse(typeof(RefVest.tipoVestido), ddlTipoVestido.SelectedValue, true),
+                tipoVestidoSpecified = true,
+                tipoManga = (RefVest.tipoManga)Enum.Parse(typeof(RefVest.tipoManga), ddlTipoMangaV.SelectedValue, true),
+                tipoMangaSpecified = true,
+                largo = ParseInt(txtLargoVestido.Text, "Largo (cm)"),
+                 
+            };
+
+
+            if (estado == Estado.Modificar) { p.idPrenda = Id; ws.modificarVestido(p); }
+            else ws.insertarVestido(p);
+        }
+
+        private void GuardarFalda()
+        {
+            var ws = new RefFalda.FaldaWSClient();
+            var p = new RefFalda.falda
+            {
+                nombre = txtNombre.Text,
+                color = txtColor.Text,
+                alertaMinStock = ParseInt(txtStock.Text, "Stock"),
+                precioUnidad = ParseDouble(txtPU.Text, "Precio Unidad"),
+                precioMayor = ParseDouble(txtPM.Text, "Precio Mayor"),
+                precioDocena = ParseDouble(txtPD.Text, "Precio Docena"),
+                material = (RefFalda.material)Enum.Parse(typeof(RefFalda.material), ddlMaterial.SelectedValue, true),
+                materialSpecified = true,
+                tipoFalda = (RefFalda.tipoFalda)Enum.Parse(typeof(RefFalda.tipoFalda), ddlTipoFalda.SelectedValue, true),
+                tipoFaldaSpecified = true,
+                largo = ParseDouble(txtLargoFalda.Text, "Largo (cm)"),
+                conVolantes = IsTrue10(ddlConVolantes.SelectedValue)
+            };
+
+            if (estado == Estado.Modificar) { p.idPrenda = Id; ws.modificarFalda(p); }
+            else ws.insertarFalda(p);
+        }
+
+        private void GuardarPantalon()
+        {
+            var ws = new RefPant.PantalonWSClient();
+            var p = new RefPant.pantalon
+            {
+                nombre = txtNombre.Text,
+                color = txtColor.Text,
+                alertaMinStock = ParseInt(txtStock.Text, "Stock"),
+                precioUnidad = ParseDouble(txtPU.Text, "Precio Unidad"),
+                precioMayor = ParseDouble(txtPM.Text, "Precio Mayor"),
+                precioDocena = ParseDouble(txtPD.Text, "Precio Docena"),
+                material = (RefPant.material)Enum.Parse(typeof(RefPant.material), ddlMaterial.SelectedValue, true),
+                materialSpecified = true,
+                tipoPantalon = (RefPant.tipoPantalon)Enum.Parse(typeof(RefPant.tipoPantalon), ddlTipoPantalon.SelectedValue, true),
+                tipoPantalonSpecified = true,
+                largoPierna = ParseDouble(txtLargoPierna.Text, "Largo pierna (cm)"),
+                cintura = ParseDouble(txtCintura.Text, "Cintura (cm)")
+            };
+
+            if (estado == Estado.Modificar) { p.idPrenda = Id; ws.modificarPantalon(p); }
+            else ws.insertarPantalon(p);
+        }
+
+        private void GuardarCasaca()
+        {
+            var ws = new RefCasaca.CasacaWSClient();
+            var p = new RefCasaca.casaca
+            {
+                nombre = txtNombre.Text,
+                color = txtColor.Text,
+                alertaMinStock = ParseInt(txtStock.Text, "Stock"),
+                precioUnidad = ParseDouble(txtPU.Text, "Precio Unidad"),
+                precioMayor = ParseDouble(txtPM.Text, "Precio Mayor"),
+                precioDocena = ParseDouble(txtPD.Text, "Precio Docena"),
+                material = (RefCasaca.material)Enum.Parse(typeof(RefCasaca.material), ddlMaterial.SelectedValue, true),
+                materialSpecified = true,
+                tipoCasaca = (RefCasaca.tipoCasaca)Enum.Parse(typeof(RefCasaca.tipoCasaca), ddlTipoCasaca.SelectedValue, true),
+                tipoCasacaSpecified = true,
+                conCapucha = IsTrue10(ddlConCapucha.SelectedValue)
+            };
+
+            if (estado == Estado.Modificar) { p.idPrenda = Id; ws.modificarCasaca(p); }
+            else ws.insertarCasaca(p);
+        }
+
+        private void GuardarGorro()
+        {
+            var ws = new RefGorro.GorroWSClient();
+            var p = new RefGorro.gorro
+            {
+                nombre = txtNombre.Text,
+                color = txtColor.Text,
+                alertaMinStock = ParseInt(txtStock.Text, "Stock"),
+                precioUnidad = ParseDouble(txtPU.Text, "Precio Unidad"),
+                precioMayor = ParseDouble(txtPM.Text, "Precio Mayor"),
+                precioDocena = ParseDouble(txtPD.Text, "Precio Docena"),
+                material = (RefGorro.material)Enum.Parse(typeof(RefGorro.material), ddlMaterial.SelectedValue, true),
+                materialSpecified = true,
+                tipoGorra = (RefGorro.tipoGorra)Enum.Parse(typeof(RefGorro.tipoGorra), ddlTipoGorra.SelectedValue, true),
+                tipoGorraSpecified = true,
+                tallaAjustable = IsTrue10(ddlTallaAjustable.SelectedValue),
+                impermeable = IsTrue10(ddlImpermeable.SelectedValue)
+            };
+
+            if (estado == Estado.Modificar) { p.idPrenda = Id; ws.modificarGorro(p); }
+            else ws.insertarGorro(p);
+        }
+
+        // ========= HELPERS =========
+        private static string BoolTo10(bool b) => b ? "1" : "0";
+        private static bool IsTrue10(string v) => (v ?? "").Trim() == "1";
+
+        private static int ParseInt(string txt, string campo)
+        {
+            if (!int.TryParse((txt ?? "").Trim(), out var n))
+                throw new ArgumentException($"Valor inválido para {campo}.");
+            return n;
+        }
+
+        private static double ParseDouble(string txt, string campo)
+        {
+            if (!double.TryParse((txt ?? "").Trim(), out var d))
+                throw new ArgumentException($"Valor inválido para {campo}.");
+            return d;
         }
 
         private string ObtenerNombreSingular()
@@ -336,167 +644,9 @@ namespace WearDropWA
             }
         }
 
-        protected void btnCancelar_Click(object sender, EventArgs e)
+        private void MostrarError(string mensaje)
         {
-            Response.Redirect($"ListarPrendas.aspx?tipo={Tipo}");
+            ClientScript.RegisterStartupScript(this.GetType(), "error", $"alert('{mensaje}');", true);
         }
-
-        protected void btnGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Validaciones básicas
-                if (!ValidarCampos())
-                {
-                    return;
-                }
-
-                // Aquí implementarías la lógica de guardar según el tipo
-                if (EsModificacion)
-                {
-                    ModificarPrendaBO();
-                }
-                else
-                {
-                    RegistrarPrendaBO();
-                }
-            }
-            catch (Exception ex)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    $"alert('Error: {ex.Message}');", true);
-            }
-        }
-
-        private bool ValidarCampos()
-        {
-            // Validaciones comunes
-            if (string.IsNullOrWhiteSpace(txtNombre.Text))
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    "alert('Debe ingresar un nombre.');", true);
-                return false;
-            }
-
-            if (ddlTalla.SelectedValue == "")
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    "alert('Debe seleccionar una talla.');", true);
-                return false;
-            }
-
-            if (ddlMaterial.SelectedValue == "")
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    "alert('Debe seleccionar un material.');", true);
-                return false;
-            }
-
-            // Validar campos numéricos
-            decimal temp;
-            if (!decimal.TryParse(txtPU.Text, out temp) || temp <= 0)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    "alert('El precio unitario debe ser un valor numérico válido mayor a 0.');", true);
-                return false;
-            }
-
-            // Agregar más validaciones según sea necesario
-
-            return true;
-        }
-
-        private void RegistrarPrendaBO()
-        {
-            // Llamar al BO correspondiente según el tipo
-            switch (Tipo.ToLower())
-            {
-                case "polo":
-                case "polos":
-                    // PoloBO.Registrar(ObtenerDatosPolo());
-                    break;
-                case "blusa":
-                case "blusas":
-                    // BlusaBO.Registrar(ObtenerDatosBlusa());
-                    break;
-                case "vestido":
-                case "vestidos":
-                    // VestidoBO.Registrar(ObtenerDatosVestido());
-                    break;
-                case "falda":
-                case "faldas":
-                    // FaldaBO.Registrar(ObtenerDatosFalda());
-                    break;
-                case "pantalon":
-                case "pantalones":
-                    // PantalonBO.Registrar(ObtenerDatosPantalon());
-                    break;
-                case "casaca":
-                case "casacas":
-                    // CasacaBO.Registrar(ObtenerDatosCasaca());
-                    break;
-                case "gorro":
-                case "gorros":
-                    // GorroBO.Registrar(ObtenerDatosGorro());
-                    break;
-            }
-
-            ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                $"alert('Registro creado correctamente.'); window.location='ListarPrendas.aspx?tipo={Tipo}';", true);
-        }
-
-        private void ModificarPrendaBO()
-        {
-            // Llamar al BO correspondiente según el tipo
-            switch (Tipo.ToLower())
-            {
-                case "polos":
-                    // PoloBO.Modificar(int.Parse(Id), ObtenerDatosPolo());
-                    break;
-                case "blusas":
-                    // BlusaBO.Modificar(int.Parse(Id), ObtenerDatosBlusa());
-                    break;
-                case "vestidos":
-                    // VestidoBO.Modificar(int.Parse(Id), ObtenerDatosVestido());
-                    break;
-                case "faldas":
-                    // FaldaBO.Modificar(int.Parse(Id), ObtenerDatosFalda());
-                    break;
-                case "pantalones":
-                    // PantalonBO.Modificar(int.Parse(Id), ObtenerDatosPantalon());
-                    break;
-                case "casacas":
-                    // CasacaBO.Modificar(int.Parse(Id), ObtenerDatosCasaca());
-                    break;
-                case "gorros":
-                    // GorroBO.Modificar(int.Parse(Id), ObtenerDatosGorro());
-                    break;
-            }
-
-            ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                $"alert('Registro modificado correctamente.'); window.location='ListarPrendas.aspx?tipo={Tipo}';", true);
-        }
-
-        // Métodos auxiliares para obtener datos de cada tipo de prenda
-        // Implementar según tu modelo de datos
-        /*
-        private Polo ObtenerDatosPolo()
-        {
-            return new Polo
-            {
-                Nombre = txtNombre.Text.Trim(),
-                IdTalla = int.Parse(ddlTalla.SelectedValue),
-                IdMaterial = int.Parse(ddlMaterial.SelectedValue),
-                Color = txtColor.Text.Trim(),
-                Stock = int.Parse(txtStock.Text),
-                PrecioUnitario = decimal.Parse(txtPU.Text),
-                PrecioMayor = decimal.Parse(txtPM.Text),
-                PrecioDocena = decimal.Parse(txtPD.Text),
-                IdTipoManga = int.Parse(ddlTipoManga.SelectedValue),
-                Estampado = txtEstampado.Text.Trim(),
-                IdTipoCuello = int.Parse(ddlTipoCuello.SelectedValue)
-            };
-        }
-        */
     }
 }

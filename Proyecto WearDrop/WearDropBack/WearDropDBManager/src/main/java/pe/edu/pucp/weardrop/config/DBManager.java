@@ -128,7 +128,12 @@ public class DBManager {
         for (Map.Entry<Integer, Object> entry : parametros.entrySet()) {
             Integer key = entry.getKey();
             Object value = entry.getValue();
+            
             switch (value) {
+                case null -> {
+                    // Puedes usar un tipo SQL genérico o específico
+                    cs.setNull(key, java.sql.Types.NULL);
+                }
                 case Integer entero -> cs.setInt(key, entero);
                 case String cadena -> cs.setString(key, cadena);
                 case Double decimal -> cs.setDouble(key, decimal);

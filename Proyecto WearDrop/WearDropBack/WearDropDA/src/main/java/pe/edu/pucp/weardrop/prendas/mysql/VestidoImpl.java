@@ -102,7 +102,10 @@ public class VestidoImpl implements VestidoDAO {
                 datVestido.setTipoVestido(TipoVestido.valueOf(rs.getString("tipo_vestido")));
                 datVestido.setTipoManga(TipoManga.valueOf(rs.getString("tipo_manga")));
                 datVestido.setLargo(rs.getInt("largo"));
-                datVestido.setActivo(rs.getBoolean("activo"));
+          
+                datVestido.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datVestido.setPrecioMayor(rs.getDouble("precioMayor"));
+                datVestido.setPrecioDocena(rs.getDouble("precioDocena"));
 
                 System.out.println("SE OBTUVO LA PRENDA VESTIDO CORRECTAMENTE.");
             }
@@ -136,6 +139,9 @@ public class VestidoImpl implements VestidoDAO {
                 v.setTipoManga(TipoManga.valueOf(rs.getString("tipo_manga")));
                 v.setLargo(rs.getInt("largo"));
                 v.setActivo(rs.getBoolean("activo"));
+                v.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                v.setPrecioMayor(rs.getDouble("precioMayor"));
+                v.setPrecioDocena(rs.getDouble("precioDocena"));
 
                 lista.add(v);
             }

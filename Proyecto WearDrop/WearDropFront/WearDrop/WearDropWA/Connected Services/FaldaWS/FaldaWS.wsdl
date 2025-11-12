@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://prendas.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="FaldaWS" targetNamespace="http://prendas.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/FaldaWS?xsd=1" namespace="http://prendas.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="obtenerFaldaPorId">
+    <part name="parameters" element="tns:obtenerFaldaPorId" />
+  </message>
+  <message name="obtenerFaldaPorIdResponse">
+    <part name="parameters" element="tns:obtenerFaldaPorIdResponse" />
+  </message>
+  <message name="listarFaldas">
+    <part name="parameters" element="tns:listarFaldas" />
+  </message>
+  <message name="listarFaldasResponse">
+    <part name="parameters" element="tns:listarFaldasResponse" />
+  </message>
+  <message name="eliminarFalda">
+    <part name="parameters" element="tns:eliminarFalda" />
+  </message>
+  <message name="eliminarFaldaResponse">
+    <part name="parameters" element="tns:eliminarFaldaResponse" />
+  </message>
+  <message name="filtrarFaldas">
+    <part name="parameters" element="tns:filtrarFaldas" />
+  </message>
+  <message name="filtrarFaldasResponse">
+    <part name="parameters" element="tns:filtrarFaldasResponse" />
+  </message>
+  <message name="insertarFalda">
+    <part name="parameters" element="tns:insertarFalda" />
+  </message>
+  <message name="insertarFaldaResponse">
+    <part name="parameters" element="tns:insertarFaldaResponse" />
+  </message>
+  <message name="modificarFalda">
+    <part name="parameters" element="tns:modificarFalda" />
+  </message>
+  <message name="modificarFaldaResponse">
+    <part name="parameters" element="tns:modificarFaldaResponse" />
+  </message>
+  <portType name="FaldaWS">
+    <operation name="obtenerFaldaPorId">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/obtenerFaldaPorIdRequest" message="tns:obtenerFaldaPorId" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/obtenerFaldaPorIdResponse" message="tns:obtenerFaldaPorIdResponse" />
+    </operation>
+    <operation name="listarFaldas">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/listarFaldasRequest" message="tns:listarFaldas" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/listarFaldasResponse" message="tns:listarFaldasResponse" />
+    </operation>
+    <operation name="eliminarFalda">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/eliminarFaldaRequest" message="tns:eliminarFalda" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/eliminarFaldaResponse" message="tns:eliminarFaldaResponse" />
+    </operation>
+    <operation name="filtrarFaldas">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/filtrarFaldasRequest" message="tns:filtrarFaldas" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/filtrarFaldasResponse" message="tns:filtrarFaldasResponse" />
+    </operation>
+    <operation name="insertarFalda">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/insertarFaldaRequest" message="tns:insertarFalda" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/insertarFaldaResponse" message="tns:insertarFaldaResponse" />
+    </operation>
+    <operation name="modificarFalda">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/modificarFaldaRequest" message="tns:modificarFalda" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/FaldaWS/modificarFaldaResponse" message="tns:modificarFaldaResponse" />
+    </operation>
+  </portType>
+  <binding name="FaldaWSPortBinding" type="tns:FaldaWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="obtenerFaldaPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarFaldas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarFalda">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="filtrarFaldas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarFalda">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarFalda">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="FaldaWS">
+    <port name="FaldaWSPort" binding="tns:FaldaWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/FaldaWS" />
+    </port>
+  </service>
+</definitions>

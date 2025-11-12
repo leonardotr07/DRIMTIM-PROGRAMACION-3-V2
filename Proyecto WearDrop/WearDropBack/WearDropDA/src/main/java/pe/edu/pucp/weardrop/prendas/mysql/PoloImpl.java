@@ -107,8 +107,9 @@ public class PoloImpl implements PoloDAO {
                 datPolo.setTipoManga(TipoManga.valueOf(rs.getString("tipo_manga")));
                 datPolo.setEstampado(rs.getString("estampado"));
                 datPolo.setTipoCuello(TipoCuello.valueOf(rs.getString("tipo_cuello")));
-                datPolo.setActivo(rs.getBoolean("activo"));
-                
+                datPolo.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datPolo.setPrecioMayor(rs.getDouble("precioMayor"));
+                datPolo.setPrecioDocena(rs.getDouble("precioDocena"));
                 System.out.println("SE OBTUVO LA PRENDA POLO CORRECTAMENTE.");
             }
         }catch(SQLException ex){
@@ -142,6 +143,9 @@ public class PoloImpl implements PoloDAO {
                 datPolo.setEstampado(rs.getString("estampado"));
                 datPolo.setTipoCuello(TipoCuello.valueOf(rs.getString("tipo_cuello")));
                 datPolo.setActivo(rs.getBoolean("activo"));
+                datPolo.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datPolo.setPrecioMayor(rs.getDouble("precioMayor"));
+                datPolo.setPrecioDocena(rs.getDouble("precioDocena"));
                 listaPolos.add(datPolo);
             }
             System.out.println("SE LISTO TODAS LAS PRENDAS POLO CORRECTAMENTE.");

@@ -108,8 +108,10 @@ public class FaldaImpl implements FaldaDAO {
                 datFalda.setLargo(rs.getInt("largo"));
                 datFalda.setConForro(rs.getBoolean("con_forro"));
                 datFalda.setConVolantes(rs.getBoolean("con_volantes"));
-                datFalda.setActivo(rs.getBoolean("activo"));
-               
+              
+               datFalda.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datFalda.setPrecioMayor(rs.getDouble("precioMayor"));
+                datFalda.setPrecioDocena(rs.getDouble("precioDocena"));
                 System.out.println("SE OBTUVO LA PRENDA FALDA CORRECTAMENTE.");
             }
         }catch(SQLException ex){
@@ -143,6 +145,9 @@ public class FaldaImpl implements FaldaDAO {
                 datFalda.setConForro(rs.getBoolean("con_forro"));
                 datFalda.setConVolantes(rs.getBoolean("con_volantes"));
                 datFalda.setActivo(rs.getBoolean("activo"));
+                datFalda.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datFalda.setPrecioMayor(rs.getDouble("precioMayor"));
+                datFalda.setPrecioDocena(rs.getDouble("precioDocena"));
                 listaFaldas.add(datFalda);
             }
             System.out.println("SE LISTO TODAS LAS PRENDAS FALDA CORRECTAMENTE.");

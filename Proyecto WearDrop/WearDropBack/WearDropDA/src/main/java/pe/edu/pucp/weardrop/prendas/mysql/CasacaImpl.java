@@ -107,8 +107,10 @@ public class CasacaImpl implements CasacaDAO{
                 datCasaca.setMaterial(Material.valueOf(rs.getString("material")));
                 datCasaca.setTipoCasaca(TipoCasaca.valueOf(rs.getString("tipo_casaca")));
                 datCasaca.setConCapucha(rs.getBoolean("con_capucha"));
-                datCasaca.setActivo(rs.getBoolean("activo"));
-                
+            
+                datCasaca.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datCasaca.setPrecioMayor(rs.getDouble("precioMayor"));
+                datCasaca.setPrecioDocena(rs.getDouble("precioDocena"));
                 System.out.println("SE OBTUVO LA PRENDA CASACA CORRECTAMENTE.");
             }
         }catch(SQLException ex){
@@ -140,6 +142,9 @@ public class CasacaImpl implements CasacaDAO{
                 datCasaca.setTipoCasaca(TipoCasaca.valueOf(rs.getString("tipo_casaca")));
                 datCasaca.setConCapucha(rs.getBoolean("con_capucha"));
                 datCasaca.setActivo(rs.getBoolean("activo"));
+                datCasaca.setPrecioUnidad(rs.getDouble("precioUnidad"));
+                datCasaca.setPrecioMayor(rs.getDouble("precioMayor"));
+                datCasaca.setPrecioDocena(rs.getDouble("precioDocena"));
                 listaCasaca.add(datCasaca);
             }
             System.out.println("SE LISTO TODAS LAS PRENDAS CASACA CORRECTAMENTE.");

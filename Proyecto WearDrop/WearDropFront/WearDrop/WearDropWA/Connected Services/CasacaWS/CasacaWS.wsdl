@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://prendas.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="CasacaWS" targetNamespace="http://prendas.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/CasacaWS?xsd=1" namespace="http://prendas.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="modificarCasaca">
+    <part name="parameters" element="tns:modificarCasaca" />
+  </message>
+  <message name="modificarCasacaResponse">
+    <part name="parameters" element="tns:modificarCasacaResponse" />
+  </message>
+  <message name="listarCasacas">
+    <part name="parameters" element="tns:listarCasacas" />
+  </message>
+  <message name="listarCasacasResponse">
+    <part name="parameters" element="tns:listarCasacasResponse" />
+  </message>
+  <message name="filtrarCasacas">
+    <part name="parameters" element="tns:filtrarCasacas" />
+  </message>
+  <message name="filtrarCasacasResponse">
+    <part name="parameters" element="tns:filtrarCasacasResponse" />
+  </message>
+  <message name="insertarCasaca">
+    <part name="parameters" element="tns:insertarCasaca" />
+  </message>
+  <message name="insertarCasacaResponse">
+    <part name="parameters" element="tns:insertarCasacaResponse" />
+  </message>
+  <message name="eliminarCasaca">
+    <part name="parameters" element="tns:eliminarCasaca" />
+  </message>
+  <message name="eliminarCasacaResponse">
+    <part name="parameters" element="tns:eliminarCasacaResponse" />
+  </message>
+  <message name="obtenerCasacaPorId">
+    <part name="parameters" element="tns:obtenerCasacaPorId" />
+  </message>
+  <message name="obtenerCasacaPorIdResponse">
+    <part name="parameters" element="tns:obtenerCasacaPorIdResponse" />
+  </message>
+  <portType name="CasacaWS">
+    <operation name="modificarCasaca">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/modificarCasacaRequest" message="tns:modificarCasaca" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/modificarCasacaResponse" message="tns:modificarCasacaResponse" />
+    </operation>
+    <operation name="listarCasacas">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/listarCasacasRequest" message="tns:listarCasacas" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/listarCasacasResponse" message="tns:listarCasacasResponse" />
+    </operation>
+    <operation name="filtrarCasacas">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/filtrarCasacasRequest" message="tns:filtrarCasacas" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/filtrarCasacasResponse" message="tns:filtrarCasacasResponse" />
+    </operation>
+    <operation name="insertarCasaca">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/insertarCasacaRequest" message="tns:insertarCasaca" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/insertarCasacaResponse" message="tns:insertarCasacaResponse" />
+    </operation>
+    <operation name="eliminarCasaca">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/eliminarCasacaRequest" message="tns:eliminarCasaca" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/eliminarCasacaResponse" message="tns:eliminarCasacaResponse" />
+    </operation>
+    <operation name="obtenerCasacaPorId">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/obtenerCasacaPorIdRequest" message="tns:obtenerCasacaPorId" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/CasacaWS/obtenerCasacaPorIdResponse" message="tns:obtenerCasacaPorIdResponse" />
+    </operation>
+  </portType>
+  <binding name="CasacaWSPortBinding" type="tns:CasacaWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="modificarCasaca">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarCasacas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="filtrarCasacas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarCasaca">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarCasaca">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerCasacaPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="CasacaWS">
+    <port name="CasacaWSPort" binding="tns:CasacaWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/CasacaWS" />
+    </port>
+  </service>
+</definitions>

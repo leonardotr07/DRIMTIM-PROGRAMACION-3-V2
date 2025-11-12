@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://prendas.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="PoloWS" targetNamespace="http://prendas.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/PoloWS?xsd=1" namespace="http://prendas.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="eliminarPolo">
+    <part name="parameters" element="tns:eliminarPolo" />
+  </message>
+  <message name="eliminarPoloResponse">
+    <part name="parameters" element="tns:eliminarPoloResponse" />
+  </message>
+  <message name="insertarPolo">
+    <part name="parameters" element="tns:insertarPolo" />
+  </message>
+  <message name="insertarPoloResponse">
+    <part name="parameters" element="tns:insertarPoloResponse" />
+  </message>
+  <message name="listarPolos">
+    <part name="parameters" element="tns:listarPolos" />
+  </message>
+  <message name="listarPolosResponse">
+    <part name="parameters" element="tns:listarPolosResponse" />
+  </message>
+  <message name="obtenerPoloPorId">
+    <part name="parameters" element="tns:obtenerPoloPorId" />
+  </message>
+  <message name="obtenerPoloPorIdResponse">
+    <part name="parameters" element="tns:obtenerPoloPorIdResponse" />
+  </message>
+  <message name="modificarPolo">
+    <part name="parameters" element="tns:modificarPolo" />
+  </message>
+  <message name="modificarPoloResponse">
+    <part name="parameters" element="tns:modificarPoloResponse" />
+  </message>
+  <message name="filtrarPolos">
+    <part name="parameters" element="tns:filtrarPolos" />
+  </message>
+  <message name="filtrarPolosResponse">
+    <part name="parameters" element="tns:filtrarPolosResponse" />
+  </message>
+  <portType name="PoloWS">
+    <operation name="eliminarPolo">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/eliminarPoloRequest" message="tns:eliminarPolo" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/eliminarPoloResponse" message="tns:eliminarPoloResponse" />
+    </operation>
+    <operation name="insertarPolo">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/insertarPoloRequest" message="tns:insertarPolo" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/insertarPoloResponse" message="tns:insertarPoloResponse" />
+    </operation>
+    <operation name="listarPolos">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/listarPolosRequest" message="tns:listarPolos" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/listarPolosResponse" message="tns:listarPolosResponse" />
+    </operation>
+    <operation name="obtenerPoloPorId">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/obtenerPoloPorIdRequest" message="tns:obtenerPoloPorId" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/obtenerPoloPorIdResponse" message="tns:obtenerPoloPorIdResponse" />
+    </operation>
+    <operation name="modificarPolo">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/modificarPoloRequest" message="tns:modificarPolo" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/modificarPoloResponse" message="tns:modificarPoloResponse" />
+    </operation>
+    <operation name="filtrarPolos">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/filtrarPolosRequest" message="tns:filtrarPolos" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PoloWS/filtrarPolosResponse" message="tns:filtrarPolosResponse" />
+    </operation>
+  </portType>
+  <binding name="PoloWSPortBinding" type="tns:PoloWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="eliminarPolo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarPolo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarPolos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerPoloPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarPolo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="filtrarPolos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="PoloWS">
+    <port name="PoloWSPort" binding="tns:PoloWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/PoloWS" />
+    </port>
+  </service>
+</definitions>
