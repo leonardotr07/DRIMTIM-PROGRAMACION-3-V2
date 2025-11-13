@@ -78,10 +78,10 @@ public class DescuentoMontoBOImpl implements DescuentoMontoBOI{
     }
 
     @Override
-    public void insertar_PrendaDescuento(DescuentoMonto descuento, ArrayList<Prenda> prendas, Vigencia vig) throws Exception {
+    public int insertar_PrendaDescuento(DescuentoMonto descuento, ArrayList<Prenda> prendas, Vigencia vig) throws Exception {
         validar(descuento);
-        daoDesc.insertar_PrendaDescuento(descuento, prendas, vig);
-        return;
+        int resultado=daoDesc.insertar_PrendaDescuento(descuento, prendas, vig);
+        return resultado;
     }
     
 }

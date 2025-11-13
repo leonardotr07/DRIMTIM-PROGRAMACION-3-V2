@@ -172,22 +172,25 @@ public class DescuentoPorcentajeImpl implements DescuentoPorcentajeDAO{
     }
 
     @Override
-    public void insertar_PrendaDescuento(DescuentoPorcentaje descuento, ArrayList<Prenda> prendas, Vigencia vig) {
+    public int insertar_PrendaDescuento(DescuentoPorcentaje descuento, ArrayList<Prenda> prendas, Vigencia vig) {
         DescuentoPorcentajeDAO daoDesc;
         daoDesc=new DescuentoPorcentajeImpl();
         VigenciaDAO daoVig;
         daoVig=new VigenciaImpl();
         daoVig.insertar(vig);
+                int resultado=-1;
+
         descuento.setVigencia(vig);
         int idDesc=daoDesc.insertar(descuento);
         for(Prenda pren : prendas){
             Map<Integer, Object> parametrosEntrada=new HashMap<>();
              parametrosEntrada.put(1, pren.getIdPrenda());
              parametrosEntrada.put(2,idDesc);
-             int resultado=DBManager.getInstance().ejecutarProcedimiento("insertar_prendadescuento", parametrosEntrada, null);
+             resultado=DBManager.getInstance().ejecutarProcedimiento("insertar_prendadescuento", parametrosEntrada, null);
              if(resultado>0) System.out.println("Se ha insertado correctamente.");
              else System.out.println("Ocurrio un error en la inserción.");
         }
+        return resultado;
     }
     
 }

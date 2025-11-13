@@ -12,14 +12,24 @@
   <xs:element name="modificarFaldaResponse" type="tns:modificarFaldaResponse" />
   <xs:element name="obtenerFaldaPorId" type="tns:obtenerFaldaPorId" />
   <xs:element name="obtenerFaldaPorIdResponse" type="tns:obtenerFaldaPorIdResponse" />
-  <xs:complexType name="obtenerFaldaPorId">
+  <xs:complexType name="filtrarFaldas">
     <xs:sequence>
-      <xs:element name="idFalda" type="xs:int" />
+      <xs:element minOccurs="0" name="nombreLike" type="xs:string" />
+      <xs:element minOccurs="0" name="colorLike" type="xs:string" />
+      <xs:element minOccurs="0" name="materialLike" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoFaldaLike" type="xs:string" />
+      <xs:element minOccurs="0" name="conForro" type="xs:boolean" />
+      <xs:element minOccurs="0" name="conVolantes" type="xs:boolean" />
+      <xs:element minOccurs="0" name="precioMin" type="xs:double" />
+      <xs:element minOccurs="0" name="precioMax" type="xs:double" />
+      <xs:element minOccurs="0" name="largoMin" type="xs:double" />
+      <xs:element minOccurs="0" name="largoMax" type="xs:double" />
+      <xs:element minOccurs="0" name="soloActivos" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerFaldaPorIdResponse">
+  <xs:complexType name="filtrarFaldasResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:falda" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:falda" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="falda">
@@ -96,24 +106,14 @@
       <xs:element minOccurs="0" name="vigencia" type="tns:vigencia" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="filtrarFaldas">
+  <xs:complexType name="obtenerFaldaPorId">
     <xs:sequence>
-      <xs:element minOccurs="0" name="nombreLike" type="xs:string" />
-      <xs:element minOccurs="0" name="colorLike" type="xs:string" />
-      <xs:element minOccurs="0" name="materialLike" type="xs:string" />
-      <xs:element minOccurs="0" name="tipoFaldaLike" type="xs:string" />
-      <xs:element minOccurs="0" name="conForro" type="xs:boolean" />
-      <xs:element minOccurs="0" name="conVolantes" type="xs:boolean" />
-      <xs:element minOccurs="0" name="precioMin" type="xs:double" />
-      <xs:element minOccurs="0" name="precioMax" type="xs:double" />
-      <xs:element minOccurs="0" name="largoMin" type="xs:double" />
-      <xs:element minOccurs="0" name="largoMax" type="xs:double" />
-      <xs:element minOccurs="0" name="soloActivos" type="xs:boolean" />
+      <xs:element name="idFalda" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="filtrarFaldasResponse">
+  <xs:complexType name="obtenerFaldaPorIdResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:falda" />
+      <xs:element minOccurs="0" name="return" type="tns:falda" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="eliminarFalda">

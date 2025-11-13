@@ -15,13 +15,22 @@ namespace WearDropWA
     {
 
         /// <summary>
-        /// Control lblNombre.
+        /// Control btnRegistrarVigencia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombre;
+        protected global::System.Web.UI.WebControls.Button btnRegistrarVigencia;
+
+        /// <summary>
+        /// Control spanReqNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanReqNombre;
 
         /// <summary>
         /// Control txtNombre.
@@ -33,49 +42,49 @@ namespace WearDropWA
         protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
-        /// Control lblMontoEditable.
+        /// Control spanReqGratis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMontoEditable;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanReqGratis;
 
         /// <summary>
-        /// Control txtMontoEditable.
+        /// Control txtCantidadGratis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMontoEditable;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadGratis;
 
         /// <summary>
-        /// Control lbMontoMáximo.
+        /// Control span1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMontoMáximo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl span1;
 
         /// <summary>
-        /// Control txtMontoMáximo.
+        /// Control txtCantidadRequerida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMontoMáximo;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadRequerida;
 
         /// <summary>
-        /// Control btnCancelar.
+        /// Control btnAñadirPrenda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.Button btnAñadirPrenda;
 
         /// <summary>
         /// Control btnRegistrar.
@@ -85,5 +94,14 @@ namespace WearDropWA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegistrar;
+
+        /// <summary>
+        /// Control btnCancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
     }
 }

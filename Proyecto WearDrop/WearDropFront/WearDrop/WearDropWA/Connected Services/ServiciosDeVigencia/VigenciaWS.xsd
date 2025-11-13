@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://vigencia.services.weardrop.pucp.edu.pe/" targetNamespace="http://vigencia.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarVigencia" type="tns:eliminarVigencia" />
+  <xs:element name="eliminarVigenciaResponse" type="tns:eliminarVigenciaResponse" />
+  <xs:element name="hello" type="tns:hello" />
+  <xs:element name="helloResponse" type="tns:helloResponse" />
+  <xs:element name="insertarVigencia" type="tns:insertarVigencia" />
+  <xs:element name="insertarVigenciaResponse" type="tns:insertarVigenciaResponse" />
+  <xs:element name="modificarVigencia" type="tns:modificarVigencia" />
+  <xs:element name="modificarVigenciaResponse" type="tns:modificarVigenciaResponse" />
+  <xs:element name="mosrtra_vigencias" type="tns:mosrtra_vigencias" />
+  <xs:element name="mosrtra_vigenciasResponse" type="tns:mosrtra_vigenciasResponse" />
+  <xs:element name="mostrar_vigenciasActivas" type="tns:mostrar_vigenciasActivas" />
+  <xs:element name="mostrar_vigenciasActivasResponse" type="tns:mostrar_vigenciasActivasResponse" />
+  <xs:element name="obtenerPorId" type="tns:obtenerPorId" />
+  <xs:element name="obtenerPorIdResponse" type="tns:obtenerPorIdResponse" />
+  <xs:complexType name="obtenerPorId">
+    <xs:sequence>
+      <xs:element name="idDesc" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:vigencia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="vigencia">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="fechaFin" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaInicio" type="xs:dateTime" />
+      <xs:element name="idVigencia" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarVigencia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datDesc" type="tns:vigencia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarVigenciaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="mosrtra_vigencias">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="mosrtra_vigenciasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:vigencia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="mostrar_vigenciasActivas">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="mostrar_vigenciasActivasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:vigencia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hello">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="helloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarVigencia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datDesc" type="tns:vigencia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarVigenciaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarVigencia">
+    <xs:sequence>
+      <xs:element name="idDesc" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarVigenciaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

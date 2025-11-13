@@ -72,13 +72,14 @@
 
         <div class="container row mt-3">
             <asp:GridView ID="gvEmpleados" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="True"
-                CssClass="table table-hover table-striped custom-grid" GridLines="None">
+                CssClass="table table-hover table-striped custom-grid" GridLines="None"
+                AllowPaging="true" PageSize="8" OnPageIndexChanging="gvEmpleados_PageIndexChanging">
                 <Columns>
-                    <asp:BoundField HeaderText="ID" DataField="IdEmpleado" />
-                    <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                    <asp:BoundField HeaderText="Apellidos" DataField="Apellidos" />
-                    <asp:BoundField HeaderText="DNI" DataField="Dni" />
-                    <asp:BoundField HeaderText="Sueldo" DataField="Sueldo" DataFormatString="{0:N2}" />
+                    <asp:BoundField HeaderText="ID" DataField="idPersona" />
+                    <asp:BoundField HeaderText="Nombre" DataField="nombre" />
+                    <asp:BoundField HeaderText="Apellido" DataField="primerApellido" />
+                    <asp:BoundField HeaderText="DNI" DataField="dni" />
+                    <asp:BoundField HeaderText="Sueldo" DataField="sueldo" DataFormatString="{0:N2}" />
 
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
@@ -86,7 +87,7 @@
 
                                 <asp:LinkButton ID="btnVisualizar" runat="server"
                                     CssClass="btn btn-sm btn-outline-success"
-                                    CommandArgument='<%# Eval("IdEmpleado") %>'
+                                    CommandArgument='<%# Eval("idPersona") %>'
                                     OnClick="btnVisualizar_Click"
                                     ToolTip="Ver"> 
                                     <i class="fa fa-eye"></i>
@@ -94,7 +95,7 @@
 
                                 <asp:LinkButton ID="btnModificar" runat="server"
                                     CssClass="btn btn-sm btn-outline-primary"
-                                    CommandArgument='<%# Eval("IdEmpleado") %>'
+                                    CommandArgument='<%# Eval("idPersona") %>'
                                     OnClick="btnModificar_Click"
                                     ToolTip="Editar">
                                     <i class="fa fa-pencil"></i>
@@ -102,9 +103,9 @@
 
                                 <asp:LinkButton ID="btnEliminar" runat="server"
                                     CssClass="btn btn-sm btn-outline-danger"
-                                    CommandArgument='<%# Eval("IdEmpleado") %>'
+                                    CommandArgument='<%# Eval("idPersona") %>'
                                     OnClientClick="return confirm('¿Está seguro de eliminar este registro?');"
-                                    ToolTip="Eliminar">
+                                    ToolTip="Eliminar" OnClick="btnEliminar_Click">
                                     <i class="fa fa-trash"></i>
                                 </asp:LinkButton>
 

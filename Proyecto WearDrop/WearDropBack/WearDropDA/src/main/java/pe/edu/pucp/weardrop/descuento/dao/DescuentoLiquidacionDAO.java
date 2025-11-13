@@ -16,6 +16,6 @@ import pe.edu.pucp.weardrop.promocionesdescuentos.DescuentoLiquidacion;
  */
 public interface DescuentoLiquidacionDAO extends IDAO<DescuentoLiquidacion>{
     public ArrayList<DescuentoLiquidacion> listarActivos();
-        public void insertar_PrendaDescuento(DescuentoLiquidacion descuento, ArrayList<Prenda> prendas, Vigencia vig);
+        public int insertar_PrendaDescuento(DescuentoLiquidacion descuento, ArrayList<Prenda> prendas, Vigencia vig);
 
 }

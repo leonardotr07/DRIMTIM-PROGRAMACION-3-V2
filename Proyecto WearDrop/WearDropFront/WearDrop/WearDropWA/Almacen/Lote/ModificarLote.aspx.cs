@@ -13,7 +13,7 @@ namespace WearDropWA
         private int idLote;
         private LoteWSClient boLote;
         private AlmacenWSClient boAlmacen; // 🔹 Añadido
-        private lote datLote;
+        private lote1 datLote;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +51,7 @@ namespace WearDropWA
         {
             try
             {
-                almacen datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
+                almacen1 datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
 
                 if (datAlmacen != null)
                 {
@@ -194,13 +194,13 @@ namespace WearDropWA
                 }
 
                 // 🔹 Recuperar el lote guardado en ViewState
-                datLote = (lote)ViewState["DatLote"];
+                datLote = (lote1)ViewState["DatLote"];
 
                 // 🔹 Si no existe en ViewState, crear uno nuevo (aunque no debería pasar)
                 if (datLote == null)
                 {
-                    datLote = new lote();
-                    datLote.datAlmacen = new almacen();
+                    datLote = new lote1();
+                    datLote.datAlmacen = new almacen1();
                     datLote.datAlmacen.id = idAlmacen;
                 }
 

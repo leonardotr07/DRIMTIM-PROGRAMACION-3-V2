@@ -72,7 +72,7 @@ namespace WearDropWA
         {
             try
             {
-                almacen datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
+                almacen1 datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
 
                 if (datAlmacen != null)
                 {
@@ -234,8 +234,8 @@ namespace WearDropWA
                 }
 
                 // 🔹 Crear el lote
-                lote nuevoLote = new lote();
-                nuevoLote.datAlmacen = new almacen();
+                lote1 nuevoLote = new lote1();
+                nuevoLote.datAlmacen = new almacen1();
                 nuevoLote.datAlmacen.id = idAlmacen;
                 nuevoLote.descripcion = descripcion;
 

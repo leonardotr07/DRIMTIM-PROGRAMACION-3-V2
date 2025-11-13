@@ -176,7 +176,7 @@
         <div class="descuento-container">
 
             <!-- Campo Nombre del Descuento -->
-            <div class="form-field">
+           <%-- <div class="form-field">
                 <label for="nombreDescuento">Nombre (*)</label>
                 <input type="text" id="nombreDescuento" placeholder="Nombre del descuento" />
             </div>
@@ -188,7 +188,21 @@
             </div>
             <div class="form-field">
     <label for="montoMaximo">Monto Máximo (*)</label>
-    <input type="text" id="montoMaximo" placeholder="Monto Máximo" />
+    <input type="text" id="montoMaximo" placeholder="Monto Máximo" />--%>
+            
+                        <div class="col-md-3">
+    <label class="form-label" for="txtNombre">Nombre <span id="spanReqNombre" runat="server">(*)</span></label>
+    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ej: Prom1"></asp:TextBox>
+</div>
+            
+                        <div class="col-md-3">
+    <label class="form-label" for="txtMontoEditable">Monto Editable <span id="span1" runat="server">(*)</span></label>
+    <asp:TextBox ID="txtMontoEditable" runat="server" CssClass="form-control" placeholder="Ej: 10"></asp:TextBox>
+</div>
+            
+                        <div class="col-md-3">
+    <label class="form-label" for="txtMontoMaximo">Monto Máximo <span id="span2" runat="server">(*)</span></label>
+    <asp:TextBox ID="txtMontoMaximo" runat="server" CssClass="form-control" placeholder="Ej: Prom1"></asp:TextBox>
 </div>
 
             <!-- Botón Añadir Prenda -->
@@ -205,5 +219,6 @@
                 <button class="btn-registrar">Registrar</button>--%>
             </div>
         </div>
-    </div>
+                    </div>
+
 </asp:Content>

@@ -12,25 +12,14 @@
   <xs:element name="modificarPantalonResponse" type="tns:modificarPantalonResponse" />
   <xs:element name="obtenerPantalonPorId" type="tns:obtenerPantalonPorId" />
   <xs:element name="obtenerPantalonPorIdResponse" type="tns:obtenerPantalonPorIdResponse" />
-  <xs:complexType name="filtrarPantalones">
+  <xs:complexType name="obtenerPantalonPorId">
     <xs:sequence>
-      <xs:element minOccurs="0" name="nombreLike" type="xs:string" />
-      <xs:element minOccurs="0" name="colorLike" type="xs:string" />
-      <xs:element minOccurs="0" name="materialLike" type="xs:string" />
-      <xs:element minOccurs="0" name="tipoPantalonLike" type="xs:string" />
-      <xs:element minOccurs="0" name="elasticidad" type="xs:boolean" />
-      <xs:element minOccurs="0" name="precioMin" type="xs:double" />
-      <xs:element minOccurs="0" name="precioMax" type="xs:double" />
-      <xs:element minOccurs="0" name="largoMin" type="xs:double" />
-      <xs:element minOccurs="0" name="largoMax" type="xs:double" />
-      <xs:element minOccurs="0" name="cinturaMin" type="xs:double" />
-      <xs:element minOccurs="0" name="cinturaMax" type="xs:double" />
-      <xs:element minOccurs="0" name="soloActivos" type="xs:boolean" />
+      <xs:element name="idPantalon" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="filtrarPantalonesResponse">
+  <xs:complexType name="obtenerPantalonPorIdResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:pantalon" />
+      <xs:element minOccurs="0" name="return" type="tns:pantalon" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="pantalon">
@@ -107,16 +96,6 @@
       <xs:element minOccurs="0" name="vigencia" type="tns:vigencia" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerPantalonPorId">
-    <xs:sequence>
-      <xs:element name="idPantalon" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerPantalonPorIdResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:pantalon" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="insertarPantalon">
     <xs:sequence>
       <xs:element minOccurs="0" name="pantalon" type="tns:pantalon" />
@@ -125,6 +104,27 @@
   <xs:complexType name="insertarPantalonResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="filtrarPantalones">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="nombreLike" type="xs:string" />
+      <xs:element minOccurs="0" name="colorLike" type="xs:string" />
+      <xs:element minOccurs="0" name="materialLike" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoPantalonLike" type="xs:string" />
+      <xs:element minOccurs="0" name="elasticidad" type="xs:boolean" />
+      <xs:element minOccurs="0" name="precioMin" type="xs:double" />
+      <xs:element minOccurs="0" name="precioMax" type="xs:double" />
+      <xs:element minOccurs="0" name="largoMin" type="xs:double" />
+      <xs:element minOccurs="0" name="largoMax" type="xs:double" />
+      <xs:element minOccurs="0" name="cinturaMin" type="xs:double" />
+      <xs:element minOccurs="0" name="cinturaMax" type="xs:double" />
+      <xs:element minOccurs="0" name="soloActivos" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="filtrarPantalonesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:pantalon" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="modificarPantalon">

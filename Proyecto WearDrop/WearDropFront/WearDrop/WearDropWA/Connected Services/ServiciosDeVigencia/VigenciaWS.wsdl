@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://vigencia.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="VigenciaWS" targetNamespace="http://vigencia.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/VigenciaWS?xsd=1" namespace="http://vigencia.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="hello">
+    <part name="parameters" element="tns:hello" />
+  </message>
+  <message name="helloResponse">
+    <part name="parameters" element="tns:helloResponse" />
+  </message>
+  <message name="obtenerPorId">
+    <part name="parameters" element="tns:obtenerPorId" />
+  </message>
+  <message name="obtenerPorIdResponse">
+    <part name="parameters" element="tns:obtenerPorIdResponse" />
+  </message>
+  <message name="modificarVigencia">
+    <part name="parameters" element="tns:modificarVigencia" />
+  </message>
+  <message name="modificarVigenciaResponse">
+    <part name="parameters" element="tns:modificarVigenciaResponse" />
+  </message>
+  <message name="mosrtra_vigencias">
+    <part name="parameters" element="tns:mosrtra_vigencias" />
+  </message>
+  <message name="mosrtra_vigenciasResponse">
+    <part name="parameters" element="tns:mosrtra_vigenciasResponse" />
+  </message>
+  <message name="mostrar_vigenciasActivas">
+    <part name="parameters" element="tns:mostrar_vigenciasActivas" />
+  </message>
+  <message name="mostrar_vigenciasActivasResponse">
+    <part name="parameters" element="tns:mostrar_vigenciasActivasResponse" />
+  </message>
+  <message name="eliminarVigencia">
+    <part name="parameters" element="tns:eliminarVigencia" />
+  </message>
+  <message name="eliminarVigenciaResponse">
+    <part name="parameters" element="tns:eliminarVigenciaResponse" />
+  </message>
+  <message name="insertarVigencia">
+    <part name="parameters" element="tns:insertarVigencia" />
+  </message>
+  <message name="insertarVigenciaResponse">
+    <part name="parameters" element="tns:insertarVigenciaResponse" />
+  </message>
+  <portType name="VigenciaWS">
+    <operation name="hello">
+      <input wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/helloRequest" message="tns:hello" />
+      <output wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/helloResponse" message="tns:helloResponse" />
+    </operation>
+    <operation name="obtenerPorId">
+      <input wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/obtenerPorIdRequest" message="tns:obtenerPorId" />
+      <output wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/obtenerPorIdResponse" message="tns:obtenerPorIdResponse" />
+    </operation>
+    <operation name="modificarVigencia">
+      <input wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/modificarVigenciaRequest" message="tns:modificarVigencia" />
+      <output wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/modificarVigenciaResponse" message="tns:modificarVigenciaResponse" />
+    </operation>
+    <operation name="mosrtra_vigencias">
+      <input wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/mosrtra_vigenciasRequest" message="tns:mosrtra_vigencias" />
+      <output wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/mosrtra_vigenciasResponse" message="tns:mosrtra_vigenciasResponse" />
+    </operation>
+    <operation name="mostrar_vigenciasActivas">
+      <input wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/mostrar_vigenciasActivasRequest" message="tns:mostrar_vigenciasActivas" />
+      <output wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/mostrar_vigenciasActivasResponse" message="tns:mostrar_vigenciasActivasResponse" />
+    </operation>
+    <operation name="eliminarVigencia">
+      <input wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/eliminarVigenciaRequest" message="tns:eliminarVigencia" />
+      <output wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/eliminarVigenciaResponse" message="tns:eliminarVigenciaResponse" />
+    </operation>
+    <operation name="insertarVigencia">
+      <input wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/insertarVigenciaRequest" message="tns:insertarVigencia" />
+      <output wsam:Action="http://vigencia.services.weardrop.pucp.edu.pe/VigenciaWS/insertarVigenciaResponse" message="tns:insertarVigenciaResponse" />
+    </operation>
+  </portType>
+  <binding name="VigenciaWSPortBinding" type="tns:VigenciaWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="hello">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarVigencia">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="mosrtra_vigencias">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="mostrar_vigenciasActivas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarVigencia">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarVigencia">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="VigenciaWS">
+    <port name="VigenciaWSPort" binding="tns:VigenciaWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/VigenciaWS" />
+    </port>
+  </service>
+</definitions>

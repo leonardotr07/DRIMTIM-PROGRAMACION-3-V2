@@ -5,11 +5,29 @@
       <xsd:import schemaLocation="http://localhost:8080/WearDropWS/BlusaWS?xsd=1" namespace="http://prendas.services.weardrop.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="modificarBlusa">
+    <part name="parameters" element="tns:modificarBlusa" />
+  </message>
+  <message name="modificarBlusaResponse">
+    <part name="parameters" element="tns:modificarBlusaResponse" />
+  </message>
+  <message name="eliminarBlusa">
+    <part name="parameters" element="tns:eliminarBlusa" />
+  </message>
+  <message name="eliminarBlusaResponse">
+    <part name="parameters" element="tns:eliminarBlusaResponse" />
+  </message>
   <message name="listarBlusas">
     <part name="parameters" element="tns:listarBlusas" />
   </message>
   <message name="listarBlusasResponse">
     <part name="parameters" element="tns:listarBlusasResponse" />
+  </message>
+  <message name="obtenerBlusaPorId">
+    <part name="parameters" element="tns:obtenerBlusaPorId" />
+  </message>
+  <message name="obtenerBlusaPorIdResponse">
+    <part name="parameters" element="tns:obtenerBlusaPorIdResponse" />
   </message>
   <message name="insertarBlusa">
     <part name="parameters" element="tns:insertarBlusa" />
@@ -42,9 +60,21 @@
     <part name="parameters" element="tns:modificarBlusaResponse" />
   </message>
   <portType name="BlusaWS">
+    <operation name="modificarBlusa">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/modificarBlusaRequest" message="tns:modificarBlusa" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/modificarBlusaResponse" message="tns:modificarBlusaResponse" />
+    </operation>
+    <operation name="eliminarBlusa">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/eliminarBlusaRequest" message="tns:eliminarBlusa" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/eliminarBlusaResponse" message="tns:eliminarBlusaResponse" />
+    </operation>
     <operation name="listarBlusas">
       <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/listarBlusasRequest" message="tns:listarBlusas" />
       <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/listarBlusasResponse" message="tns:listarBlusasResponse" />
+    </operation>
+    <operation name="obtenerBlusaPorId">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/obtenerBlusaPorIdRequest" message="tns:obtenerBlusaPorId" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/obtenerBlusaPorIdResponse" message="tns:obtenerBlusaPorIdResponse" />
     </operation>
     <operation name="insertarBlusa">
       <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/BlusaWS/insertarBlusaRequest" message="tns:insertarBlusa" />
@@ -69,7 +99,34 @@
   </portType>
   <binding name="BlusaWSPortBinding" type="tns:BlusaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="modificarBlusa">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarBlusa">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="listarBlusas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerBlusaPorId">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -88,33 +145,6 @@
       </output>
     </operation>
     <operation name="filtrarBlusas">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="eliminarBlusa">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="obtenerBlusaPorId">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="modificarBlusa">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

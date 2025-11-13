@@ -35,6 +35,12 @@
   <message name="insertarPantalonResponse">
     <part name="parameters" element="tns:insertarPantalonResponse" />
   </message>
+  <message name="filtrarPantalones">
+    <part name="parameters" element="tns:filtrarPantalones" />
+  </message>
+  <message name="filtrarPantalonesResponse">
+    <part name="parameters" element="tns:filtrarPantalonesResponse" />
+  </message>
   <message name="listarPantalones">
     <part name="parameters" element="tns:listarPantalones" />
   </message>
@@ -62,6 +68,10 @@
       <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PantalonWS/insertarPantalonRequest" message="tns:insertarPantalon" />
       <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PantalonWS/insertarPantalonResponse" message="tns:insertarPantalonResponse" />
     </operation>
+    <operation name="filtrarPantalones">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PantalonWS/filtrarPantalonesRequest" message="tns:filtrarPantalones" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PantalonWS/filtrarPantalonesResponse" message="tns:filtrarPantalonesResponse" />
+    </operation>
     <operation name="listarPantalones">
       <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PantalonWS/listarPantalonesRequest" message="tns:listarPantalones" />
       <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/PantalonWS/listarPantalonesResponse" message="tns:listarPantalonesResponse" />
@@ -69,15 +79,6 @@
   </portType>
   <binding name="PantalonWSPortBinding" type="tns:PantalonWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="filtrarPantalones">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="obtenerPantalonPorId">
       <soap:operation soapAction="" />
       <input>
@@ -106,6 +107,15 @@
       </output>
     </operation>
     <operation name="insertarPantalon">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="filtrarPantalones">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

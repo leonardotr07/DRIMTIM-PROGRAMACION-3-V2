@@ -16,5 +16,5 @@ import pe.edu.pucp.weardrop.promocionesdescuentos.PromocionCombo;
  */
 public interface PromocionComboBOI extends BusinessObject<PromocionCombo>{
      public ArrayList<PromocionCombo> listarActivos() throws Exception;
-    public void insertar_PrendaYCombo(PromocionCombo descuento, ArrayList<Prenda> prendas, Vigencia vig)throws Exception;
+    public int insertar_PrendaYCombo(PromocionCombo descuento, ArrayList<Prenda> prendas, Vigencia vig)throws Exception;
 }

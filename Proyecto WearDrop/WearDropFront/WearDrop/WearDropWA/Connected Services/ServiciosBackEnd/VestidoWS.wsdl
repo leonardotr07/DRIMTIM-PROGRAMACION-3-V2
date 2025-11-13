@@ -5,6 +5,12 @@
       <xsd:import schemaLocation="http://localhost:8080/WearDropWS/VestidoWS?xsd=1" namespace="http://prendas.services.weardrop.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="filtrarVestidos">
+    <part name="parameters" element="tns:filtrarVestidos" />
+  </message>
+  <message name="filtrarVestidosResponse">
+    <part name="parameters" element="tns:filtrarVestidosResponse" />
+  </message>
   <message name="eliminarVestido">
     <part name="parameters" element="tns:eliminarVestido" />
   </message>
@@ -23,11 +29,11 @@
   <message name="insertarVestidoResponse">
     <part name="parameters" element="tns:insertarVestidoResponse" />
   </message>
-  <message name="filtrarVestidos">
-    <part name="parameters" element="tns:filtrarVestidos" />
+  <message name="modificarVestido">
+    <part name="parameters" element="tns:modificarVestido" />
   </message>
-  <message name="filtrarVestidosResponse">
-    <part name="parameters" element="tns:filtrarVestidosResponse" />
+  <message name="modificarVestidoResponse">
+    <part name="parameters" element="tns:modificarVestidoResponse" />
   </message>
   <message name="listarVestidos">
     <part name="parameters" element="tns:listarVestidos" />
@@ -42,6 +48,10 @@
     <part name="parameters" element="tns:obtenerVestidoPorIdResponse" />
   </message>
   <portType name="VestidoWS">
+    <operation name="filtrarVestidos">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/filtrarVestidosRequest" message="tns:filtrarVestidos" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/filtrarVestidosResponse" message="tns:filtrarVestidosResponse" />
+    </operation>
     <operation name="eliminarVestido">
       <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/eliminarVestidoRequest" message="tns:eliminarVestido" />
       <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/eliminarVestidoResponse" message="tns:eliminarVestidoResponse" />
@@ -54,9 +64,9 @@
       <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/insertarVestidoRequest" message="tns:insertarVestido" />
       <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/insertarVestidoResponse" message="tns:insertarVestidoResponse" />
     </operation>
-    <operation name="filtrarVestidos">
-      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/filtrarVestidosRequest" message="tns:filtrarVestidos" />
-      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/filtrarVestidosResponse" message="tns:filtrarVestidosResponse" />
+    <operation name="modificarVestido">
+      <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/modificarVestidoRequest" message="tns:modificarVestido" />
+      <output wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/modificarVestidoResponse" message="tns:modificarVestidoResponse" />
     </operation>
     <operation name="listarVestidos">
       <input wsam:Action="http://prendas.services.weardrop.pucp.edu.pe/VestidoWS/listarVestidosRequest" message="tns:listarVestidos" />
@@ -69,7 +79,7 @@
   </portType>
   <binding name="VestidoWSPortBinding" type="tns:VestidoWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="eliminarVestido">
+    <operation name="filtrarVestidos">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -78,7 +88,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="modificarVestido">
+    <operation name="eliminarVestido">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -96,7 +106,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="filtrarVestidos">
+    <operation name="modificarVestido">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

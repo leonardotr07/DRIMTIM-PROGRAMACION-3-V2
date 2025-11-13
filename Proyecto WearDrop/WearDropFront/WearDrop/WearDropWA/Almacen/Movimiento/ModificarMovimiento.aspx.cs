@@ -55,7 +55,7 @@ namespace WearDropWA
             try
             {
                 // Obtener lista de almacenes del backend
-                BindingList<almacen> listaAlmacenes = new BindingList<almacen>(boAlmacen.listarAlmacenesActivos());
+                BindingList<almacen1> listaAlmacenes = new BindingList<almacen1>(boAlmacen.listarAlmacenesActivos());
 
                 // Crear lista formateada
                 var almacenesFormateados = listaAlmacenes.Select(a => new
@@ -219,7 +219,7 @@ namespace WearDropWA
                     if (datMov == null)
                     {
                         datMov = new movimientoAlmacen();
-                        datMov.datAlmacen = new almacen { id = idAlmacen };
+                        datMov.datAlmacen = new almacen1 { id = idAlmacen };
                     }
 
                     // 🔹 Actualizar los campos modificables

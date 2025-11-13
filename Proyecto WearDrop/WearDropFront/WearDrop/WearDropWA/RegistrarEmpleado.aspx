@@ -50,9 +50,14 @@
     <div class="row align-items-center mb-4">
       <div class="col-lg-10 p-0">
         <div class="header-title">
-          <div class="title-section"><h2>Registrar Empleado</h2></div>
-          <div class="color-bar bar-1"></div>
-          <div class="color-bar bar-2"></div>
+            <div class="title-section">
+                <h2>
+                    <asp:Label ID="lblTitulo" runat="server" Text="Registrar Empleado"></asp:Label>
+
+                </h2>
+            </div>
+            <div class="color-bar bar-1"></div>
+            <div class="color-bar bar-2"></div>
         </div>
       </div>
     </div>
@@ -118,6 +123,28 @@
     </div>
 
   </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="errorModalLabel">
+                        <i class="fa-solid fa-triangle-exclamation me-2"></i>Mensaje de Error
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <asp:Label ID="Label1" runat="server" CssClass="form-text text-danger"
+                        Text="Ha ocurrido un error de validación."></asp:Label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>
 
-<asp:Content ID="s" ContentPlaceHolderID="ScriptsContent" runat="server" />
+<asp:Content ID="s" ContentPlaceHolderID="ScriptsContent" runat="server">
+    <script src="Scripts/Personal/Empleado.js"></script>
+</asp:Content>

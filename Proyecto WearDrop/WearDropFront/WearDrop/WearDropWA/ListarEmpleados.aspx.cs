@@ -1,32 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WearDropWA.ServiciosBackEnd;
 
 namespace WearDropWA
 {
     public partial class ListarEmpleados : System.Web.UI.Page
     {
+        private EmpleadoWSClient boEmpleado;
+        private BindingList<empleado1> empleados;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Prueba de DataTable para ver el formato en el GridView
-            DataTable dt = new DataTable();
-            dt.Columns.Add("IdEmpleado");
-            dt.Columns.Add("Nombre");
-            dt.Columns.Add("Apellidos");
-            dt.Columns.Add("Dni");
-            dt.Columns.Add("Sueldo");
-
-            // Agrega filas de prueba para ver el formato
-            dt.Rows.Add("1", "Pedro", "Sanchez", "73024207", "1770.00");
-            dt.Rows.Add("2", "Leonardo", "Valeria", "73024207", "1000.00");
-            dt.Rows.Add("3", "Matias", "Jafeth", "73024207", "100.00");
-
-            gvEmpleados.DataSource = dt;
+            boEmpleado = new EmpleadoWSClient();
+            empleados = new BindingList<empleado1>(boEmpleado.listarEmpleados());
+            gvEmpleados.DataSource = empleados;
             gvEmpleados.DataBind();
+
         }
 
         protected void lkRegistrar_Click(object sender, EventArgs e)
@@ -41,12 +37,32 @@ namespace WearDropWA
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RegistrarEmpleado.aspx");
+            int idEmpleado = Int32.Parse(((LinkButton)sender).CommandArgument);
+            empleado1 empSelect = empleados.Single(x=>x.idPersona == idEmpleado);
+            Session["empleado"] = empSelect;
+            Response.Redirect("RegistrarEmpleado.aspx?accion=modificar");
+
         }
 
         protected void btnVisualizar_Click(object sender, EventArgs e)
         {
+            int idEmpleado = Int32.Parse(((LinkButton)sender).CommandArgument);
+            empleado1 empSelect = empleados.Single(x => x.idPersona == idEmpleado);
+            Session["empleado"] = empSelect;
             Response.Redirect("VerEmpleado.aspx");
+        }
+
+        protected void gvEmpleados_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvEmpleados.PageIndex = e.NewPageIndex;
+            gvEmpleados.DataBind();
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int idEmpleado = Int32.Parse(((LinkButton)sender).CommandArgument);
+            boEmpleado.eliminarEmpleado(idEmpleado);
+            Response.Redirect("ListarEmpleados.aspx");
         }
     }
 }

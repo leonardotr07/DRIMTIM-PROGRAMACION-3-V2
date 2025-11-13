@@ -7,7 +7,7 @@ namespace WearDropWA
     public partial class ModificarAlmacen : System.Web.UI.Page
     {
         private AlmacenWSClient boAlmacen;
-        private almacen datAlmacen;
+        private almacen1 datAlmacen;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -15,7 +15,7 @@ namespace WearDropWA
             if (!IsPostBack)
             {
                 // Obtener el almacén de la sesión
-                datAlmacen = (almacen)Session["almacenSeleccionado"];
+                datAlmacen = (almacen1)Session["almacenSeleccionado"];
 
                 if (datAlmacen != null)
                 {
@@ -37,7 +37,7 @@ namespace WearDropWA
             try
             {
                 // Obtener el almacén de la sesión
-                datAlmacen = (almacen)Session["almacenSeleccionado"];
+                datAlmacen = (almacen1)Session["almacenSeleccionado"];
 
                 if (datAlmacen != null)
                 {

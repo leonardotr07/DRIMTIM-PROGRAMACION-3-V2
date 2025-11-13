@@ -53,10 +53,10 @@ public class DescuentoLiquidacionBOImpl implements DescuentoLiquidacionBOI{
     }
 
     @Override
-    public void insertar_PrendaDescuento(DescuentoLiquidacion descuento, ArrayList<Prenda> prendas, Vigencia vig) throws Exception {
+    public int insertar_PrendaDescuento(DescuentoLiquidacion descuento, ArrayList<Prenda> prendas, Vigencia vig) throws Exception {
         validar(descuento);
-        daoDesc.insertar_PrendaDescuento(descuento, prendas, vig);
-        return;
+        int resultado=daoDesc.insertar_PrendaDescuento(descuento, prendas, vig);
+        return resultado;
     }
     @Override
     public void validar(DescuentoLiquidacion objeto) throws Exception {

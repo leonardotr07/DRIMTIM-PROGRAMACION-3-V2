@@ -11,11 +11,11 @@ namespace WearDropWA
     public partial class RegistrarAlmacen : System.Web.UI.Page
     {
         private AlmacenWSClient boAlmacen;
-        private almacen datAlmacen;
+        private almacen1 datAlmacen;
         protected void Page_Load(object sender, EventArgs e)
         {
             boAlmacen=new AlmacenWSClient();
-            datAlmacen = new almacen();
+            datAlmacen = new almacen1();
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {

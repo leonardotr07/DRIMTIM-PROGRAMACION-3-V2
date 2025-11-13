@@ -16,6 +16,6 @@ import pe.edu.pucp.weardrop.promocionesdescuentos.DescuentoPorcentaje;
  */
 public interface DescuentoPorcentajeDAO extends IDAO<DescuentoPorcentaje>{
     public ArrayList<DescuentoPorcentaje> listarActivos();
-        public void insertar_PrendaDescuento(DescuentoPorcentaje descuento, ArrayList<Prenda> prendas, Vigencia vig);
+        public int insertar_PrendaDescuento(DescuentoPorcentaje descuento, ArrayList<Prenda> prendas, Vigencia vig);
 
 }

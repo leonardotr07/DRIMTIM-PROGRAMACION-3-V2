@@ -7,11 +7,15 @@ package pe.edu.pucp.weardrop.services.descuentos;
 import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
+import java.util.ArrayList;
 import java.util.List;
+import pe.edu.pucp.weardrop.clasificacionropa.Vigencia;
 
 import pe.edu.pucp.weardrop.promocionesdescuentos.DescuentoPorcentaje;
 import pe.edu.pucp.weardrop.descuento.boi.DescuentoPorcentajeBOI;
 import pe.edu.pucp.weardrop.descuento.bo.DescuentoPorcentajeBOImpl;
+import pe.edu.pucp.weardrop.prendas.Prenda;
+import pe.edu.pucp.weardrop.promocionesdescuentos.DescuentoLiquidacion;
 
 /**
  *
@@ -37,7 +41,28 @@ public class DescuentoPorcentajeWS {
         }
         return listaDesc;
     }
+    @WebMethod(operationName = "mostrar_descuentosActivos")
+    public List<DescuentoPorcentaje> mostrar_descuentosActivos(){
+        List<DescuentoPorcentaje> listaDesc=null;
+        try{
+            listaDesc=boDesc.listarActivos();
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return listaDesc;
+    }
     
+     @WebMethod(operationName = "insertar_prendadescuento")
+    public int insertar_prendadescuento(@WebParam(name="datDesc") DescuentoPorcentaje datDesc, @WebParam(name="prendas") ArrayList<Prenda> prendas, @WebParam(name="vig") Vigencia vig){
+        
+        int resultado=0;
+        try{
+            resultado=boDesc.insertar_PrendaDescuento(datDesc, prendas, vig);
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return resultado;
+    }
    
     @WebMethod(operationName = "insertarDescuento")
     public int insertarDescuento(@WebParam(name="datDesc") DescuentoPorcentaje datDesc){

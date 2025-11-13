@@ -59,22 +59,22 @@
       <xs:element minOccurs="0" name="tipo" type="tns:tipoMovimiento" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="insertarMovXLote">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="datMovXLote" type="tns:movimientoAlmacenXLote" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="insertarMovXLoteResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="eliminarMovXLote">
     <xs:sequence>
       <xs:element name="idMovXLote" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="eliminarMovXLoteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarMovXLote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datMovXLote" type="tns:movimientoAlmacenXLote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarMovXLoteResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:int" />
     </xs:sequence>

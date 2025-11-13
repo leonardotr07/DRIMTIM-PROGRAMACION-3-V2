@@ -68,10 +68,10 @@ public class PromocionConjuntoBOImpl implements PromocionConjuntoBOI{
      }
 
     @Override
-    public void insertar_PrendaYConjunto(PromocionConjunto descuento, ArrayList<Prenda> prendas, Vigencia vig) throws Exception {
+    public int insertar_PrendaYConjunto(PromocionConjunto descuento, ArrayList<Prenda> prendas, Vigencia vig) throws Exception {
         validar(descuento);
-        daoProm.insertarPrendaYConjunto(descuento, prendas, vig);
-        return;
+        int resultado=daoProm.insertarPrendaYConjunto(descuento, prendas, vig);
+        return resultado;
     }
     
   

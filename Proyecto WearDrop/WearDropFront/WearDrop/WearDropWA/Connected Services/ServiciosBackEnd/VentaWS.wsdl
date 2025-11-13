@@ -5,17 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/WearDropWS/VentaWS?xsd=1" namespace="http://ventas.services.weardrop.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="insertarVenta">
-    <part name="parameters" element="tns:insertarVenta" />
+  <message name="eliminarVenta">
+    <part name="parameters" element="tns:eliminarVenta" />
   </message>
-  <message name="insertarVentaResponse">
-    <part name="parameters" element="tns:insertarVentaResponse" />
-  </message>
-  <message name="modificarVenta">
-    <part name="parameters" element="tns:modificarVenta" />
-  </message>
-  <message name="modificarVentaResponse">
-    <part name="parameters" element="tns:modificarVentaResponse" />
+  <message name="eliminarVentaResponse">
+    <part name="parameters" element="tns:eliminarVentaResponse" />
   </message>
   <message name="listarVentas">
     <part name="parameters" element="tns:listarVentas" />
@@ -23,11 +17,11 @@
   <message name="listarVentasResponse">
     <part name="parameters" element="tns:listarVentasResponse" />
   </message>
-  <message name="eliminarVenta">
-    <part name="parameters" element="tns:eliminarVenta" />
+  <message name="insertarVenta">
+    <part name="parameters" element="tns:insertarVenta" />
   </message>
-  <message name="eliminarVentaResponse">
-    <part name="parameters" element="tns:eliminarVentaResponse" />
+  <message name="insertarVentaResponse">
+    <part name="parameters" element="tns:insertarVentaResponse" />
   </message>
   <message name="obtenerVentaPorId">
     <part name="parameters" element="tns:obtenerVentaPorId" />
@@ -35,31 +29,37 @@
   <message name="obtenerVentaPorIdResponse">
     <part name="parameters" element="tns:obtenerVentaPorIdResponse" />
   </message>
+  <message name="modificarVenta">
+    <part name="parameters" element="tns:modificarVenta" />
+  </message>
+  <message name="modificarVentaResponse">
+    <part name="parameters" element="tns:modificarVentaResponse" />
+  </message>
   <portType name="VentaWS">
-    <operation name="insertarVenta">
-      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/insertarVentaRequest" message="tns:insertarVenta" />
-      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/insertarVentaResponse" message="tns:insertarVentaResponse" />
-    </operation>
-    <operation name="modificarVenta">
-      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/modificarVentaRequest" message="tns:modificarVenta" />
-      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/modificarVentaResponse" message="tns:modificarVentaResponse" />
+    <operation name="eliminarVenta">
+      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/eliminarVentaRequest" message="tns:eliminarVenta" />
+      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/eliminarVentaResponse" message="tns:eliminarVentaResponse" />
     </operation>
     <operation name="listarVentas">
       <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/listarVentasRequest" message="tns:listarVentas" />
       <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/listarVentasResponse" message="tns:listarVentasResponse" />
     </operation>
-    <operation name="eliminarVenta">
-      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/eliminarVentaRequest" message="tns:eliminarVenta" />
-      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/eliminarVentaResponse" message="tns:eliminarVentaResponse" />
+    <operation name="insertarVenta">
+      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/insertarVentaRequest" message="tns:insertarVenta" />
+      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/insertarVentaResponse" message="tns:insertarVentaResponse" />
     </operation>
     <operation name="obtenerVentaPorId">
       <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/obtenerVentaPorIdRequest" message="tns:obtenerVentaPorId" />
       <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/obtenerVentaPorIdResponse" message="tns:obtenerVentaPorIdResponse" />
     </operation>
+    <operation name="modificarVenta">
+      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/modificarVentaRequest" message="tns:modificarVenta" />
+      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/VentaWS/modificarVentaResponse" message="tns:modificarVentaResponse" />
+    </operation>
   </portType>
   <binding name="VentaWSPortBinding" type="tns:VentaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="insertarVenta">
+    <operation name="eliminarVenta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -77,16 +77,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarVentas">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="eliminarVenta">
+    <operation name="insertarVenta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -96,6 +87,15 @@
       </output>
     </operation>
     <operation name="obtenerVentaPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarVenta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

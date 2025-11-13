@@ -172,11 +172,13 @@ public class DescuentoMontoImpl implements DescuentoMontoDAO{
         return listaDesc;    }
 
     @Override
-    public void insertar_PrendaDescuento(DescuentoMonto descuento, ArrayList<Prenda> prendas, Vigencia vig) {
+    public int insertar_PrendaDescuento(DescuentoMonto descuento, ArrayList<Prenda> prendas, Vigencia vig) {
         DescuentoMontoDAO daoDesc;
         daoDesc=new DescuentoMontoImpl();
         VigenciaDAO daoVig;
         daoVig=new VigenciaImpl();
+                int resultado=-1;
+
         daoVig.insertar(vig);
         descuento.setVigencia(vig);
         int idDesc=daoDesc.insertar(descuento);
@@ -184,10 +186,11 @@ public class DescuentoMontoImpl implements DescuentoMontoDAO{
             Map<Integer, Object> parametrosEntrada=new HashMap<>();
              parametrosEntrada.put(1, pren.getIdPrenda());
              parametrosEntrada.put(2,idDesc);
-             int resultado=DBManager.getInstance().ejecutarProcedimiento("insertar_prendadescuento", parametrosEntrada, null);
+              resultado=DBManager.getInstance().ejecutarProcedimiento("insertar_prendadescuento", parametrosEntrada, null);
              if(resultado>0) System.out.println("Se ha insertado correctamente.");
              else System.out.println("Ocurrio un error en la inserción.");
         }
+        return resultado;
     }
     
 }

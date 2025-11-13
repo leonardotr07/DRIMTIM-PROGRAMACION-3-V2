@@ -122,6 +122,16 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:blusa" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="modificarBlusa">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="blusa" type="tns:blusa" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarBlusaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="filtrarBlusas">
     <xs:sequence>
       <xs:element minOccurs="0" name="nombreLike" type="xs:string" />

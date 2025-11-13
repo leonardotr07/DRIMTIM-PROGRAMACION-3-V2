@@ -141,13 +141,14 @@
             <asp:GridView ID="gvClientes" runat="server"
                 CssClass="table table-hover table-striped custom-grid"
                 AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
-                GridLines="None">
+                GridLines="None"
+                AllowPaging="true" PageSize="8" OnPageIndexChanging="gvClientes_PageIndexChanging">
                 <Columns>
-                    <asp:BoundField HeaderText="ID" DataField="IdCliente" />
-                    <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                    <asp:BoundField HeaderText="Apellidos" DataField="Apellidos" />
-                    <asp:BoundField HeaderText="DNI" DataField="Dni" />
-                    <asp:BoundField HeaderText="Tipo de Cliente" DataField="TipoCliente" />
+                    <asp:BoundField HeaderText="ID" DataField="idCliente" />
+                    <asp:BoundField HeaderText="Nombre" DataField="nombre" />
+                    <asp:BoundField HeaderText="Apellido" DataField="primerApellido" />
+                    <asp:BoundField HeaderText="DNI" DataField="dni" />
+                    <asp:BoundField HeaderText="Tipo de Cliente" DataField="tipo.descripcion" />
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
                             <div class="action-btns">

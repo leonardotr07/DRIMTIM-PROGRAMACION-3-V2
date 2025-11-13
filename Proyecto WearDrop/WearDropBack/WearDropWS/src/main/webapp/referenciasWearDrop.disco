@@ -3,6 +3,8 @@
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/MovimientoAlmacenWS?WSDL"/>  
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/MovimientoAlmacenXLoteWS?WSDL"/>  
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/LoteWS?WSDL"/>
+<<<<<<< HEAD
+=======
 
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/CargoWS?WSDL"/>  
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/EmpleadoWS?WSDL"/>  
@@ -10,12 +12,14 @@
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/TipoCuentaWS?WSDL"/>  
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/VentaWS?WSDL"/>  
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/ClienteWS?WSDL"/>
+  
   <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/PoloWS?WSDL" />
-<contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/BlusaWS?WSDL" />
-<contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/FaldaWS?WSDL" />
-<contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/CasacaWS?WSDL" />
-<contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/PantalonWS?WSDL" />
-<contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/VestidoWS?WSDL" />
-<contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/GorroWS?WSDL" />
+  <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/BlusaWS?WSDL" />
+  <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/FaldaWS?WSDL" />
+  <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/CasacaWS?WSDL" />
+  <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/PantalonWS?WSDL" />
+  <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/VestidoWS?WSDL" />
+  <contractRef xmlns="http://schemas.xmlsoap.org/disco/scl/" ref="http://localhost:8080/WearDropWS/GorroWS?WSDL" />
 
+>>>>>>> a9df089585c69be9b96c45c0dbda38c6dfe4c4df
 </discovery>

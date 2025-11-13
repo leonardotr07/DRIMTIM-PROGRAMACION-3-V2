@@ -176,7 +176,7 @@
         <div class="descuento-container">
 
             <!-- Campo Nombre del Descuento -->
-            <div class="form-field">
+          <%--  <div class="form-field">
                 <label for="nombrePromocion">Nombre (*)</label>
                 <input type="text" id="nombrePromocion" placeholder="Nombre de la promocion" />
             </div>
@@ -189,8 +189,19 @@
             <div class="form-field">
     <label for="cantidadRequerida">Cantidad Requerida (*)</label>
     <input type="text" id="cantidadRequerida" placeholder="Cantidad Requerida" />
-</div>
-
+</div>--%>
+             <div class="col-md-3">
+     <label class="form-label" for="txtNombre">Nombre <span id="spanReqNombre" runat="server">(*)</span></label>
+     <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ej: Prom1"></asp:TextBox>
+ </div>
+             <div class="col-md-3">
+     <label class="form-label" for="txtCantidadGratis">Cantidad Gratis <span id="spanReqGratis" runat="server">(*)</span></label>
+     <asp:TextBox ID="txtCantidadGratis" runat="server" CssClass="form-control" placeholder="Ej: 10"></asp:TextBox>
+ </div>
+             <div class="col-md-3">
+     <label class="form-label" for="txtCantidadRequerida">Cantidad Requerida<span id="span1" runat="server">(*)</span></label>
+     <asp:TextBox ID="txtCantidadRequerida" runat="server" CssClass="form-control" placeholder="Ej: 10"></asp:TextBox>
+ </div>
             <!-- Botón Añadir Prenda -->
             <div class="form-button-container-prenda
                 ">

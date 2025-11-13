@@ -5,11 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/WearDropWS/ClienteWS?xsd=1" namespace="http://ventas.services.weardrop.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="listarClientes">
-    <part name="parameters" element="tns:listarClientes" />
+  <message name="obtenerClientePorId">
+    <part name="parameters" element="tns:obtenerClientePorId" />
   </message>
-  <message name="listarClientesResponse">
-    <part name="parameters" element="tns:listarClientesResponse" />
+  <message name="obtenerClientePorIdResponse">
+    <part name="parameters" element="tns:obtenerClientePorIdResponse" />
   </message>
   <message name="modificarCliente">
     <part name="parameters" element="tns:modificarCliente" />
@@ -17,17 +17,11 @@
   <message name="modificarClienteResponse">
     <part name="parameters" element="tns:modificarClienteResponse" />
   </message>
-  <message name="eliminarCliente">
-    <part name="parameters" element="tns:eliminarCliente" />
+  <message name="listarClientes">
+    <part name="parameters" element="tns:listarClientes" />
   </message>
-  <message name="eliminarClienteResponse">
-    <part name="parameters" element="tns:eliminarClienteResponse" />
-  </message>
-  <message name="obtenerClientePorId">
-    <part name="parameters" element="tns:obtenerClientePorId" />
-  </message>
-  <message name="obtenerClientePorIdResponse">
-    <part name="parameters" element="tns:obtenerClientePorIdResponse" />
+  <message name="listarClientesResponse">
+    <part name="parameters" element="tns:listarClientesResponse" />
   </message>
   <message name="insertarCliente">
     <part name="parameters" element="tns:insertarCliente" />
@@ -35,31 +29,37 @@
   <message name="insertarClienteResponse">
     <part name="parameters" element="tns:insertarClienteResponse" />
   </message>
+  <message name="eliminarCliente">
+    <part name="parameters" element="tns:eliminarCliente" />
+  </message>
+  <message name="eliminarClienteResponse">
+    <part name="parameters" element="tns:eliminarClienteResponse" />
+  </message>
   <portType name="ClienteWS">
-    <operation name="listarClientes">
-      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/listarClientesRequest" message="tns:listarClientes" />
-      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/listarClientesResponse" message="tns:listarClientesResponse" />
+    <operation name="obtenerClientePorId">
+      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/obtenerClientePorIdRequest" message="tns:obtenerClientePorId" />
+      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/obtenerClientePorIdResponse" message="tns:obtenerClientePorIdResponse" />
     </operation>
     <operation name="modificarCliente">
       <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/modificarClienteRequest" message="tns:modificarCliente" />
       <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/modificarClienteResponse" message="tns:modificarClienteResponse" />
     </operation>
-    <operation name="eliminarCliente">
-      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/eliminarClienteRequest" message="tns:eliminarCliente" />
-      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/eliminarClienteResponse" message="tns:eliminarClienteResponse" />
-    </operation>
-    <operation name="obtenerClientePorId">
-      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/obtenerClientePorIdRequest" message="tns:obtenerClientePorId" />
-      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/obtenerClientePorIdResponse" message="tns:obtenerClientePorIdResponse" />
+    <operation name="listarClientes">
+      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/listarClientesRequest" message="tns:listarClientes" />
+      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/listarClientesResponse" message="tns:listarClientesResponse" />
     </operation>
     <operation name="insertarCliente">
       <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/insertarClienteRequest" message="tns:insertarCliente" />
       <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/insertarClienteResponse" message="tns:insertarClienteResponse" />
     </operation>
+    <operation name="eliminarCliente">
+      <input wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/eliminarClienteRequest" message="tns:eliminarCliente" />
+      <output wsam:Action="http://ventas.services.weardrop.pucp.edu.pe/ClienteWS/eliminarClienteResponse" message="tns:eliminarClienteResponse" />
+    </operation>
   </portType>
   <binding name="ClienteWSPortBinding" type="tns:ClienteWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="listarClientes">
+    <operation name="obtenerClientePorId">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -95,7 +95,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="insertarCliente">
+    <operation name="eliminarCliente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

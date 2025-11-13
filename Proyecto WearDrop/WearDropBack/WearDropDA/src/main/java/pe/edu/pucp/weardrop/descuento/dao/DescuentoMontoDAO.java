@@ -16,7 +16,7 @@ import pe.edu.pucp.weardrop.promocionesdescuentos.DescuentoMonto;
  */
 public interface DescuentoMontoDAO extends IDAO<DescuentoMonto>{
     public ArrayList<DescuentoMonto> listarActivos();
-    public void insertar_PrendaDescuento(DescuentoMonto descuento, ArrayList<Prenda> prendas, Vigencia vig);
+    public int insertar_PrendaDescuento(DescuentoMonto descuento, ArrayList<Prenda> prendas, Vigencia vig);
     
     
 }

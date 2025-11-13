@@ -182,9 +182,10 @@ public class PromocionComboImpl implements PromocionComboDAO{
     }
 
     @Override
-    public void insertarPrendaYCombo(PromocionCombo prom, ArrayList<Prenda> prendas,Vigencia vig) {
+    public int insertarPrendaYCombo(PromocionCombo prom, ArrayList<Prenda> prendas,Vigencia vig) {
         PromocionComboDAO daoProm;
         daoProm=new PromocionComboImpl();
+        int resultado=-1;
         VigenciaDAO daoVig;
         daoVig=new VigenciaImpl();
         daoVig.insertar(vig);
@@ -194,9 +195,10 @@ public class PromocionComboImpl implements PromocionComboDAO{
             Map<Integer, Object> parametrosEntrada=new HashMap<>();
              parametrosEntrada.put(1, pren.getIdPrenda());
              parametrosEntrada.put(2,idProm);
-             int resultado=DBManager.getInstance().ejecutarProcedimiento("insertar_prendapromocion", parametrosEntrada, null);
+              resultado=DBManager.getInstance().ejecutarProcedimiento("insertar_prendapromocion", parametrosEntrada, null);
              if(resultado>0) System.out.println("Se ha insertado correctamente.");
              else System.out.println("Ocurrio un error en la inserción.");
         }
+        return resultado;
     }
 }

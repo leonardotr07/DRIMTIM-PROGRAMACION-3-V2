@@ -5,17 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/WearDropWS/TipoCuentaWS?xsd=1" namespace="http://personal.services.weardrop.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="eliminarTipoCuenta">
-    <part name="parameters" element="tns:eliminarTipoCuenta" />
+  <message name="modificarTipoCuenta">
+    <part name="parameters" element="tns:modificarTipoCuenta" />
   </message>
-  <message name="eliminarTipoCuentaResponse">
-    <part name="parameters" element="tns:eliminarTipoCuentaResponse" />
-  </message>
-  <message name="obtenerTipoCuentaPorId">
-    <part name="parameters" element="tns:obtenerTipoCuentaPorId" />
-  </message>
-  <message name="obtenerTipoCuentaPorIdResponse">
-    <part name="parameters" element="tns:obtenerTipoCuentaPorIdResponse" />
+  <message name="modificarTipoCuentaResponse">
+    <part name="parameters" element="tns:modificarTipoCuentaResponse" />
   </message>
   <message name="insertarTipoCuenta">
     <part name="parameters" element="tns:insertarTipoCuenta" />
@@ -23,43 +17,49 @@
   <message name="insertarTipoCuentaResponse">
     <part name="parameters" element="tns:insertarTipoCuentaResponse" />
   </message>
+  <message name="obtenerTipoCuentaPorId">
+    <part name="parameters" element="tns:obtenerTipoCuentaPorId" />
+  </message>
+  <message name="obtenerTipoCuentaPorIdResponse">
+    <part name="parameters" element="tns:obtenerTipoCuentaPorIdResponse" />
+  </message>
   <message name="listarTiposCuenta">
     <part name="parameters" element="tns:listarTiposCuenta" />
   </message>
   <message name="listarTiposCuentaResponse">
     <part name="parameters" element="tns:listarTiposCuentaResponse" />
   </message>
-  <message name="modificarTipoCuenta">
-    <part name="parameters" element="tns:modificarTipoCuenta" />
+  <message name="eliminarTipoCuenta">
+    <part name="parameters" element="tns:eliminarTipoCuenta" />
   </message>
-  <message name="modificarTipoCuentaResponse">
-    <part name="parameters" element="tns:modificarTipoCuentaResponse" />
+  <message name="eliminarTipoCuentaResponse">
+    <part name="parameters" element="tns:eliminarTipoCuentaResponse" />
   </message>
   <portType name="TipoCuentaWS">
-    <operation name="eliminarTipoCuenta">
-      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/eliminarTipoCuentaRequest" message="tns:eliminarTipoCuenta" />
-      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/eliminarTipoCuentaResponse" message="tns:eliminarTipoCuentaResponse" />
-    </operation>
-    <operation name="obtenerTipoCuentaPorId">
-      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/obtenerTipoCuentaPorIdRequest" message="tns:obtenerTipoCuentaPorId" />
-      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/obtenerTipoCuentaPorIdResponse" message="tns:obtenerTipoCuentaPorIdResponse" />
+    <operation name="modificarTipoCuenta">
+      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/modificarTipoCuentaRequest" message="tns:modificarTipoCuenta" />
+      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/modificarTipoCuentaResponse" message="tns:modificarTipoCuentaResponse" />
     </operation>
     <operation name="insertarTipoCuenta">
       <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/insertarTipoCuentaRequest" message="tns:insertarTipoCuenta" />
       <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/insertarTipoCuentaResponse" message="tns:insertarTipoCuentaResponse" />
     </operation>
+    <operation name="obtenerTipoCuentaPorId">
+      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/obtenerTipoCuentaPorIdRequest" message="tns:obtenerTipoCuentaPorId" />
+      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/obtenerTipoCuentaPorIdResponse" message="tns:obtenerTipoCuentaPorIdResponse" />
+    </operation>
     <operation name="listarTiposCuenta">
       <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/listarTiposCuentaRequest" message="tns:listarTiposCuenta" />
       <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/listarTiposCuentaResponse" message="tns:listarTiposCuentaResponse" />
     </operation>
-    <operation name="modificarTipoCuenta">
-      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/modificarTipoCuentaRequest" message="tns:modificarTipoCuenta" />
-      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/modificarTipoCuentaResponse" message="tns:modificarTipoCuentaResponse" />
+    <operation name="eliminarTipoCuenta">
+      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/eliminarTipoCuentaRequest" message="tns:eliminarTipoCuenta" />
+      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/eliminarTipoCuentaResponse" message="tns:eliminarTipoCuentaResponse" />
     </operation>
   </portType>
   <binding name="TipoCuentaWSPortBinding" type="tns:TipoCuentaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="eliminarTipoCuenta">
+    <operation name="modificarTipoCuenta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -77,7 +77,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="insertarTipoCuenta">
+    <operation name="obtenerTipoCuentaPorId">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -95,7 +95,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="modificarTipoCuenta">
+    <operation name="eliminarTipoCuenta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

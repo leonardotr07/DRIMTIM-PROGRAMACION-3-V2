@@ -16,6 +16,6 @@ import pe.edu.pucp.weardrop.promocionesdescuentos.PromocionCombo;
  */
 public interface PromocionComboDAO extends IDAO<PromocionCombo>{
     public ArrayList<PromocionCombo> listarActivos();
-        public void insertarPrendaYCombo(PromocionCombo prom, ArrayList<Prenda> prendas,Vigencia vig);
+        public int insertarPrendaYCombo(PromocionCombo prom, ArrayList<Prenda> prendas,Vigencia vig);
 
 }

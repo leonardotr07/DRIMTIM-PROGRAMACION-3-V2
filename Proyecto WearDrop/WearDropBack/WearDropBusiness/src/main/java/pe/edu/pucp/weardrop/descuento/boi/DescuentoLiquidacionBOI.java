@@ -16,5 +16,5 @@ import pe.edu.pucp.weardrop.promocionesdescuentos.DescuentoLiquidacion;
  */
 public interface DescuentoLiquidacionBOI extends BusinessObject<DescuentoLiquidacion>{
      public ArrayList<DescuentoLiquidacion> listarActivos()throws Exception ;
-    public void insertar_PrendaDescuento(DescuentoLiquidacion descuento, ArrayList<Prenda> prendas, Vigencia vig)throws Exception ;
+    public int insertar_PrendaDescuento(DescuentoLiquidacion descuento, ArrayList<Prenda> prendas, Vigencia vig)throws Exception ;
 }

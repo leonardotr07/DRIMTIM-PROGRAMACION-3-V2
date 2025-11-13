@@ -66,9 +66,13 @@
     <div class="row align-items-center mb-4">
       <div class="col-lg-10 p-0">
         <div class="header-title">
-          <div class="title-section"><h2>Registrar Cliente</h2></div>
-          <div class="color-bar bar-1"></div>
-          <div class="color-bar bar-2"></div>
+          <div class="title-section">
+              <h2>
+                  <asp:Label ID="lblTitulo" runat="server" Text="Registrar Cliente"></asp:Label>
+              </h2>
+          </div>
+            <div class="color-bar bar-1"></div>
+            <div class="color-bar bar-2"></div>
         </div>
       </div>
     </div>

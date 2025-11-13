@@ -158,7 +158,7 @@ namespace WearDropWA
         {
             try
             {
-                lote lote = boLote.obtenerLotePorID(idLote);
+                lote1 lote = boLote.obtenerLotePorID(idLote);
 
                 if (lote != null && lote.idLote > 0)
                 {
@@ -273,7 +273,7 @@ namespace WearDropWA
 
                 // Asignar los objetos completos recuperados del ViewState
                 movXLote.datMov = (movimientoAlmacen)ViewState["MovimientoActual"];
-                movXLote.datLote = (lote)ViewState["LoteActual"];
+                movXLote.datLote = (lote1)ViewState["LoteActual"];
 
                 // Llamar al servicio web para insertar la relación
                 int resultado = boMovimientoAlmacenXLote.insertarMovXLote(movXLote);
@@ -336,7 +336,7 @@ namespace WearDropWA
             try
             {
                 // Llamar al servicio para obtener todos los lotes activos del almacén
-                BindingList<lote> lotesDelAlmacen = new BindingList<lote>(
+                BindingList<lote1> lotesDelAlmacen = new BindingList<lote1>(
                     boLote.listarLotesActivosPorAlmacen(idAlmacen)
                 );
 

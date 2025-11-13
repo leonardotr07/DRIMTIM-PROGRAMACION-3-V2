@@ -5,6 +5,51 @@
       <xsd:import schemaLocation="http://localhost:8080/WearDropWS/LoteWS?xsd=1" namespace="http://almacen.services.weardrop.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="listarLotesActivosPorAlmacen">
+    <part name="parameters" element="tns:listarLotesActivosPorAlmacen" />
+  </message>
+  <message name="listarLotesActivosPorAlmacenResponse">
+    <part name="parameters" element="tns:listarLotesActivosPorAlmacenResponse" />
+  </message>
+<<<<<<< HEAD
+  <message name="insertarLote">
+    <part name="parameters" element="tns:insertarLote" />
+  </message>
+  <message name="insertarLoteResponse">
+    <part name="parameters" element="tns:insertarLoteResponse" />
+=======
+  <message name="eliminarLote">
+    <part name="parameters" element="tns:eliminarLote" />
+  </message>
+  <message name="eliminarLoteResponse">
+    <part name="parameters" element="tns:eliminarLoteResponse" />
+  </message>
+  <message name="listarLotesActivos">
+    <part name="parameters" element="tns:listarLotesActivos" />
+  </message>
+  <message name="listarLotesActivosResponse">
+    <part name="parameters" element="tns:listarLotesActivosResponse" />
+>>>>>>> a9df089585c69be9b96c45c0dbda38c6dfe4c4df
+  </message>
+  <message name="modificarLote">
+    <part name="parameters" element="tns:modificarLote" />
+  </message>
+  <message name="modificarLoteResponse">
+    <part name="parameters" element="tns:modificarLoteResponse" />
+  </message>
+  <message name="eliminarLote">
+    <part name="parameters" element="tns:eliminarLote" />
+  </message>
+  <message name="eliminarLoteResponse">
+    <part name="parameters" element="tns:eliminarLoteResponse" />
+  </message>
+<<<<<<< HEAD
+  <message name="modificarLote">
+    <part name="parameters" element="tns:modificarLote" />
+  </message>
+  <message name="modificarLoteResponse">
+    <part name="parameters" element="tns:modificarLoteResponse" />
+  </message>
   <message name="listarLotesActivos">
     <part name="parameters" element="tns:listarLotesActivos" />
   </message>
@@ -16,32 +61,46 @@
   </message>
   <message name="obtenerLotePorIDResponse">
     <part name="parameters" element="tns:obtenerLotePorIDResponse" />
-  </message>
+=======
   <message name="insertarLote">
     <part name="parameters" element="tns:insertarLote" />
   </message>
   <message name="insertarLoteResponse">
     <part name="parameters" element="tns:insertarLoteResponse" />
-  </message>
-  <message name="eliminarLote">
-    <part name="parameters" element="tns:eliminarLote" />
-  </message>
-  <message name="eliminarLoteResponse">
-    <part name="parameters" element="tns:eliminarLoteResponse" />
-  </message>
-  <message name="modificarLote">
-    <part name="parameters" element="tns:modificarLote" />
-  </message>
-  <message name="modificarLoteResponse">
-    <part name="parameters" element="tns:modificarLoteResponse" />
-  </message>
-  <message name="listarLotesActivosPorAlmacen">
-    <part name="parameters" element="tns:listarLotesActivosPorAlmacen" />
-  </message>
-  <message name="listarLotesActivosPorAlmacenResponse">
-    <part name="parameters" element="tns:listarLotesActivosPorAlmacenResponse" />
+>>>>>>> a9df089585c69be9b96c45c0dbda38c6dfe4c4df
   </message>
   <portType name="LoteWS">
+    <operation name="listarLotesActivosPorAlmacen">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosPorAlmacenRequest" message="tns:listarLotesActivosPorAlmacen" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosPorAlmacenResponse" message="tns:listarLotesActivosPorAlmacenResponse" />
+    </operation>
+<<<<<<< HEAD
+    <operation name="insertarLote">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/insertarLoteRequest" message="tns:insertarLote" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/insertarLoteResponse" message="tns:insertarLoteResponse" />
+=======
+    <operation name="eliminarLote">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/eliminarLoteRequest" message="tns:eliminarLote" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/eliminarLoteResponse" message="tns:eliminarLoteResponse" />
+    </operation>
+    <operation name="listarLotesActivos">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosRequest" message="tns:listarLotesActivos" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosResponse" message="tns:listarLotesActivosResponse" />
+>>>>>>> a9df089585c69be9b96c45c0dbda38c6dfe4c4df
+    </operation>
+    <operation name="modificarLote">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/modificarLoteRequest" message="tns:modificarLote" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/modificarLoteResponse" message="tns:modificarLoteResponse" />
+    </operation>
+    <operation name="eliminarLote">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/eliminarLoteRequest" message="tns:eliminarLote" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/eliminarLoteResponse" message="tns:eliminarLoteResponse" />
+    </operation>
+<<<<<<< HEAD
+    <operation name="modificarLote">
+      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/modificarLoteRequest" message="tns:modificarLote" />
+      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/modificarLoteResponse" message="tns:modificarLoteResponse" />
+    </operation>
     <operation name="listarLotesActivos">
       <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosRequest" message="tns:listarLotesActivos" />
       <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosResponse" message="tns:listarLotesActivosResponse" />
@@ -49,22 +108,11 @@
     <operation name="obtenerLotePorID">
       <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/obtenerLotePorIDRequest" message="tns:obtenerLotePorID" />
       <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/obtenerLotePorIDResponse" message="tns:obtenerLotePorIDResponse" />
-    </operation>
+=======
     <operation name="insertarLote">
       <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/insertarLoteRequest" message="tns:insertarLote" />
       <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/insertarLoteResponse" message="tns:insertarLoteResponse" />
-    </operation>
-    <operation name="eliminarLote">
-      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/eliminarLoteRequest" message="tns:eliminarLote" />
-      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/eliminarLoteResponse" message="tns:eliminarLoteResponse" />
-    </operation>
-    <operation name="modificarLote">
-      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/modificarLoteRequest" message="tns:modificarLote" />
-      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/modificarLoteResponse" message="tns:modificarLoteResponse" />
-    </operation>
-    <operation name="listarLotesActivosPorAlmacen">
-      <input wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosPorAlmacenRequest" message="tns:listarLotesActivosPorAlmacen" />
-      <output wsam:Action="http://almacen.services.weardrop.pucp.edu.pe/LoteWS/listarLotesActivosPorAlmacenResponse" message="tns:listarLotesActivosPorAlmacenResponse" />
+>>>>>>> a9df089585c69be9b96c45c0dbda38c6dfe4c4df
     </operation>
   </portType>
   <binding name="LoteWSPortBinding" type="tns:LoteWS">
@@ -78,7 +126,10 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerLotePorID">
+<<<<<<< HEAD
+    <operation name="insertarLote">
+=======
+    <operation name="eliminarLote">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -87,7 +138,17 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="insertarLote">
+    <operation name="listarLotesActivos">
+>>>>>>> a9df089585c69be9b96c45c0dbda38c6dfe4c4df
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarLote">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -114,7 +175,8 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarLotesActivosPorAlmacen">
+<<<<<<< HEAD
+    <operation name="listarLotesActivos">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -123,6 +185,17 @@
         <soap:body use="literal" />
       </output>
     </operation>
+    <operation name="obtenerLotePorID">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+=======
+>>>>>>> a9df089585c69be9b96c45c0dbda38c6dfe4c4df
   </binding>
   <service name="LoteWS">
     <port name="LoteWSPort" binding="tns:LoteWSPortBinding">

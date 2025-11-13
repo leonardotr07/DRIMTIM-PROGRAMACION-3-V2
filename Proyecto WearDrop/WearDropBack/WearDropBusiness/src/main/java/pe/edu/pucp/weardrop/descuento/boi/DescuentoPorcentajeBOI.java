@@ -16,5 +16,5 @@ import pe.edu.pucp.weardrop.promocionesdescuentos.DescuentoPorcentaje;
  */
 public interface DescuentoPorcentajeBOI extends BusinessObject<DescuentoPorcentaje>{
      public ArrayList<DescuentoPorcentaje> listarActivos()throws Exception ;
-    public void insertar_PrendaDescuento(DescuentoPorcentaje descuento, ArrayList<Prenda> prendas, Vigencia vig)throws Exception ;
+    public int insertar_PrendaDescuento(DescuentoPorcentaje descuento, ArrayList<Prenda> prendas, Vigencia vig)throws Exception ;
 }
