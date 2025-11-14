@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.PackageAlmacen;
 
 namespace WearDropWA
 {
@@ -55,7 +55,7 @@ namespace WearDropWA
             try
             {
                 // Obtener lista de almacenes del backend
-                BindingList<almacen1> listaAlmacenes = new BindingList<almacen1>(boAlmacen.listarAlmacenesActivos());
+                BindingList<almacen> listaAlmacenes = new BindingList<almacen>(boAlmacen.listarAlmacenesActivos());
 
                 // Crear lista formateada
                 var almacenesFormateados = listaAlmacenes.Select(a => new
@@ -219,7 +219,7 @@ namespace WearDropWA
                     if (datMov == null)
                     {
                         datMov = new movimientoAlmacen();
-                        datMov.datAlmacen = new almacen1 { id = idAlmacen };
+                        datMov.datAlmacen = new almacen { id = idAlmacen };
                     }
 
                     // 🔹 Actualizar los campos modificables

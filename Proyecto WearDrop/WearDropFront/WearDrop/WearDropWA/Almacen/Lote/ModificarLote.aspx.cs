@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.PackageAlmacen;
 
 namespace WearDropWA
 {
@@ -13,7 +13,7 @@ namespace WearDropWA
         private int idLote;
         private LoteWSClient boLote;
         private AlmacenWSClient boAlmacen; // 🔹 Añadido
-        private lote1 datLote;
+        private lote datLote;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +51,7 @@ namespace WearDropWA
         {
             try
             {
-                almacen1 datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
+                almacen datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
 
                 if (datAlmacen != null)
                 {
@@ -194,13 +194,13 @@ namespace WearDropWA
                 }
 
                 // 🔹 Recuperar el lote guardado en ViewState
-                datLote = (lote1)ViewState["DatLote"];
+                datLote = (lote)ViewState["DatLote"];
 
                 // 🔹 Si no existe en ViewState, crear uno nuevo (aunque no debería pasar)
                 if (datLote == null)
                 {
-                    datLote = new lote1();
-                    datLote.datAlmacen = new almacen1();
+                    datLote = new lote();
+                    datLote.datAlmacen = new almacen();
                     datLote.datAlmacen.id = idAlmacen;
                 }
 

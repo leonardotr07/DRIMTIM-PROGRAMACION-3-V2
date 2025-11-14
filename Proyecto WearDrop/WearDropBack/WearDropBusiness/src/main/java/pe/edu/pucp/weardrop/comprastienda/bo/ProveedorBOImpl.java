@@ -17,210 +17,192 @@ import pe.edu.pucp.weardrop.comprastienda.mysql.ProveedorImpl;
  *
  * @author matia
  */
-public class ProveedorBOImpl implements ProveedorBOI{
-    
+public class ProveedorBOImpl implements ProveedorBOI {
+
     private final ProveedorDAO daoProveedor;
     private final CondicionPagoDAO daoCondicionPago;
-    
-    public ProveedorBOImpl(){
-        
+
+    public ProveedorBOImpl() {
+
         daoProveedor = new ProveedorImpl();
         daoCondicionPago = new CondicionPagoImpl();
 
     }
-    
-    
-    
 
     @Override
     public int insertar(Proveedor objeto) throws Exception {
-        
+
         //nos aseguramos que  al insertar siempre este activo todo
         objeto.setActivo(true);
         ArrayList<CondicionPago> listaCondiciones = objeto.getCondiciones();
-        for( CondicionPago condicion : listaCondiciones  ){
+        for (CondicionPago condicion : listaCondiciones) {
             condicion.setVigente(true);
         }
-        
+
         validar(objeto);
-        
+
         //implementar un método para obtener los  subtotales de la venta 
-        return daoProveedor.insertar(objeto);  
+        return daoProveedor.insertar(objeto);
     }
-    
-    
-    
-    
 
     @Override
     public int modificar(Proveedor objeto) throws Exception {
-        
+
         //nos aseguramos que  al insertar siempre este activo todo
         objeto.setActivo(true);
         ArrayList<CondicionPago> listaCondiciones = objeto.getCondiciones();
-        for( CondicionPago condicion : listaCondiciones  ){
+        for (CondicionPago condicion : listaCondiciones) {
             condicion.setVigente(true);
         }
-        
+
         validar_modificar(objeto);
-        
+
         //implementar un método para obtener los  subtotales de la venta 
         return daoProveedor.modificar(objeto);
-        
-        
-        
-        
+
     }
 
-    
-    
     @Override
     public int eliminar(int idObjeto) throws Exception {
-        
-        
+
         return daoProveedor.eliminar(idObjeto);
     }
-    
 
-    
     @Override
-    public Proveedor obtenerXId(int idObjeto) 
+    public Proveedor obtenerXId(int idObjeto)
             throws Exception {
+
+        Proveedor proveedorBuscado
+                = daoProveedor.obtenerPorId(idObjeto);
         
-        
-        Proveedor proveedorBuscado = 
-                daoProveedor.obtenerPorId(idObjeto);
-        
-        proveedorBuscado.setCondiciones(
-        daoCondicionPago.listarPorIdProveedor_Activo(idObjeto));
-        
- 
+          ArrayList<CondicionPago> condiciones
+                    = daoCondicionPago.listarPorIdProveedor(proveedorBuscado.getIdProveedor());
+            if (condiciones == null) {
+                condiciones = new ArrayList<>();
+            }
+        proveedorBuscado.setCondiciones(condiciones);
+
         return proveedorBuscado;
-        
-        
+
     }
-    
-    
-    
-    
 
     @Override
     public ArrayList<Proveedor> listarTodos() throws Exception {
-        
-        ArrayList<Proveedor>listaProveedores
+
+        ArrayList<Proveedor> listaProveedores
                 = daoProveedor.listarTodos();
-        for(Proveedor prov : listaProveedores){
-            prov.setCondiciones(
-                    daoCondicionPago.listarPorIdProveedor
-        (prov.getIdProveedor()));
+        for (Proveedor prov : listaProveedores) {
+
+            ArrayList<CondicionPago> condiciones
+                    = daoCondicionPago.listarPorIdProveedor(prov.getIdProveedor());
+            if (condiciones == null) {
+                condiciones = new ArrayList<>();
+            }
+            prov.setCondiciones(condiciones);
 
         }
-        
+
         return listaProveedores;
-        
-        
-        
+
     }
 
-    
-    
-    
-    
-    
     @Override
     public void validar(Proveedor objeto) throws Exception {
-        
+
         Long ruc_val = objeto.getRUC();
-        if( ruc_val == null ){
+        if (ruc_val == null) {
             throw new Exception("En el proveedor:"
                     + " El campo de RUC esta vacío");
         }
-        
-        if(objeto.getNombre() == null){
+
+        if (objeto.getNombre() == null) {
             throw new Exception("En el proveedor:"
                     + " El campo de nombre esta vacío");
         }
-        if(objeto.getNombre().length() > 70){
+        if (objeto.getNombre().length() > 70) {
             throw new Exception("En el proveedor:"
                     + " El campo nombre sobre paso los"
                     + " 70 caracteres");
         }
-        
+
         //probablemente cambiar a string
-        Integer telefono_val =  objeto.getTelefono();
-        if(telefono_val == null){
+        Integer telefono_val = objeto.getTelefono();
+        if (telefono_val == null) {
             throw new Exception("En el proveedor:"
                     + " El campo telefno es nulo.");
         }
-        
-        
-        if( objeto.getDireccion() != null && 
-                objeto.getDireccion().length()> 150 ){
-            
+
+        if (objeto.getDireccion() != null
+                && objeto.getDireccion().length() > 150) {
+
             throw new Exception("En el proveedor:"
                     + " El campo direccion sobre paso los"
                     + " 150 caracteres");
         }
-        
+
         int i = 1;
         
         Integer numDia_val;
-        
-        for (CondicionPago condicion_val : 
-                objeto.getCondiciones()){
-            
-            
-            if(condicion_val.getDescripcion() == null){
+
+        for (CondicionPago condicion_val
+                : objeto.getCondiciones()) {
+
+            if (condicion_val.getDescripcion() == null) {
                 throw new Exception("En la condicion "
-                        + "ingresada número "+i
+                        + "ingresada número " + i
                         + " : El campo de descripcion"
-                                + " es nulo");
+                        + " es nulo");
             }
-            if(condicion_val.getDescripcion().length() > 120){
+            if (condicion_val.getDescripcion().length() > 120) {
                 throw new Exception("En la condicion "
-                        + "ingresada número "+i
+                        + "ingresada número " + i
                         + " : El campo de descripcion"
-                                + " superó los 120 caracteres");
+                        + " superó los 120 caracteres");
             }
-            
+
             numDia_val = condicion_val.getNumDias();
-            
-            if(numDia_val == null){
+
+            if (numDia_val == null) {
                 throw new Exception("En la condicion "
-                        + "ingresada número "+i
+                        + "ingresada número " + i
                         + " : El campo de numero de dias"
-                                + " es nulo");
+                        + " es nulo");
             }
             i++;
         }
-    
+        
+
     }
-    
-    
-    
-    
 
     @Override
-    public void validar_modificar(Proveedor objeto) 
+    public void validar_modificar(Proveedor objeto)
             throws Exception {
-        
-        
+
         Integer idProvee = objeto.getIdProveedor();
-        if(idProvee == null){
+        if (idProvee == null) {
             throw new Exception("El proveedor: "
                     + "El campo del idProveedor esta vacío");
         }
-       
-        validar(objeto);        
-        
-        
-        
+
+        validar(objeto);
+
     }
-    
-    
-    
-    
-    
-    
-    
+
+    @Override
+    public ArrayList<Proveedor> listarActivos() {
+        ArrayList<Proveedor> listaProveedores
+                = daoProveedor.listarActivos();
+        for (Proveedor prov : listaProveedores) {
+
+            ArrayList<CondicionPago> condiciones
+                    = daoCondicionPago.listarPorIdProveedor(prov.getIdProveedor());
+            if (condiciones == null) {
+                condiciones = new ArrayList<>();
+            }
+            prov.setCondiciones(condiciones);
+
+        }
+        return listaProveedores;
+    }
+
 }

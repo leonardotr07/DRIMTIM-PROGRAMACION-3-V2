@@ -27,7 +27,7 @@ public class CondicionPagoImpl implements
     public ArrayList<CondicionPago> listarPorIdProveedor(
             int idProveedor) {
         
-        ArrayList<CondicionPago> listaCondiciones = null;
+        ArrayList<CondicionPago> listaCondiciones = new ArrayList<>();
         Map<Integer, Object> parametrosEntrada = new HashMap<>();
         parametrosEntrada.put(1, idProveedor);
         rs = DBManager.getInstance().ejecutarProcedimientoLectura(
@@ -39,9 +39,7 @@ public class CondicionPagoImpl implements
         
         try{
             while(rs.next()){
-                if(listaCondiciones == null) 
-                    listaCondiciones = new ArrayList<>();
-                
+               
                 CondicionPago condicionDepago =
                         new CondicionPago();
                 
@@ -73,7 +71,7 @@ public class CondicionPagoImpl implements
     public ArrayList<CondicionPago> listarPorIdProveedor_Activo(
             int idProveedor) {
         
-        ArrayList<CondicionPago> listaCondiciones = null;
+        ArrayList<CondicionPago> listaCondiciones = new ArrayList<>();
         Map<Integer, Object> parametrosEntrada = new HashMap<>();
         parametrosEntrada.put(1, idProveedor);
         rs = DBManager.getInstance().ejecutarProcedimientoLectura(
@@ -85,8 +83,6 @@ public class CondicionPagoImpl implements
         
         try{
             while(rs.next()){
-                if(listaCondiciones == null) 
-                    listaCondiciones = new ArrayList<>();
                 
                 CondicionPago condicionDepago =
                         new CondicionPago();

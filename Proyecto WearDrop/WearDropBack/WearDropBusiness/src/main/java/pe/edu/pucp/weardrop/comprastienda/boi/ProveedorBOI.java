@@ -4,6 +4,7 @@
  */
 package pe.edu.pucp.weardrop.comprastienda.boi;
 
+import java.util.ArrayList;
 import pe.edu.pucp.weardrop.bo.BusinessObject;
 import pe.edu.pucp.weardrop.comprastienda.Proveedor;
 
@@ -15,6 +16,6 @@ public interface ProveedorBOI extends BusinessObject<Proveedor>{
     
     
     void validar_modificar (Proveedor objeto) throws Exception;
-    
+    ArrayList<Proveedor> listarActivos();
     
 }

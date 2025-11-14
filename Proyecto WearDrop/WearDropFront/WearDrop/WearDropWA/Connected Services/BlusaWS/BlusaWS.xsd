@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://prendas.services.weardrop.pucp.edu.pe/" targetNamespace="http://prendas.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarBlusa" type="tns:eliminarBlusa" />
+  <xs:element name="eliminarBlusaResponse" type="tns:eliminarBlusaResponse" />
+  <xs:element name="filtrarBlusas" type="tns:filtrarBlusas" />
+  <xs:element name="filtrarBlusasResponse" type="tns:filtrarBlusasResponse" />
+  <xs:element name="insertarBlusa" type="tns:insertarBlusa" />
+  <xs:element name="insertarBlusaResponse" type="tns:insertarBlusaResponse" />
+  <xs:element name="listarBlusas" type="tns:listarBlusas" />
+  <xs:element name="listarBlusasResponse" type="tns:listarBlusasResponse" />
+  <xs:element name="modificarBlusa" type="tns:modificarBlusa" />
+  <xs:element name="modificarBlusaResponse" type="tns:modificarBlusaResponse" />
+  <xs:element name="obtenerBlusaPorId" type="tns:obtenerBlusaPorId" />
+  <xs:element name="obtenerBlusaPorIdResponse" type="tns:obtenerBlusaPorIdResponse" />
+  <xs:complexType name="obtenerBlusaPorId">
+    <xs:sequence>
+      <xs:element name="idBlusa" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerBlusaPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:blusa" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="blusa">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:prenda">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="tipoBlusa" type="tns:tipoBlusa" />
+          <xs:element minOccurs="0" name="tipoManga" type="tns:tipoManga" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="prenda" abstract="true">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element name="alertaMinStock" type="xs:int" />
+      <xs:element minOccurs="0" name="color" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="descuentos" nillable="true" type="tns:descuento" />
+      <xs:element name="idPrenda" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="lotes" nillable="true" type="tns:lote" />
+      <xs:element minOccurs="0" name="material" type="tns:material" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element name="precioDocena" type="xs:double" />
+      <xs:element name="precioMayor" type="xs:double" />
+      <xs:element name="precioUnidad" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="promociones" nillable="true" type="tns:promocion" />
+      <xs:element name="stockPrenda" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="talla" nillable="true" type="tns:talla" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="descuento" abstract="true">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element name="esAutomatico" type="xs:boolean" />
+      <xs:element name="idDescuento" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element minOccurs="0" name="vigencia" type="tns:vigencia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="vigencia">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="fechaFin" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaInicio" type="xs:dateTime" />
+      <xs:element name="idVigencia" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="lote">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datAlmacen" type="tns:almacen" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element name="idLote" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="almacen">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element name="id" type="xs:int" />
+      <xs:element name="idTienda" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element name="stock" type="xs:int" />
+      <xs:element minOccurs="0" name="ubicacion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="promocion" abstract="true">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element name="esAutomatico" type="xs:boolean" />
+      <xs:element name="idPromocion" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element minOccurs="0" name="vigencia" type="tns:vigencia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarBlusa">
+    <xs:sequence>
+      <xs:element name="idBlusa" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarBlusaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarBlusa">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="blusa" type="tns:blusa" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarBlusaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarBlusas">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarBlusasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:blusa" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarBlusa">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="blusa" type="tns:blusa" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarBlusaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="filtrarBlusas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="nombreLike" type="xs:string" />
+      <xs:element minOccurs="0" name="colorLike" type="xs:string" />
+      <xs:element minOccurs="0" name="materialLike" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoBlusaLike" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoMangaLike" type="xs:string" />
+      <xs:element minOccurs="0" name="precioMin" type="xs:double" />
+      <xs:element minOccurs="0" name="precioMax" type="xs:double" />
+      <xs:element minOccurs="0" name="soloActivos" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="filtrarBlusasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:blusa" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="tipoBlusa">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Camisera" />
+      <xs:enumeration value="CropTop" />
+      <xs:enumeration value="Peplum" />
+      <xs:enumeration value="OffShoulder" />
+      <xs:enumeration value="Transparente" />
+      <xs:enumeration value="Formal" />
+      <xs:enumeration value="Casual" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoManga">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MangaCorta" />
+      <xs:enumeration value="MangaLarga" />
+      <xs:enumeration value="SinManga" />
+      <xs:enumeration value="Globo" />
+      <xs:enumeration value="Campana" />
+      <xs:enumeration value="TresCuartos" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="material">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Algodon" />
+      <xs:enumeration value="Poliester" />
+      <xs:enumeration value="algodon_poliester" />
+      <xs:enumeration value="Lino" />
+      <xs:enumeration value="Rayon" />
+      <xs:enumeration value="Lana" />
+      <xs:enumeration value="Acrilico" />
+      <xs:enumeration value="Nylon" />
+      <xs:enumeration value="lycra" />
+      <xs:enumeration value="Denim" />
+      <xs:enumeration value="Drill" />
+      <xs:enumeration value="Gabardina" />
+      <xs:enumeration value="Polar" />
+      <xs:enumeration value="Franela" />
+      <xs:enumeration value="Cuero" />
+      <xs:enumeration value="Cuerina" />
+      <xs:enumeration value="Saten" />
+      <xs:enumeration value="Chifon" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="talla">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="XS" />
+      <xs:enumeration value="S" />
+      <xs:enumeration value="M" />
+      <xs:enumeration value="L" />
+      <xs:enumeration value="XL" />
+      <xs:enumeration value="XXL" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

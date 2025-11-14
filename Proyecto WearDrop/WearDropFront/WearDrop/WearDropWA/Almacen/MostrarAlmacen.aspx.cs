@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.PackageAlmacen;
 
 namespace WearDropWA
 {
@@ -13,9 +13,9 @@ namespace WearDropWA
         private MovimientoAlmacenWSClient boMovimientoAlmacen;
         private LoteWSClient boLote;
         private MovimientoAlmacenXLoteWSClient boMovimientoAlmacenXLote;
-        private almacen1 datAlmacen;
+        private almacen datAlmacen;
 
-        private BindingList<lote1> listaLotes;
+        private BindingList<lote> listaLotes;
         private BindingList<movimientoAlmacen> listaMovimientoAlmacen;
         private BindingList<movimientoAlmacenXLote> listaMovimientoAlmacenXLote;
 
@@ -30,7 +30,7 @@ namespace WearDropWA
                 if (Request.QueryString["id"] != null)
                 {
                     // Obtener el almacén de la sesión
-                    datAlmacen = (almacen1)Session["almacenSeleccionado"];
+                    datAlmacen = (almacen)Session["almacenSeleccionado"];
 
                     if (datAlmacen == null)
                     {
@@ -58,12 +58,12 @@ namespace WearDropWA
             else
             {
                 // Recuperar el almacén completo del ViewState en postback
-                datAlmacen = (almacen1)ViewState["AlmacenCompleto"];
+                datAlmacen = (almacen)ViewState["AlmacenCompleto"];
 
                 if (datAlmacen == null)
                 {
                     // Si por alguna razón se perdió el ViewState, intentar recuperar de Session
-                    datAlmacen = (almacen1)Session["almacenSeleccionado"];
+                    datAlmacen = (almacen)Session["almacenSeleccionado"];
 
                     if (datAlmacen == null)
                     {
@@ -157,7 +157,7 @@ namespace WearDropWA
         {
             try
             {
-                listaLotes = new BindingList<lote1>(boLote.listarLotesActivosPorAlmacen(datAlmacen.id));
+                listaLotes = new BindingList<lote>(boLote.listarLotesActivosPorAlmacen(datAlmacen.id));
                 gvLotes.DataSource = listaLotes;
                 gvLotes.DataBind();
             }

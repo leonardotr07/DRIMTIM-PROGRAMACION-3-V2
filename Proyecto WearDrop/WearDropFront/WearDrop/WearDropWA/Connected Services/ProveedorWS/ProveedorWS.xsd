@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://comprastienda.services.weardrop.pucp.edu.pe/" targetNamespace="http://comprastienda.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarProveedor" type="tns:eliminarProveedor" />
+  <xs:element name="eliminarProveedorResponse" type="tns:eliminarProveedorResponse" />
+  <xs:element name="insertarProveedore" type="tns:insertarProveedore" />
+  <xs:element name="insertarProveedoreResponse" type="tns:insertarProveedoreResponse" />
+  <xs:element name="listarTodosLosProveedores" type="tns:listarTodosLosProveedores" />
+  <xs:element name="listarTodosLosProveedoresResponse" type="tns:listarTodosLosProveedoresResponse" />
+  <xs:element name="modificarProveedor" type="tns:modificarProveedor" />
+  <xs:element name="modificarProveedorResponse" type="tns:modificarProveedorResponse" />
+  <xs:complexType name="listarTodosLosProveedores">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodosLosProveedoresResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:proveedor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="proveedor">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="condiciones" nillable="true" type="tns:condicionPago" />
+      <xs:element minOccurs="0" name="direccion" type="xs:string" />
+      <xs:element name="idProveedor" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element name="RUC" type="xs:long" />
+      <xs:element name="telefono" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="condicionPago">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element name="idCondicion" type="xs:int" />
+      <xs:element name="numDias" type="xs:int" />
+      <xs:element name="vigente" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarProveedore">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datProveedor" type="tns:proveedor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarProveedoreResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarProveedor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datProveedor" type="tns:proveedor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarProveedorResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarProveedor">
+    <xs:sequence>
+      <xs:element name="idProveedor" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarProveedorResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

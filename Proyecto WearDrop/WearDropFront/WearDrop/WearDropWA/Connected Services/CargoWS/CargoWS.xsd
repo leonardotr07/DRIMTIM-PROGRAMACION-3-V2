@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://personal.services.weardrop.pucp.edu.pe/" targetNamespace="http://personal.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarCargo" type="tns:eliminarCargo" />
+  <xs:element name="eliminarCargoResponse" type="tns:eliminarCargoResponse" />
+  <xs:element name="insertarCargo" type="tns:insertarCargo" />
+  <xs:element name="insertarCargoResponse" type="tns:insertarCargoResponse" />
+  <xs:element name="listarCargos" type="tns:listarCargos" />
+  <xs:element name="listarCargosResponse" type="tns:listarCargosResponse" />
+  <xs:element name="modificarCargo" type="tns:modificarCargo" />
+  <xs:element name="modificarCargoResponse" type="tns:modificarCargoResponse" />
+  <xs:element name="obtenerCargoPorId" type="tns:obtenerCargoPorId" />
+  <xs:element name="obtenerCargoPorIdResponse" type="tns:obtenerCargoPorIdResponse" />
+  <xs:complexType name="insertarCargo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cargo" type="tns:cargo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cargo">
+    <xs:sequence>
+      <xs:element name="abreviatura" type="xs:unsignedShort" />
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element name="idCargo" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarCargoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarCargo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cargo" type="tns:cargo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarCargoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarCargos">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarCargosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:cargo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarCargo">
+    <xs:sequence>
+      <xs:element name="idCargo" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarCargoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerCargoPorId">
+    <xs:sequence>
+      <xs:element name="idCargo" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerCargoPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:cargo" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -6,20 +6,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.EmpleadoWS;
 
 namespace WearDropWA
 {
     public partial class ListarEmpleados : System.Web.UI.Page
     {
         private EmpleadoWSClient boEmpleado;
-        private BindingList<empleado1> empleados;
+        private BindingList<empleado> empleados;
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
             boEmpleado = new EmpleadoWSClient();
-            empleados = new BindingList<empleado1>(boEmpleado.listarEmpleados());
+            empleados = new BindingList<empleado>(boEmpleado.listarEmpleados());
             gvEmpleados.DataSource = empleados;
             gvEmpleados.DataBind();
 
@@ -38,7 +38,7 @@ namespace WearDropWA
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             int idEmpleado = Int32.Parse(((LinkButton)sender).CommandArgument);
-            empleado1 empSelect = empleados.Single(x=>x.idPersona == idEmpleado);
+            empleado empSelect = empleados.Single(x=>x.idPersona == idEmpleado);
             Session["empleado"] = empSelect;
             Response.Redirect("RegistrarEmpleado.aspx?accion=modificar");
 
@@ -47,7 +47,7 @@ namespace WearDropWA
         protected void btnVisualizar_Click(object sender, EventArgs e)
         {
             int idEmpleado = Int32.Parse(((LinkButton)sender).CommandArgument);
-            empleado1 empSelect = empleados.Single(x => x.idPersona == idEmpleado);
+            empleado empSelect = empleados.Single(x => x.idPersona == idEmpleado);
             Session["empleado"] = empSelect;
             Response.Redirect("VerEmpleado.aspx");
         }

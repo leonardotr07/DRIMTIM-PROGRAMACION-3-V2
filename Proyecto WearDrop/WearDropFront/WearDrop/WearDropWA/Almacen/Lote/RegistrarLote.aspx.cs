@@ -4,8 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
-
+using WearDropWA.PackageAlmacen;
 namespace WearDropWA
 {
     public partial class RegistrarLote : System.Web.UI.Page
@@ -72,7 +71,7 @@ namespace WearDropWA
         {
             try
             {
-                almacen1 datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
+                almacen datAlmacen = boAlmacen.obtenerPorId(idAlmacen);
 
                 if (datAlmacen != null)
                 {
@@ -234,8 +233,8 @@ namespace WearDropWA
                 }
 
                 // 🔹 Crear el lote
-                lote1 nuevoLote = new lote1();
-                nuevoLote.datAlmacen = new almacen1();
+                lote nuevoLote = new lote();
+                nuevoLote.datAlmacen = new almacen();
                 nuevoLote.datAlmacen.id = idAlmacen;
                 nuevoLote.descripcion = descripcion;
 
@@ -253,11 +252,19 @@ namespace WearDropWA
 
                 // 🔹 Crear la relación MovimientoXLote
                 movimientoAlmacenXLote nuevaRelacionMovXLote = new movimientoAlmacenXLote();
-                nuevaRelacionMovXLote.datMov = movimientoSeleccionado;
+                nuevaRelacionMovXLote.datMov = new movimientoAlmacen();
+                nuevaRelacionMovXLote.datMov.idMovimiento = movimientoSeleccionado.idMovimiento;
+                nuevaRelacionMovXLote.datMov.lugarOrigen = movimientoSeleccionado.lugarOrigen;
+                nuevaRelacionMovXLote.datMov.lugarDestino = movimientoSeleccionado.lugarDestino;
+
                 nuevaRelacionMovXLote.datLote = nuevoLote;
 
+                lote datLote=new lote();
+                datLote.datAlmacen = new almacen();
+                datLote.datAlmacen.id = idAlmacen;
+                datLote.descripcion = descripcion;
                 // 🔹 Llamar a los servicios
-                int resultadoLote = boLote.insertarLote(nuevoLote);
+                int resultadoLote = boLote.insertarLote(datLote);
                 nuevaRelacionMovXLote.datLote.idLote = resultadoLote; //Asignamos el Id necesario para la inserción.
                 int resultadoRelacion = boMovXLote.insertarMovXLote(nuevaRelacionMovXLote);
 

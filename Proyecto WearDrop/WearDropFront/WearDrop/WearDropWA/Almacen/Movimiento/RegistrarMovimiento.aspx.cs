@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.PackageAlmacen;
 
 namespace WearDropWA
 {
@@ -46,7 +46,7 @@ namespace WearDropWA
             try
             {
                 // Obtener lista de almacenes del backend
-                BindingList<almacen1> listaAlmacenes = new BindingList<almacen1>(boAlmacen.listarAlmacenesActivos());
+                BindingList<almacen> listaAlmacenes = new BindingList<almacen>(boAlmacen.listarAlmacenesActivos());
 
                 // Crear lista formateada para mostrar
                 var almacenesFormateados = listaAlmacenes.Select(a => new
@@ -141,7 +141,7 @@ namespace WearDropWA
                     nuevoMovimiento.tipo = (tipoMovimiento)Enum.Parse(typeof(tipoMovimiento), tipo);
                     nuevoMovimiento.tipoSpecified = true;
                     // Asignar el almacén
-                    nuevoMovimiento.datAlmacen = new almacen1();
+                    nuevoMovimiento.datAlmacen = new almacen();
                     nuevoMovimiento.datAlmacen.id = idAlmacen;
 
                     // Llamar al servicio para insertar

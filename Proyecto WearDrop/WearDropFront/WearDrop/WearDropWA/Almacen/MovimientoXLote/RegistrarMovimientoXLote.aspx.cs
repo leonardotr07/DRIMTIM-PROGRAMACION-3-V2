@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.PackageAlmacen;
 
 namespace WearDropWA
 {
@@ -158,7 +158,7 @@ namespace WearDropWA
         {
             try
             {
-                lote1 lote = boLote.obtenerLotePorID(idLote);
+                lote lote = boLote.obtenerLotePorID(idLote);
 
                 if (lote != null && lote.idLote > 0)
                 {
@@ -273,7 +273,7 @@ namespace WearDropWA
 
                 // Asignar los objetos completos recuperados del ViewState
                 movXLote.datMov = (movimientoAlmacen)ViewState["MovimientoActual"];
-                movXLote.datLote = (lote1)ViewState["LoteActual"];
+                movXLote.datLote = (lote)ViewState["LoteActual"];
 
                 // Llamar al servicio web para insertar la relación
                 int resultado = boMovimientoAlmacenXLote.insertarMovXLote(movXLote);
@@ -336,7 +336,7 @@ namespace WearDropWA
             try
             {
                 // Llamar al servicio para obtener todos los lotes activos del almacén
-                BindingList<lote1> lotesDelAlmacen = new BindingList<lote1>(
+                BindingList<lote> lotesDelAlmacen = new BindingList<lote>(
                     boLote.listarLotesActivosPorAlmacen(idAlmacen)
                 );
 

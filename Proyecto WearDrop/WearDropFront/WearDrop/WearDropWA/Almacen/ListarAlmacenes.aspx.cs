@@ -4,14 +4,14 @@ using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.PackageAlmacen;
 
 namespace WearDropWA
 {
     public partial class ListarAlmacenes : System.Web.UI.Page
     {
         private AlmacenWSClient boAlmacen;
-        private BindingList<almacen1> listAlmacenes;
+        private BindingList<almacen> listAlmacenes;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,8 +30,8 @@ namespace WearDropWA
         {
             try
             {
-                almacen1[] almacenes = boAlmacen.listarAlmacenesActivos();
-                listAlmacenes = new BindingList<almacen1>(almacenes);
+                almacen[] almacenes = boAlmacen.listarAlmacenesActivos();
+                listAlmacenes = new BindingList<almacen>(almacenes);
                 gvAlmacenes.DataSource = listAlmacenes;
                 gvAlmacenes.DataBind();
             }
@@ -56,7 +56,7 @@ namespace WearDropWA
                 int idAlmacen = Int32.Parse(btn.CommandArgument);
 
                 // Extraer de la lista de Almacenes el almacén seleccionado por el usuario
-                almacen1 datAlmacen = listAlmacenes.SingleOrDefault(x => x.id == idAlmacen);
+                almacen datAlmacen = listAlmacenes.SingleOrDefault(x => x.id == idAlmacen);
 
                 if (datAlmacen != null)
                 {
@@ -87,7 +87,7 @@ namespace WearDropWA
                 int idAlmacen = Int32.Parse(btn.CommandArgument);
 
                 // Extraer de la lista de Almacenes el almacén seleccionado por el usuario
-                almacen1 datAlmacen = listAlmacenes.SingleOrDefault(x => x.id == idAlmacen);
+                almacen datAlmacen = listAlmacenes.SingleOrDefault(x => x.id == idAlmacen);
 
                 if (datAlmacen != null)
                 {

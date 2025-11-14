@@ -20,7 +20,7 @@ import pe.edu.pucp.weardrop.promocionesdescuentos.PromocionCombo;
  *
  * @author leona
  */
-@WebService(serviceName = "PromocionCombo")
+@WebService(serviceName = "PromocionComboWS")
 public class PromocionComboWS {
     private final PromocionComboBOI boProm=new PromocionComboBOImpl();
     /**

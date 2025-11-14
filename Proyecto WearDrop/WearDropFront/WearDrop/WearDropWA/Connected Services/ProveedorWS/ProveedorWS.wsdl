@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://comprastienda.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="ProveedorWS" targetNamespace="http://comprastienda.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/ProveedorWS?xsd=1" namespace="http://comprastienda.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="eliminarProveedor">
+    <part name="parameters" element="tns:eliminarProveedor" />
+  </message>
+  <message name="eliminarProveedorResponse">
+    <part name="parameters" element="tns:eliminarProveedorResponse" />
+  </message>
+  <message name="modificarProveedor">
+    <part name="parameters" element="tns:modificarProveedor" />
+  </message>
+  <message name="modificarProveedorResponse">
+    <part name="parameters" element="tns:modificarProveedorResponse" />
+  </message>
+  <message name="insertarProveedore">
+    <part name="parameters" element="tns:insertarProveedore" />
+  </message>
+  <message name="insertarProveedoreResponse">
+    <part name="parameters" element="tns:insertarProveedoreResponse" />
+  </message>
+  <message name="listarTodosLosProveedores">
+    <part name="parameters" element="tns:listarTodosLosProveedores" />
+  </message>
+  <message name="listarTodosLosProveedoresResponse">
+    <part name="parameters" element="tns:listarTodosLosProveedoresResponse" />
+  </message>
+  <portType name="ProveedorWS">
+    <operation name="eliminarProveedor">
+      <input wsam:Action="http://comprastienda.services.weardrop.pucp.edu.pe/ProveedorWS/eliminarProveedorRequest" message="tns:eliminarProveedor" />
+      <output wsam:Action="http://comprastienda.services.weardrop.pucp.edu.pe/ProveedorWS/eliminarProveedorResponse" message="tns:eliminarProveedorResponse" />
+    </operation>
+    <operation name="modificarProveedor">
+      <input wsam:Action="http://comprastienda.services.weardrop.pucp.edu.pe/ProveedorWS/modificarProveedorRequest" message="tns:modificarProveedor" />
+      <output wsam:Action="http://comprastienda.services.weardrop.pucp.edu.pe/ProveedorWS/modificarProveedorResponse" message="tns:modificarProveedorResponse" />
+    </operation>
+    <operation name="insertarProveedore">
+      <input wsam:Action="http://comprastienda.services.weardrop.pucp.edu.pe/ProveedorWS/insertarProveedoreRequest" message="tns:insertarProveedore" />
+      <output wsam:Action="http://comprastienda.services.weardrop.pucp.edu.pe/ProveedorWS/insertarProveedoreResponse" message="tns:insertarProveedoreResponse" />
+    </operation>
+    <operation name="listarTodosLosProveedores">
+      <input wsam:Action="http://comprastienda.services.weardrop.pucp.edu.pe/ProveedorWS/listarTodosLosProveedoresRequest" message="tns:listarTodosLosProveedores" />
+      <output wsam:Action="http://comprastienda.services.weardrop.pucp.edu.pe/ProveedorWS/listarTodosLosProveedoresResponse" message="tns:listarTodosLosProveedoresResponse" />
+    </operation>
+  </portType>
+  <binding name="ProveedorWSPortBinding" type="tns:ProveedorWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="eliminarProveedor">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarProveedor">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarProveedore">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarTodosLosProveedores">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ProveedorWS">
+    <port name="ProveedorWSPort" binding="tns:ProveedorWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/ProveedorWS" />
+    </port>
+  </service>
+</definitions>

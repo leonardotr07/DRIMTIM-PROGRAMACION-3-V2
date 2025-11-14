@@ -34,7 +34,7 @@ public class ProveedorImpl implements ProveedorDAO {
         Map<Integer, Object> parametrosSalida = new HashMap<>();
         
         parametrosSalida.put( 1 , Types.INTEGER );
-        parametrosEntrada.put( 2 , objeto.getRUC() );
+        parametrosEntrada.put( 2 , objeto.getRUC());
         parametrosEntrada.put( 3 , objeto.getNombre() );
         parametrosEntrada.put( 4 , objeto.getTelefono() );
         parametrosEntrada.put( 5 , objeto.getDireccion() );
@@ -49,7 +49,7 @@ public class ProveedorImpl implements ProveedorDAO {
         
         
         
-        System.out.println( objeto.getIdProveedor());
+        System.out.println( objeto.getIdProveedor() + " ID ");
         
         for(CondicionPago condicion :
                 objeto.getCondiciones()){
@@ -259,6 +259,47 @@ public class ProveedorImpl implements ProveedorDAO {
         
     }
     
+    
+    @Override
+    public ArrayList<Proveedor> listarActivos() {
+        
+        ArrayList<Proveedor> listaProveedores = null;
+        rs=DBManager.getInstance().
+                ejecutarProcedimientoLectura("mostrar_proveedores_activos", null);
+        System.out.println("Lectura de Proveedores...");
+        int i = 0;
+        try{
+            while(rs.next()){
+                if(listaProveedores==null) listaProveedores=new ArrayList<>();
+                Proveedor datProveedor = new Proveedor();
+                
+                datProveedor.setIdProveedor(rs.getInt("idProveedor"));
+                datProveedor.setRUC(rs.getLong("RUC"));
+                datProveedor.setNombre(rs.getString("nombre"));
+                datProveedor.setTelefono(rs.getInt("telefono"));
+                datProveedor.setDireccion(rs.getString("direccion"));
+                datProveedor.setActivo(rs.getBoolean("activo"));
+                listaProveedores.add(datProveedor);
+                i++;
+            }
+            if(i>0){
+                System.out.println("Se obtuvo por lo menos un resultado en la busqueda de Proveedores");
+            }
+            else{
+                System.out.println("No se obtuvo ningun resultado en la busqueda de Proveedores");
+            } 
+            System.out.println("Se listaron los proveedores"
+                    + " correctamente.");
+        }catch(SQLException ex){
+            System.out.println("ERROR "
+                    + "al listar todos los proveedores: "+ex.getMessage());
+        }finally{
+            DBManager.getInstance().cerrarConexion();
+        }
+        return listaProveedores;
+        
+        
+    }
     
     
     

@@ -21,7 +21,7 @@ namespace WearDropWA
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegistrarProveedor;
+        protected global::System.Web.UI.WebControls.LinkButton btnRegistrarProveedor;
 
         /// <summary>
         /// Control btnFiltrarProveedores.
@@ -30,7 +30,7 @@ namespace WearDropWA
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFiltrarProveedores;
+        protected global::System.Web.UI.WebControls.LinkButton btnFiltrarProveedores;
 
         /// <summary>
         /// Control dgvProveedores.

@@ -4,18 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.PackageAlmacen;
 
 namespace WearDropWA
 {
     public partial class RegistrarAlmacen : System.Web.UI.Page
     {
         private AlmacenWSClient boAlmacen;
-        private almacen1 datAlmacen;
+        private almacen datAlmacen;
         protected void Page_Load(object sender, EventArgs e)
         {
             boAlmacen=new AlmacenWSClient();
-            datAlmacen = new almacen1();
+            datAlmacen = new almacen();
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {

@@ -3,13 +3,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Aliases que apuntan al namespace generado real (uno solo)
-using RefPolo   = global::WearDropWA.ServiciosBackEnd;
-using RefBlusa  = global::WearDropWA.ServiciosBackEnd;
-using RefVest   = global::WearDropWA.ServiciosBackEnd;
-using RefFalda  = global::WearDropWA.ServiciosBackEnd;
-using RefPant   = global::WearDropWA.ServiciosBackEnd;
-using RefCasaca = global::WearDropWA.ServiciosBackEnd;
-using RefGorro  = global::WearDropWA.ServiciosBackEnd;
+using RefPolo   = global::WearDropWA.PoloWS;
+using RefBlusa  = global::WearDropWA.BlusaWS;
+using RefVest   = global::WearDropWA.VestidoWS;
+using RefFalda  = global::WearDropWA.FaldaWS;
+using RefPant   = global::WearDropWA.PantalonWS;
+using RefCasaca = global::WearDropWA.CasacaWS;
+using RefGorro  = global::WearDropWA.GorroWS;
 
 namespace WearDropWA
 {

@@ -4,21 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.EmpleadoWS;
 
 namespace WearDropWA
 {
     public partial class RegistrarEmpleado : System.Web.UI.Page
     {
         private EmpleadoWSClient boEmpleado;
-        private empleado1 empleado;
+        private empleado empleado;
         private String estado;
         protected void Page_Load(object sender, EventArgs e)
         {
             String accion = Request.QueryString["accion"];
             if (accion == null)
             {
-                empleado = new empleado1();
+                empleado = new empleado();
                 lblTitulo.Text = "Registrar Empleado";
                 estado = "nuevo";
             }
@@ -26,7 +26,7 @@ namespace WearDropWA
             {
                 lblTitulo.Text = "Modificar Empleado";
                 estado = "modificar";
-                empleado = (empleado1)Session["empleado"];
+                empleado = (empleado)Session["empleado"];
                 if (!IsPostBack)
                     AsignarValores();
                 txtID.Enabled = false;

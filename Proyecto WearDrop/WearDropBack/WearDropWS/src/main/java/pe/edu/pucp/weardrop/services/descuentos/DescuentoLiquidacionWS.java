@@ -20,7 +20,7 @@ import pe.edu.pucp.weardrop.promocionesdescuentos.DescuentoLiquidacion;
  *
  * @author leona
  */
-@WebService(serviceName = "DescuentoLiquidacion")
+@WebService(serviceName = "DescuentoLiquidacionWS")
 public class DescuentoLiquidacionWS {
     private final DescuentoLiquidacionBOI boDesc=new DescuentoLiquidacionBOImpl();
     /**

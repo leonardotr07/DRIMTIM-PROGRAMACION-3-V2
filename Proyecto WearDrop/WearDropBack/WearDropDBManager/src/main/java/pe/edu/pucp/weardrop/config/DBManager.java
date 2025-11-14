@@ -125,28 +125,29 @@ public class DBManager {
     }
     
     private void registrarParametrosEntrada(CallableStatement cs, Map<Integer, Object> parametros) throws SQLException {
-        for (Map.Entry<Integer, Object> entry : parametros.entrySet()) {
-            Integer key = entry.getKey();
-            Object value = entry.getValue();
-            
-            switch (value) {
-                case null -> {
-                    // Puedes usar un tipo SQL genérico o específico
-                    cs.setNull(key, java.sql.Types.NULL);
-                }
-                case Integer entero -> cs.setInt(key, entero);
-                case String cadena -> cs.setString(key, cadena);
-                case Double decimal -> cs.setDouble(key, decimal);
-                case Boolean booleano -> cs.setBoolean(key, booleano);
-                case java.util.Date fecha -> cs.setDate(key, new java.sql.Date(fecha.getTime()));
-                case Character caracter -> cs.setString(key, String.valueOf(caracter));
-                case byte[] archivo -> cs.setBytes(key, archivo);
-                default -> {
-                }
+    for (Map.Entry<Integer, Object> entry : parametros.entrySet()) {
+        Integer key = entry.getKey();
+        Object value = entry.getValue();
+        
+        switch (value) {
+            case null -> {
+                cs.setNull(key, java.sql.Types.NULL);
+            }
+            case Integer entero -> cs.setInt(key, entero);
+            case String cadena -> cs.setString(key, cadena);
+            case Double decimal -> cs.setDouble(key, decimal);
+            case Boolean booleano -> cs.setBoolean(key, booleano);
+            case java.util.Date fecha -> cs.setDate(key, new java.sql.Date(fecha.getTime()));
+            case Character caracter -> cs.setString(key, String.valueOf(caracter));
+            case Long largo -> cs.setLong(key, largo);
+            case byte[] archivo -> cs.setBytes(key, archivo);
+            default -> {
                 // Agregar más tipos según sea necesario
             }
         }
     }
+}
+
     
     private void registrarParametrosSalida(CallableStatement cst, Map<Integer, Object> params) throws SQLException {
         for (Map.Entry<Integer, Object> entry : params.entrySet()) {

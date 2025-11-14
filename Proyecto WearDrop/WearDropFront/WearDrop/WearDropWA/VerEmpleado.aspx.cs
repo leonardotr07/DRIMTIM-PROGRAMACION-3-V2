@@ -4,18 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.EmpleadoWS;
 
 namespace WearDropWA
 {
     public partial class VerEmpleado : System.Web.UI.Page
     {
         private EmpleadoWSClient boEmpleado;
-        private empleado1 empleado;
+        private empleado empleado;
         private String estado;
         protected void Page_Load(object sender, EventArgs e)
         {
-            empleado = (empleado1)Session["empleado"];
+            empleado = (empleado)Session["empleado"];
             if (!IsPostBack)
                 AsignarValores();
             txtID.Enabled = false;

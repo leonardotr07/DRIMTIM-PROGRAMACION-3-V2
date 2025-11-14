@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Web.UI;
-using WearDropWA.ServiciosBackEnd;
+using WearDropWA.PackageAlmacen;
 
 namespace WearDropWA
 {
     public partial class ModificarAlmacen : System.Web.UI.Page
     {
         private AlmacenWSClient boAlmacen;
-        private almacen1 datAlmacen;
+        private almacen datAlmacen;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -15,7 +15,7 @@ namespace WearDropWA
             if (!IsPostBack)
             {
                 // Obtener el almacén de la sesión
-                datAlmacen = (almacen1)Session["almacenSeleccionado"];
+                datAlmacen = (almacen)Session["almacenSeleccionado"];
 
                 if (datAlmacen != null)
                 {
@@ -37,7 +37,7 @@ namespace WearDropWA
             try
             {
                 // Obtener el almacén de la sesión
-                datAlmacen = (almacen1)Session["almacenSeleccionado"];
+                datAlmacen = (almacen)Session["almacenSeleccionado"];
 
                 if (datAlmacen != null)
                 {

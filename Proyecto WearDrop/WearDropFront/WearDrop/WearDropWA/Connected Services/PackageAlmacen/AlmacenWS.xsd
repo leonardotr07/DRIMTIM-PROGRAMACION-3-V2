@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://almacen.services.weardrop.pucp.edu.pe/" targetNamespace="http://almacen.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarAlmacen" type="tns:eliminarAlmacen" />
+  <xs:element name="eliminarAlmacenResponse" type="tns:eliminarAlmacenResponse" />
+  <xs:element name="insertarAlmacen" type="tns:insertarAlmacen" />
+  <xs:element name="insertarAlmacenResponse" type="tns:insertarAlmacenResponse" />
+  <xs:element name="listarAlmacenesActivos" type="tns:listarAlmacenesActivos" />
+  <xs:element name="listarAlmacenesActivosResponse" type="tns:listarAlmacenesActivosResponse" />
+  <xs:element name="modificarAlmacen" type="tns:modificarAlmacen" />
+  <xs:element name="modificarAlmacenResponse" type="tns:modificarAlmacenResponse" />
+  <xs:element name="obtenerPorId" type="tns:obtenerPorId" />
+  <xs:element name="obtenerPorIdResponse" type="tns:obtenerPorIdResponse" />
+  <xs:complexType name="listarAlmacenesActivos">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarAlmacenesActivosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:almacen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="almacen">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element name="id" type="xs:int" />
+      <xs:element name="idTienda" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element name="stock" type="xs:int" />
+      <xs:element minOccurs="0" name="ubicacion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPorId">
+    <xs:sequence>
+      <xs:element name="idAlmacen" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:almacen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarAlmacen">
+    <xs:sequence>
+      <xs:element name="idAlmacen" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarAlmacenResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarAlmacen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datAlmacen" type="tns:almacen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarAlmacenResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarAlmacen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datAlmacen" type="tns:almacen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarAlmacenResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

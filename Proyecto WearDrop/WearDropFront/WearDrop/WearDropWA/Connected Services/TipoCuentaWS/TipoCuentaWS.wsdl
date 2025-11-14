@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://personal.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="TipoCuentaWS" targetNamespace="http://personal.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/TipoCuentaWS?xsd=1" namespace="http://personal.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="listarTiposCuenta">
+    <part name="parameters" element="tns:listarTiposCuenta" />
+  </message>
+  <message name="listarTiposCuentaResponse">
+    <part name="parameters" element="tns:listarTiposCuentaResponse" />
+  </message>
+  <message name="insertarTipoCuenta">
+    <part name="parameters" element="tns:insertarTipoCuenta" />
+  </message>
+  <message name="insertarTipoCuentaResponse">
+    <part name="parameters" element="tns:insertarTipoCuentaResponse" />
+  </message>
+  <message name="eliminarTipoCuenta">
+    <part name="parameters" element="tns:eliminarTipoCuenta" />
+  </message>
+  <message name="eliminarTipoCuentaResponse">
+    <part name="parameters" element="tns:eliminarTipoCuentaResponse" />
+  </message>
+  <message name="modificarTipoCuenta">
+    <part name="parameters" element="tns:modificarTipoCuenta" />
+  </message>
+  <message name="modificarTipoCuentaResponse">
+    <part name="parameters" element="tns:modificarTipoCuentaResponse" />
+  </message>
+  <message name="obtenerTipoCuentaPorId">
+    <part name="parameters" element="tns:obtenerTipoCuentaPorId" />
+  </message>
+  <message name="obtenerTipoCuentaPorIdResponse">
+    <part name="parameters" element="tns:obtenerTipoCuentaPorIdResponse" />
+  </message>
+  <portType name="TipoCuentaWS">
+    <operation name="listarTiposCuenta">
+      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/listarTiposCuentaRequest" message="tns:listarTiposCuenta" />
+      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/listarTiposCuentaResponse" message="tns:listarTiposCuentaResponse" />
+    </operation>
+    <operation name="insertarTipoCuenta">
+      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/insertarTipoCuentaRequest" message="tns:insertarTipoCuenta" />
+      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/insertarTipoCuentaResponse" message="tns:insertarTipoCuentaResponse" />
+    </operation>
+    <operation name="eliminarTipoCuenta">
+      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/eliminarTipoCuentaRequest" message="tns:eliminarTipoCuenta" />
+      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/eliminarTipoCuentaResponse" message="tns:eliminarTipoCuentaResponse" />
+    </operation>
+    <operation name="modificarTipoCuenta">
+      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/modificarTipoCuentaRequest" message="tns:modificarTipoCuenta" />
+      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/modificarTipoCuentaResponse" message="tns:modificarTipoCuentaResponse" />
+    </operation>
+    <operation name="obtenerTipoCuentaPorId">
+      <input wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/obtenerTipoCuentaPorIdRequest" message="tns:obtenerTipoCuentaPorId" />
+      <output wsam:Action="http://personal.services.weardrop.pucp.edu.pe/TipoCuentaWS/obtenerTipoCuentaPorIdResponse" message="tns:obtenerTipoCuentaPorIdResponse" />
+    </operation>
+  </portType>
+  <binding name="TipoCuentaWSPortBinding" type="tns:TipoCuentaWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="listarTiposCuenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarTipoCuenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarTipoCuenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarTipoCuenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerTipoCuentaPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TipoCuentaWS">
+    <port name="TipoCuentaWSPort" binding="tns:TipoCuentaWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/TipoCuentaWS" />
+    </port>
+  </service>
+</definitions>
