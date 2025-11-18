@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://comprobantes.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="NotaDeDebitoWS" targetNamespace="http://comprobantes.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/NotaDeDebitoWS?xsd=1" namespace="http://comprobantes.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="insertarNotaDebito">
+    <part name="parameters" element="tns:insertarNotaDebito" />
+  </message>
+  <message name="insertarNotaDebitoResponse">
+    <part name="parameters" element="tns:insertarNotaDebitoResponse" />
+  </message>
+  <message name="eliminarNotaDebito">
+    <part name="parameters" element="tns:eliminarNotaDebito" />
+  </message>
+  <message name="eliminarNotaDebitoResponse">
+    <part name="parameters" element="tns:eliminarNotaDebitoResponse" />
+  </message>
+  <message name="obtenerNotaDebitoPorId">
+    <part name="parameters" element="tns:obtenerNotaDebitoPorId" />
+  </message>
+  <message name="obtenerNotaDebitoPorIdResponse">
+    <part name="parameters" element="tns:obtenerNotaDebitoPorIdResponse" />
+  </message>
+  <message name="modificarNotaDebito">
+    <part name="parameters" element="tns:modificarNotaDebito" />
+  </message>
+  <message name="modificarNotaDebitoResponse">
+    <part name="parameters" element="tns:modificarNotaDebitoResponse" />
+  </message>
+  <message name="listarTodasNotasDebito">
+    <part name="parameters" element="tns:listarTodasNotasDebito" />
+  </message>
+  <message name="listarTodasNotasDebitoResponse">
+    <part name="parameters" element="tns:listarTodasNotasDebitoResponse" />
+  </message>
+  <portType name="NotaDeDebitoWS">
+    <operation name="insertarNotaDebito">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/insertarNotaDebitoRequest" message="tns:insertarNotaDebito" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/insertarNotaDebitoResponse" message="tns:insertarNotaDebitoResponse" />
+    </operation>
+    <operation name="eliminarNotaDebito">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/eliminarNotaDebitoRequest" message="tns:eliminarNotaDebito" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/eliminarNotaDebitoResponse" message="tns:eliminarNotaDebitoResponse" />
+    </operation>
+    <operation name="obtenerNotaDebitoPorId">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/obtenerNotaDebitoPorIdRequest" message="tns:obtenerNotaDebitoPorId" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/obtenerNotaDebitoPorIdResponse" message="tns:obtenerNotaDebitoPorIdResponse" />
+    </operation>
+    <operation name="modificarNotaDebito">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/modificarNotaDebitoRequest" message="tns:modificarNotaDebito" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/modificarNotaDebitoResponse" message="tns:modificarNotaDebitoResponse" />
+    </operation>
+    <operation name="listarTodasNotasDebito">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/listarTodasNotasDebitoRequest" message="tns:listarTodasNotasDebito" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeDebitoWS/listarTodasNotasDebitoResponse" message="tns:listarTodasNotasDebitoResponse" />
+    </operation>
+  </portType>
+  <binding name="NotaDeDebitoWSPortBinding" type="tns:NotaDeDebitoWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="insertarNotaDebito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarNotaDebito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerNotaDebitoPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarNotaDebito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarTodasNotasDebito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="NotaDeDebitoWS">
+    <port name="NotaDeDebitoWSPort" binding="tns:NotaDeDebitoWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/NotaDeDebitoWS" />
+    </port>
+  </service>
+</definitions>

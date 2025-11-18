@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://comprobantes.services.weardrop.pucp.edu.pe/" targetNamespace="http://comprobantes.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarFactura" type="tns:eliminarFactura" />
+  <xs:element name="eliminarFacturaResponse" type="tns:eliminarFacturaResponse" />
+  <xs:element name="insertarFactura" type="tns:insertarFactura" />
+  <xs:element name="insertarFacturaResponse" type="tns:insertarFacturaResponse" />
+  <xs:element name="listarTodasFacturas" type="tns:listarTodasFacturas" />
+  <xs:element name="listarTodasFacturasResponse" type="tns:listarTodasFacturasResponse" />
+  <xs:element name="modificarFactura" type="tns:modificarFactura" />
+  <xs:element name="modificarFacturaResponse" type="tns:modificarFacturaResponse" />
+  <xs:element name="obtenerFacturaPorId" type="tns:obtenerFacturaPorId" />
+  <xs:element name="obtenerFacturaPorIdResponse" type="tns:obtenerFacturaPorIdResponse" />
+  <xs:complexType name="eliminarFactura">
+    <xs:sequence>
+      <xs:element name="idFactura" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarFacturaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarFactura">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datFactura" type="tns:factura" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factura">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:comprobanteDePago">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RUC" type="xs:string" />
+          <xs:element minOccurs="0" name="razonSocial" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="comprobanteDePago" abstract="true">
+    <xs:sequence>
+      <xs:element name="activa" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arregloCorrelativo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="correlativo" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element name="IGV" type="xs:double" />
+      <xs:element name="idComprobante" type="xs:int" />
+      <xs:element minOccurs="0" name="metodoDePago" type="xs:string" />
+      <xs:element name="total" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarFacturaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarTodasFacturas">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodasFacturasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:factura" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerFacturaPorId">
+    <xs:sequence>
+      <xs:element name="idFactura" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerFacturaPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:factura" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarFactura">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datFactura" type="tns:factura" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarFacturaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

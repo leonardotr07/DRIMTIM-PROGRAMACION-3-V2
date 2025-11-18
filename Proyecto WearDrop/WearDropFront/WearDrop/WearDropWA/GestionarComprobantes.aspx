@@ -1,176 +1,129 @@
 ﻿<%@ Page Title="Gestionar Comprobantes" Language="C#" MasterPageFile="~/WearDrop1.Master" AutoEventWireup="true" CodeBehind="GestionarComprobantes.aspx.cs" Inherits="WearDropWA.GestionarComprobantes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Gestionar Comprobantes
+    Seleccionar Tipo de Comprobante a Gestionar
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
     <style>
-        /* ------- layout base ------- */
-        .header-title { display:flex; align-items:stretch; height:60px; box-shadow:0 2px 4px rgba(0,0,0,.1); margin-top:14px; border-radius:10px; overflow:hidden }
-        .title-section { background:#fff; padding:0 25px; display:flex; align-items:center; flex:0 0 280px }
-        .title-section h2 { margin:0; font-size:20px; font-weight:600; color:#333; white-space:nowrap }
-        .color-bar { height:100% }
-        .bar-1 { flex:1.5 }
-        .bar-2 { flex:1.5 }
-
-        .top-accent { height:4px; margin-top:10px; border-radius:4px }
-
-        .custom-grid { border-collapse:collapse; width:100% }
-        .custom-grid th { color:#333; font-weight:500; padding:15px 20px; text-align:left; border:none; background:var(--c1) }
-        .custom-grid td { padding:12px 20px; border-bottom:1px solid #E8E8E8 }
-        .custom-grid tr:nth-child(even) { background:#F5F5F5 }
-        .custom-grid tr:hover { background:#E8F4E5 }
-
-        a, a:visited, a:hover, a:active, .btn-wd { text-decoration:none !important; color:inherit }
-
-        .btn-wd {
-            background:var(--btn); color:#fff; border:none; padding:8px 18px;
-            border-radius:8px; cursor:pointer; display:inline-block; transition:.15s;
-            box-shadow:0 1px 2px rgba(0,0,0,.08)
+        .header-title {
+            display: flex;
+            align-items: stretch;
+            height: 60px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 14px; /* Añadido del estándar */
+            border-radius: 10px; /* Añadido del estándar */
+            overflow: hidden; /* Añadido del estándar */
         }
-        .btn-wd:hover { filter:brightness(.95) }
-        .btn-wd:active { transform:translateY(1px) }
+        .title-section {
+            background-color: #FFFFFF;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            flex: 0 0 280px; /* Ajustado */
+        }
+        .title-section h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600; /* Coincide con el estándar */
+            color: #333;
+            white-space: nowrap;
+        }
+        .color-bar { height: 100%; }
+        /* Usamos el tema de color azul para comprobantes */
+        .bar-1 { background-color: #C7D6E2; flex: 1.5; } 
+        .bar-2 { background-color: #9FB6C8; flex: 1.5; }
 
-        /* ===== Tonos ===== */
-        .theme-polos { --tone-1:#C6D8C4; --tone-2:#9DBD9B; --tone-3:#7FA07E; }
-        .theme-vestidos { --tone-1:#C7D6E2; --tone-2:#9FB6C8; --tone-3:#7C98AD; }
-        .theme-gorros { --tone-1:#E0B6BC; --tone-2:#C99298; --tone-3:#A86E75; }
-        .theme-pantalones { --tone-1:#D3CBEB; --tone-2:#B4A6D6; --tone-3:#8E83BE; }
-        .theme-casacas { --tone-1:#C4DDD8; --tone-2:#9AC5BE; --tone-3:#77AAA2; }
-        .theme-blusas { --tone-1:#F3EEB9; --tone-2:#EDE28A; --tone-3:#C7BC5F; }
-        .theme-faldas { --tone-1:#DFC2CE; --tone-2:#C5A0B0; --tone-3:#A77A8D; }
-        /* Tema para Comprobantes (ej. azul) */
-        .theme-comprobantes { --tone-1:#C7D6E2; --tone-2:#9FB6C8; --tone-3:#7C98AD; }
+        .promo-button, .promo-button:hover {
+            text-decoration: none; 
+        }
 
+        .promo-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            width: 300px; /* Ancho ajustado para 4 botones */
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s ease-in-out;
+            text-align: center;
+        }
+        .promo-button i { margin-right: 10px; }
+        .promo-button .inner {
+            background-color: white;
+            padding: 12px 30px;
+            border-radius: 10px;
+            color: #333;
+            width: 100%; /* Para que el texto interno no se rompa */
+        }
+        .promo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
-        .theme-scope .bar-1 { background:var(--tone-1); }
-        .theme-scope .bar-2 { background:var(--tone-2); }
-        .theme-scope .custom-grid th { background:var(--tone-2) !important; color:#333; }
-        .theme-scope .btn-wd { background:var(--tone-3); color:#fff; }
-        .theme-scope .btn-wd:hover { filter:brightness(.95); }
-        .theme-scope .top-accent { background:linear-gradient(90deg,var(--tone-1),var(--tone-2),var(--tone-3)); }
+        /* Colores para los 4 botones */
+        .green { background-color: #9DBD9B; border-color: #9DBD9B; }
+        .blue { background-color: #9FB6C8; border-color: #9FB6C8; }
+        .soft-red { background-color: #C99298; border-color: #C99298; }
+        .lilac { background-color: #B4A6D6; border-color: #B4A6D6; } /* Color nuevo */
 
-        /* ===== Botones de acción estilo Bootstrap ===== */
-        .action-btns i { font-size:1.1em; }
-        .btn-sm { padding:4px 8px !important; margin-right:4px; }
-        
-        /* Estilos de tu GridView anterior (Paginación) */
-        .pagination-container {
-            text-align: right;
-            margin-top: 15px;
+        .button-container {
+            display: grid; /* Usamos Grid para un 2x2 */
+            grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+            gap: 30px;
+            justify-items: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
         }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <div id="themeWrap" runat="server" class="theme-comprobantes">
-        <div class="theme-scope">
-            <div class="container">
-                <div class="top-accent"></div>
-
-                <div class="container row">
-                    <div class="row align-items-center">
-                        <div class="col-md-6 p-0">
-                            <div class="header-title">
-                                <div class="title-section">
-                                    <h2>Gestionar Comprobantes</h2>
-                                </div>
-                                <div class="color-bar bar-1"></div>
-                                <div class="color-bar bar-2"></div>
-                            </div>
+    <div class="container">
+        <div class="container row">
+            <div class="row align-items-center">
+                <!-- Título de la página con barras decorativas -->
+                <div class="col-md-7 p-0"> <!-- Ajustado a col-md-7 -->
+                    <div class="header-title">
+                        <div class="title-section">
+                            <h2>Seleccionar Tipo de Comprobante</h2>
                         </div>
-                        <div class="col text-end p-3">
-                            <asp:LinkButton ID="btnIrARegistrar" CssClass="btn-wd" 
-                                runat="server" 
-                                OnClick="btnIrARegistrar_Click" 
-                                Text="Registrar" />
-                        </div>
+                        <div class="color-bar bar-1"></div>
+                        <div class="color-bar bar-2"></div>
                     </div>
-                </div>
-
-                <div class="container row mt-3">
-                    <asp:GridView ID="gvComprobantes" 
-                        runat="server" 
-                        AutoGenerateColumns="False" 
-                        ShowHeaderWhenEmpty="True"
-                        CssClass="table table-hover table-striped custom-grid" 
-                        AllowPaging="True" 
-                        PageSize="10"
-                        OnPageIndexChanging="gvComprobantes_PageIndexChanging"
-                        OnRowCommand="gvComprobantes_RowCommand">
-                        
-                        <Columns>
-                            <asp:BoundField DataField="ID" HeaderText="ID" />
-                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:d}" />
-                            <asp:BoundField DataField="Tipo" HeaderText="Tipo" />
-                            <asp:BoundField DataField="Correlativo" HeaderText="Correlativo" />
-                            <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C}" />
-            
-                            <asp:TemplateField HeaderText="Acciones">
-                                <ItemTemplate>
-                                    <div class="action-btns">
-                                        <asp:LinkButton ID="btnEditar" runat="server" 
-                                            CssClass="btn btn-sm btn-outline-primary" 
-                                            CommandArgument='<%# Eval("ID") %>'
-                                            CommandName="Editar"
-                                            ToolTip="Editar">
-                                            <i class="fa fa-pencil"></i>
-                                        </asp:LinkButton>
-                                        
-                                        <asp:LinkButton ID="btnEliminar" runat="server" 
-                                            CssClass="btn btn-sm btn-outline-danger" 
-                                            CommandArgument='<%# Eval("ID") %>'
-                                            CommandName="Eliminar"
-                                            OnClientClick="return showConfirm(this);"
-                                            ToolTip="Eliminar">
-                                            <i class="fa fa-trash"></i>
-                                        </asp:LinkButton>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                        
-                        <PagerStyle CssClass="pagination-container" />
-                    </asp:GridView>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Confirmar Eliminación</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ¿Estás seguro de borrar este comprobante? Esta acción no se puede deshacer.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="btnConfirmDelete" class="btn btn-danger" onclick="executeDelete()">Eliminar</button>
-                </div>
+        <!-- Contenedor de los 4 botones -->
+        <div class="container row mt-4">
+            <div class="button-container">
+                
+                <!-- Usamos LinkButton para usar OnClick en C# -->
+                <asp:LinkButton ID="btnBoleta" runat="server" OnClick="btnBoleta_Click" CssClass="promo-button green">
+                    <div class="inner"><i class="fa-solid fa-receipt"></i><span>BOLETAS</span></div>
+                </asp:LinkButton>
+                
+                <asp:LinkButton ID="btnFactura" runat="server" OnClick="btnFactura_Click" CssClass="promo-button blue">
+                    <div class="inner"><i class="fa-solid fa-file-invoice-dollar"></i><span>FACTURAS</span></div>
+                </asp:LinkButton>
+
+                <asp:LinkButton ID="btnNotaCredito" runat="server" OnClick="btnNotaCredito_Click" CssClass="promo-button soft-red">
+                    <div class="inner"><i class="fa-solid fa-file-circle-minus"></i><span>NOTAS DE CRÉDITO</span></div>
+                </asp:LinkButton>
+
+                <asp:LinkButton ID="btnNotaDebito" runat="server" OnClick="btnNotaDebito_Click" CssClass="promo-button lilac">
+                    <div class="inner"><i class="fa-solid fa-file-circle-plus"></i><span>NOTAS DE DÉBITO</span></div>
+                </asp:LinkButton>
+
             </div>
         </div>
     </div>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptsContent" runat="server">
-    <script type="text/javascript">
-        var _deleteButtonToClick;
-
-        function showConfirm(btn) {
-            _deleteButtonToClick = btn;
-            var myModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
-            myModal.show();
-            return false;
-        }
-
-        function executeDelete() {
-            _deleteButtonToClick.click();
-        }
-    </script>
 </asp:Content>

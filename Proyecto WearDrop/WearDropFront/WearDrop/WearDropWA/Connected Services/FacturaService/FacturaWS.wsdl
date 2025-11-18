@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://comprobantes.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="FacturaWS" targetNamespace="http://comprobantes.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/FacturaWS?xsd=1" namespace="http://comprobantes.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="eliminarFactura">
+    <part name="parameters" element="tns:eliminarFactura" />
+  </message>
+  <message name="eliminarFacturaResponse">
+    <part name="parameters" element="tns:eliminarFacturaResponse" />
+  </message>
+  <message name="obtenerFacturaPorId">
+    <part name="parameters" element="tns:obtenerFacturaPorId" />
+  </message>
+  <message name="obtenerFacturaPorIdResponse">
+    <part name="parameters" element="tns:obtenerFacturaPorIdResponse" />
+  </message>
+  <message name="listarTodasFacturas">
+    <part name="parameters" element="tns:listarTodasFacturas" />
+  </message>
+  <message name="listarTodasFacturasResponse">
+    <part name="parameters" element="tns:listarTodasFacturasResponse" />
+  </message>
+  <message name="insertarFactura">
+    <part name="parameters" element="tns:insertarFactura" />
+  </message>
+  <message name="insertarFacturaResponse">
+    <part name="parameters" element="tns:insertarFacturaResponse" />
+  </message>
+  <message name="modificarFactura">
+    <part name="parameters" element="tns:modificarFactura" />
+  </message>
+  <message name="modificarFacturaResponse">
+    <part name="parameters" element="tns:modificarFacturaResponse" />
+  </message>
+  <portType name="FacturaWS">
+    <operation name="eliminarFactura">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/eliminarFacturaRequest" message="tns:eliminarFactura" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/eliminarFacturaResponse" message="tns:eliminarFacturaResponse" />
+    </operation>
+    <operation name="obtenerFacturaPorId">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/obtenerFacturaPorIdRequest" message="tns:obtenerFacturaPorId" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/obtenerFacturaPorIdResponse" message="tns:obtenerFacturaPorIdResponse" />
+    </operation>
+    <operation name="listarTodasFacturas">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/listarTodasFacturasRequest" message="tns:listarTodasFacturas" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/listarTodasFacturasResponse" message="tns:listarTodasFacturasResponse" />
+    </operation>
+    <operation name="insertarFactura">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/insertarFacturaRequest" message="tns:insertarFactura" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/insertarFacturaResponse" message="tns:insertarFacturaResponse" />
+    </operation>
+    <operation name="modificarFactura">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/modificarFacturaRequest" message="tns:modificarFactura" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/FacturaWS/modificarFacturaResponse" message="tns:modificarFacturaResponse" />
+    </operation>
+  </portType>
+  <binding name="FacturaWSPortBinding" type="tns:FacturaWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="eliminarFactura">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerFacturaPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarTodasFacturas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarFactura">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarFactura">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="FacturaWS">
+    <port name="FacturaWSPort" binding="tns:FacturaWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/FacturaWS" />
+    </port>
+  </service>
+</definitions>

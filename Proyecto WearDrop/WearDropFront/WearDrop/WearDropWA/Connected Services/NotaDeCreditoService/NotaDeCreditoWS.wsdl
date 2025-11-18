@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://comprobantes.services.weardrop.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="NotaDeCreditoWS" targetNamespace="http://comprobantes.services.weardrop.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/WearDropWS/NotaDeCreditoWS?xsd=1" namespace="http://comprobantes.services.weardrop.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="listarTodasNotasCredito">
+    <part name="parameters" element="tns:listarTodasNotasCredito" />
+  </message>
+  <message name="listarTodasNotasCreditoResponse">
+    <part name="parameters" element="tns:listarTodasNotasCreditoResponse" />
+  </message>
+  <message name="modificarNotaCredito">
+    <part name="parameters" element="tns:modificarNotaCredito" />
+  </message>
+  <message name="modificarNotaCreditoResponse">
+    <part name="parameters" element="tns:modificarNotaCreditoResponse" />
+  </message>
+  <message name="eliminarNotaCredito">
+    <part name="parameters" element="tns:eliminarNotaCredito" />
+  </message>
+  <message name="eliminarNotaCreditoResponse">
+    <part name="parameters" element="tns:eliminarNotaCreditoResponse" />
+  </message>
+  <message name="insertarNotaCredito">
+    <part name="parameters" element="tns:insertarNotaCredito" />
+  </message>
+  <message name="insertarNotaCreditoResponse">
+    <part name="parameters" element="tns:insertarNotaCreditoResponse" />
+  </message>
+  <message name="obtenerNotaCreditoPorId">
+    <part name="parameters" element="tns:obtenerNotaCreditoPorId" />
+  </message>
+  <message name="obtenerNotaCreditoPorIdResponse">
+    <part name="parameters" element="tns:obtenerNotaCreditoPorIdResponse" />
+  </message>
+  <portType name="NotaDeCreditoWS">
+    <operation name="listarTodasNotasCredito">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/listarTodasNotasCreditoRequest" message="tns:listarTodasNotasCredito" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/listarTodasNotasCreditoResponse" message="tns:listarTodasNotasCreditoResponse" />
+    </operation>
+    <operation name="modificarNotaCredito">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/modificarNotaCreditoRequest" message="tns:modificarNotaCredito" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/modificarNotaCreditoResponse" message="tns:modificarNotaCreditoResponse" />
+    </operation>
+    <operation name="eliminarNotaCredito">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/eliminarNotaCreditoRequest" message="tns:eliminarNotaCredito" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/eliminarNotaCreditoResponse" message="tns:eliminarNotaCreditoResponse" />
+    </operation>
+    <operation name="insertarNotaCredito">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/insertarNotaCreditoRequest" message="tns:insertarNotaCredito" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/insertarNotaCreditoResponse" message="tns:insertarNotaCreditoResponse" />
+    </operation>
+    <operation name="obtenerNotaCreditoPorId">
+      <input wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/obtenerNotaCreditoPorIdRequest" message="tns:obtenerNotaCreditoPorId" />
+      <output wsam:Action="http://comprobantes.services.weardrop.pucp.edu.pe/NotaDeCreditoWS/obtenerNotaCreditoPorIdResponse" message="tns:obtenerNotaCreditoPorIdResponse" />
+    </operation>
+  </portType>
+  <binding name="NotaDeCreditoWSPortBinding" type="tns:NotaDeCreditoWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="listarTodasNotasCredito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarNotaCredito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarNotaCredito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarNotaCredito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerNotaCreditoPorId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="NotaDeCreditoWS">
+    <port name="NotaDeCreditoWSPort" binding="tns:NotaDeCreditoWSPortBinding">
+      <soap:address location="http://localhost:8080/WearDropWS/NotaDeCreditoWS" />
+    </port>
+  </service>
+</definitions>

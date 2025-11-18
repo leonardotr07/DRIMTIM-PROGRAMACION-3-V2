@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://comprobantes.services.weardrop.pucp.edu.pe/" targetNamespace="http://comprobantes.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarNotaDebito" type="tns:eliminarNotaDebito" />
+  <xs:element name="eliminarNotaDebitoResponse" type="tns:eliminarNotaDebitoResponse" />
+  <xs:element name="insertarNotaDebito" type="tns:insertarNotaDebito" />
+  <xs:element name="insertarNotaDebitoResponse" type="tns:insertarNotaDebitoResponse" />
+  <xs:element name="listarTodasNotasDebito" type="tns:listarTodasNotasDebito" />
+  <xs:element name="listarTodasNotasDebitoResponse" type="tns:listarTodasNotasDebitoResponse" />
+  <xs:element name="modificarNotaDebito" type="tns:modificarNotaDebito" />
+  <xs:element name="modificarNotaDebitoResponse" type="tns:modificarNotaDebitoResponse" />
+  <xs:element name="obtenerNotaDebitoPorId" type="tns:obtenerNotaDebitoPorId" />
+  <xs:element name="obtenerNotaDebitoPorIdResponse" type="tns:obtenerNotaDebitoPorIdResponse" />
+  <xs:complexType name="eliminarNotaDebito">
+    <xs:sequence>
+      <xs:element name="idNotaDebito" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarNotaDebitoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarTodasNotasDebito">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodasNotasDebitoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notaDeDebito" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="notaDeDebito">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:comprobanteDePago">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="detalleModificacion" type="xs:string" />
+          <xs:element name="idPrenda" type="xs:int" />
+          <xs:element minOccurs="0" name="motivoEspecifico" type="xs:string" />
+          <xs:element name="nuevoMonto" type="xs:double" />
+          <xs:element minOccurs="0" name="RUC" type="xs:string" />
+          <xs:element minOccurs="0" name="razonSocial" type="xs:string" />
+          <xs:element name="valorAumentar" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="comprobanteDePago" abstract="true">
+    <xs:sequence>
+      <xs:element name="activa" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arregloCorrelativo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="correlativo" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element name="IGV" type="xs:double" />
+      <xs:element name="idComprobante" type="xs:int" />
+      <xs:element minOccurs="0" name="metodoDePago" type="xs:string" />
+      <xs:element name="total" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarNotaDebito">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datNotaDebito" type="tns:notaDeDebito" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarNotaDebitoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNotaDebito">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datNotaDebito" type="tns:notaDeDebito" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNotaDebitoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerNotaDebitoPorId">
+    <xs:sequence>
+      <xs:element name="idNotaDebito" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerNotaDebitoPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:notaDeDebito" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

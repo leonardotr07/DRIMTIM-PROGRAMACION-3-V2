@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://comprobantes.services.weardrop.pucp.edu.pe/" targetNamespace="http://comprobantes.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarBoleta" type="tns:eliminarBoleta" />
+  <xs:element name="eliminarBoletaResponse" type="tns:eliminarBoletaResponse" />
+  <xs:element name="insertarBoleta" type="tns:insertarBoleta" />
+  <xs:element name="insertarBoletaResponse" type="tns:insertarBoletaResponse" />
+  <xs:element name="listarTodasBoletas" type="tns:listarTodasBoletas" />
+  <xs:element name="listarTodasBoletasResponse" type="tns:listarTodasBoletasResponse" />
+  <xs:element name="modificarBoleta" type="tns:modificarBoleta" />
+  <xs:element name="modificarBoletaResponse" type="tns:modificarBoletaResponse" />
+  <xs:element name="obtenerBoletaPorId" type="tns:obtenerBoletaPorId" />
+  <xs:element name="obtenerBoletaPorIdResponse" type="tns:obtenerBoletaPorIdResponse" />
+  <xs:complexType name="listarTodasBoletas">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodasBoletasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:boleta" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="boleta">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:comprobanteDePago">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DNI" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="comprobanteDePago" abstract="true">
+    <xs:sequence>
+      <xs:element name="activa" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arregloCorrelativo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="correlativo" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element name="IGV" type="xs:double" />
+      <xs:element name="idComprobante" type="xs:int" />
+      <xs:element minOccurs="0" name="metodoDePago" type="xs:string" />
+      <xs:element name="total" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarBoleta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datBoleta" type="tns:boleta" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarBoletaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerBoletaPorId">
+    <xs:sequence>
+      <xs:element name="idBoleta" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerBoletaPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:boleta" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarBoleta">
+    <xs:sequence>
+      <xs:element name="idBoleta" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarBoletaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarBoleta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datBoleta" type="tns:boleta" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarBoletaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

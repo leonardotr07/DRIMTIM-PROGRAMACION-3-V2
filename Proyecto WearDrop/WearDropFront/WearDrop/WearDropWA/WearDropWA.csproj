@@ -100,6 +100,28 @@
     <Content Include="Connected Services\BlusaWS\WearDropWA.BlusaWS.obtenerBlusaPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\BoletaService\BoletaWS.wsdl" />
+    <None Include="Connected Services\BoletaService\BoletaWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\BoletaService\WearDropWA.BoletaService.boleta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\BoletaService\WearDropWA.BoletaService.eliminarBoletaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\BoletaService\WearDropWA.BoletaService.insertarBoletaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\BoletaService\WearDropWA.BoletaService.listarTodasBoletasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\BoletaService\WearDropWA.BoletaService.modificarBoletaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\BoletaService\WearDropWA.BoletaService.obtenerBoletaPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\CargoWS\CargoWS.wsdl" />
     <None Include="Connected Services\CargoWS\CargoWS.xsd">
       <SubType>Designer</SubType>
@@ -107,6 +129,12 @@
     <None Include="Connected Services\CasacaWS\CasacaWS.wsdl" />
     <None Include="Connected Services\CasacaWS\CasacaWS.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\BoletaService\configuration91.svcinfo" />
+    <None Include="Connected Services\BoletaService\configuration.svcinfo" />
+    <None Include="Connected Services\BoletaService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Connected Services\CasacaWS\WearDropWA.CasacaWS.casaca.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -153,6 +181,28 @@
     <None Include="Connected Services\EmpleadoWS\EmpleadoWS.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\FacturaService\FacturaWS.wsdl" />
+    <None Include="Connected Services\FacturaService\FacturaWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\FacturaService\WearDropWA.FacturaService.eliminarFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FacturaService\WearDropWA.FacturaService.factura.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FacturaService\WearDropWA.FacturaService.insertarFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FacturaService\WearDropWA.FacturaService.listarTodasFacturasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FacturaService\WearDropWA.FacturaService.modificarFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\FacturaService\WearDropWA.FacturaService.obtenerFacturaPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\FaldaWS\FaldaWS.wsdl" />
     <None Include="Connected Services\FaldaWS\FaldaWS.xsd">
       <SubType>Designer</SubType>
@@ -166,6 +216,12 @@
     <None Include="Connected Services\ClienteWS\configuration91.svcinfo" />
     <None Include="Connected Services\ClienteWS\configuration.svcinfo" />
     <None Include="Connected Services\ClienteWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\FacturaService\configuration91.svcinfo" />
+    <None Include="Connected Services\FacturaService\configuration.svcinfo" />
+    <None Include="Connected Services\FacturaService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -215,6 +271,50 @@
     <Content Include="Connected Services\GorroWS\WearDropWA.GorroWS.obtenerGorroPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\NotaDeCreditoService\NotaDeCreditoWS.wsdl" />
+    <None Include="Connected Services\NotaDeCreditoService\NotaDeCreditoWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\NotaDeCreditoService\WearDropWA.NotaDeCreditoService.eliminarNotaCreditoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeCreditoService\WearDropWA.NotaDeCreditoService.insertarNotaCreditoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeCreditoService\WearDropWA.NotaDeCreditoService.listarTodasNotasCreditoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeCreditoService\WearDropWA.NotaDeCreditoService.modificarNotaCreditoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeCreditoService\WearDropWA.NotaDeCreditoService.notaDeCredito.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeCreditoService\WearDropWA.NotaDeCreditoService.obtenerNotaCreditoPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\NotaDeDebitoService\NotaDeDebitoWS.wsdl" />
+    <None Include="Connected Services\NotaDeDebitoService\NotaDeDebitoWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Connected Services\NotaDeDebitoService\WearDropWA.NotaDeDebitoService.eliminarNotaDebitoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeDebitoService\WearDropWA.NotaDeDebitoService.insertarNotaDebitoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeDebitoService\WearDropWA.NotaDeDebitoService.listarTodasNotasDebitoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeDebitoService\WearDropWA.NotaDeDebitoService.modificarNotaDebitoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeDebitoService\WearDropWA.NotaDeDebitoService.notaDeDebito.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NotaDeDebitoService\WearDropWA.NotaDeDebitoService.obtenerNotaDebitoPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\PackageAlmacen\AlmacenWS.wsdl" />
     <None Include="Connected Services\PackageAlmacen\AlmacenWS.xsd">
       <SubType>Designer</SubType>
@@ -245,6 +345,18 @@
     <None Include="Connected Services\PackageAlmacen\configuration91.svcinfo" />
     <None Include="Connected Services\PackageAlmacen\configuration.svcinfo" />
     <None Include="Connected Services\PackageAlmacen\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\NotaDeCreditoService\configuration91.svcinfo" />
+    <None Include="Connected Services\NotaDeCreditoService\configuration.svcinfo" />
+    <None Include="Connected Services\NotaDeCreditoService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\NotaDeDebitoService\configuration91.svcinfo" />
+    <None Include="Connected Services\NotaDeDebitoService\configuration.svcinfo" />
+    <None Include="Connected Services\NotaDeDebitoService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -490,6 +602,7 @@
     <Content Include="Almacen\ListarAlmacenes.aspx" />
     <Content Include="Almacen\ModificarAlmacen.aspx" />
     <Content Include="Almacen\RegistrarAlmacen.aspx" />
+    <Content Include="ListarBoletas.aspx" />
     <Content Include="ListarClientes.aspx" />
     <Content Include="ListarClientexCompras.aspx" />
     <Content Include="ListarCombo.aspx" />
@@ -497,17 +610,25 @@
     <Content Include="ListarCuentas.aspx" />
     <Content Include="ListarEmpleados.aspx" />
     <Content Include="ListarEmpleadoXVentas.aspx" />
+    <Content Include="ListarFacturas.aspx" />
     <Content Include="ListarLiquidacion.aspx" />
     <Content Include="ListarMonto.aspx" />
+    <Content Include="ListarNotasDeCredito.aspx" />
+    <Content Include="ListarNotasDeDebito.aspx" />
     <Content Include="ListarPorcentaje.aspx" />
     <Content Include="ListarPrendas.aspx" />
+    <Content Include="ModificarBoleta.aspx" />
     <Content Include="ModificarCombo.aspx" />
     <Content Include="ModificarComprobantes.aspx" />
     <Content Include="ModificarConjunto.aspx" />
+    <Content Include="ModificarFactura.aspx" />
     <Content Include="ModificarLiquidacion.aspx" />
     <Content Include="ModificarMonto.aspx" />
+    <Content Include="ModificarNotaDeCredito.aspx" />
+    <Content Include="ModificarNotaDeDebito.aspx" />
     <Content Include="ModificarPorcentaje.aspx" />
     <Content Include="RegistarVentas.aspx" />
+    <Content Include="RegistrarBoleta.aspx" />
     <Content Include="RegistrarClientes.aspx" />
     <Content Include="RegistrarCombo.aspx" />
     <Content Include="RegistrarComprobantes.aspx" />
@@ -516,8 +637,11 @@
     <Content Include="RegistrarConjunto.aspx" />
     <Content Include="RegistrarCuentas.aspx" />
     <Content Include="RegistrarEmpleado.aspx" />
+    <Content Include="RegistrarFactura.aspx" />
     <Content Include="RegistrarLiquidacion.aspx" />
     <Content Include="RegistrarMonto.aspx" />
+    <Content Include="RegistrarNotaDeCredito.aspx" />
+    <Content Include="RegistrarNotaDeDebito.aspx" />
     <Content Include="RegistrarOrdenCompra.aspx" />
     <Content Include="RegistrarPorcentaje.aspx" />
     <Content Include="RegistrarPrenda.aspx" />
@@ -677,6 +801,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\BoletaService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\CargoWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -717,12 +846,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\FacturaService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\FaldaWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\GorroWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\NotaDeCreditoService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\NotaDeDebitoService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -854,6 +998,13 @@
     <Compile Include="Almacen\ModificarAlmacen.aspx.designer.cs">
       <DependentUpon>ModificarAlmacen.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListarBoletas.aspx.cs">
+      <DependentUpon>ListarBoletas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarBoletas.aspx.designer.cs">
+      <DependentUpon>ListarBoletas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListarClientes.aspx.cs">
       <DependentUpon>ListarClientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -903,6 +1054,13 @@
     <Compile Include="ListarEmpleadoXVentas.aspx.designer.cs">
       <DependentUpon>ListarEmpleadoXVentas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListarFacturas.aspx.cs">
+      <DependentUpon>ListarFacturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarFacturas.aspx.designer.cs">
+      <DependentUpon>ListarFacturas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListarLiquidacion.aspx.cs">
       <DependentUpon>ListarLiquidacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -917,6 +1075,20 @@
     <Compile Include="ListarMonto.aspx.designer.cs">
       <DependentUpon>ListarMonto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListarNotasDeCredito.aspx.cs">
+      <DependentUpon>ListarNotasDeCredito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarNotasDeCredito.aspx.designer.cs">
+      <DependentUpon>ListarNotasDeCredito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListarNotasDeDebito.aspx.cs">
+      <DependentUpon>ListarNotasDeDebito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarNotasDeDebito.aspx.designer.cs">
+      <DependentUpon>ListarNotasDeDebito.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListarPorcentaje.aspx.cs">
       <DependentUpon>ListarPorcentaje.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -930,6 +1102,13 @@
     </Compile>
     <Compile Include="ListarPrendas.aspx.designer.cs">
       <DependentUpon>ListarPrendas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarBoleta.aspx.cs">
+      <DependentUpon>ModificarBoleta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarBoleta.aspx.designer.cs">
+      <DependentUpon>ModificarBoleta.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarCombo.aspx.cs">
       <DependentUpon>ModificarCombo.aspx</DependentUpon>
@@ -952,6 +1131,13 @@
     <Compile Include="ModificarConjunto.aspx.designer.cs">
       <DependentUpon>ModificarConjunto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ModificarFactura.aspx.cs">
+      <DependentUpon>ModificarFactura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarFactura.aspx.designer.cs">
+      <DependentUpon>ModificarFactura.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ModificarLiquidacion.aspx.cs">
       <DependentUpon>ModificarLiquidacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -965,6 +1151,20 @@
     </Compile>
     <Compile Include="ModificarMonto.aspx.designer.cs">
       <DependentUpon>ModificarMonto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarNotaDeCredito.aspx.cs">
+      <DependentUpon>ModificarNotaDeCredito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarNotaDeCredito.aspx.designer.cs">
+      <DependentUpon>ModificarNotaDeCredito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarNotaDeDebito.aspx.cs">
+      <DependentUpon>ModificarNotaDeDebito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarNotaDeDebito.aspx.designer.cs">
+      <DependentUpon>ModificarNotaDeDebito.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarPorcentaje.aspx.cs">
       <DependentUpon>ModificarPorcentaje.aspx</DependentUpon>
@@ -987,6 +1187,13 @@
     </Compile>
     <Compile Include="RegistarVentas.aspx.designer.cs">
       <DependentUpon>RegistarVentas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarBoleta.aspx.cs">
+      <DependentUpon>RegistrarBoleta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarBoleta.aspx.designer.cs">
+      <DependentUpon>RegistrarBoleta.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistrarClientes.aspx.cs">
       <DependentUpon>RegistrarClientes.aspx</DependentUpon>
@@ -1044,6 +1251,13 @@
     <Compile Include="RegistrarEmpleado.aspx.designer.cs">
       <DependentUpon>RegistrarEmpleado.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarFactura.aspx.cs">
+      <DependentUpon>RegistrarFactura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarFactura.aspx.designer.cs">
+      <DependentUpon>RegistrarFactura.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarLiquidacion.aspx.cs">
       <DependentUpon>RegistrarLiquidacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1057,6 +1271,20 @@
     </Compile>
     <Compile Include="RegistrarMonto.aspx.designer.cs">
       <DependentUpon>RegistrarMonto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarNotaDeCredito.aspx.cs">
+      <DependentUpon>RegistrarNotaDeCredito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarNotaDeCredito.aspx.designer.cs">
+      <DependentUpon>RegistrarNotaDeCredito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarNotaDeDebito.aspx.cs">
+      <DependentUpon>RegistrarNotaDeDebito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarNotaDeDebito.aspx.designer.cs">
+      <DependentUpon>RegistrarNotaDeDebito.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistrarOrdenCompra.aspx.cs">
       <DependentUpon>RegistrarOrdenCompra.aspx</DependentUpon>
@@ -1241,6 +1469,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\BlusaWS\" />
+    <WCFMetadataStorage Include="Connected Services\BoletaService\" />
     <WCFMetadataStorage Include="Connected Services\CargoWS\" />
     <WCFMetadataStorage Include="Connected Services\CasacaWS\" />
     <WCFMetadataStorage Include="Connected Services\ClienteWS\" />
@@ -1249,8 +1478,11 @@
     <WCFMetadataStorage Include="Connected Services\DescuentoMontoWS\" />
     <WCFMetadataStorage Include="Connected Services\DescuentoPorcentajeWS\" />
     <WCFMetadataStorage Include="Connected Services\EmpleadoWS\" />
+    <WCFMetadataStorage Include="Connected Services\FacturaService\" />
     <WCFMetadataStorage Include="Connected Services\FaldaWS\" />
     <WCFMetadataStorage Include="Connected Services\GorroWS\" />
+    <WCFMetadataStorage Include="Connected Services\NotaDeCreditoService\" />
+    <WCFMetadataStorage Include="Connected Services\NotaDeDebitoService\" />
     <WCFMetadataStorage Include="Connected Services\PackageAlmacen\" />
     <WCFMetadataStorage Include="Connected Services\PantalonWS\" />
     <WCFMetadataStorage Include="Connected Services\PoloWS\" />

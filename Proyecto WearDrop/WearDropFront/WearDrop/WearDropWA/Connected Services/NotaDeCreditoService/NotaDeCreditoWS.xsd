@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://comprobantes.services.weardrop.pucp.edu.pe/" targetNamespace="http://comprobantes.services.weardrop.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarNotaCredito" type="tns:eliminarNotaCredito" />
+  <xs:element name="eliminarNotaCreditoResponse" type="tns:eliminarNotaCreditoResponse" />
+  <xs:element name="insertarNotaCredito" type="tns:insertarNotaCredito" />
+  <xs:element name="insertarNotaCreditoResponse" type="tns:insertarNotaCreditoResponse" />
+  <xs:element name="listarTodasNotasCredito" type="tns:listarTodasNotasCredito" />
+  <xs:element name="listarTodasNotasCreditoResponse" type="tns:listarTodasNotasCreditoResponse" />
+  <xs:element name="modificarNotaCredito" type="tns:modificarNotaCredito" />
+  <xs:element name="modificarNotaCreditoResponse" type="tns:modificarNotaCreditoResponse" />
+  <xs:element name="obtenerNotaCreditoPorId" type="tns:obtenerNotaCreditoPorId" />
+  <xs:element name="obtenerNotaCreditoPorIdResponse" type="tns:obtenerNotaCreditoPorIdResponse" />
+  <xs:complexType name="listarTodasNotasCredito">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodasNotasCreditoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:notaDeCredito" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="notaDeCredito">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:comprobanteDePago">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DNI" type="xs:string" />
+          <xs:element minOccurs="0" name="detalleModificacion" type="xs:string" />
+          <xs:element minOccurs="0" name="motivoEspecifico" type="xs:string" />
+          <xs:element name="nuevoMonto" type="xs:double" />
+          <xs:element minOccurs="0" name="RUC" type="xs:string" />
+          <xs:element minOccurs="0" name="razonSocial" type="xs:string" />
+          <xs:element name="valorAumentar" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="comprobanteDePago" abstract="true">
+    <xs:sequence>
+      <xs:element name="activa" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arregloCorrelativo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="correlativo" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element name="IGV" type="xs:double" />
+      <xs:element name="idComprobante" type="xs:int" />
+      <xs:element minOccurs="0" name="metodoDePago" type="xs:string" />
+      <xs:element name="total" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerNotaCreditoPorId">
+    <xs:sequence>
+      <xs:element name="idNotaCredito" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerNotaCreditoPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:notaDeCredito" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarNotaCredito">
+    <xs:sequence>
+      <xs:element name="idNotaCredito" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarNotaCreditoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarNotaCredito">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datNotaCredito" type="tns:notaDeCredito" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarNotaCreditoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNotaCredito">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datNotaCredito" type="tns:notaDeCredito" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNotaCreditoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
